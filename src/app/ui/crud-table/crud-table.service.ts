@@ -3,7 +3,6 @@ import {AuthHttp} from 'angular2-jwt';
 import {Response} from '@angular/http';
 import {ApiConfigService} from '../../api-config/api-config.service';
 import {Observable} from 'rxjs/Observable';
-import {handleError} from '../../app.helper';
 
 
 @Injectable()
@@ -25,8 +24,8 @@ export class CrudTableService {
   }
 
   public delete(id: number, url: string): Observable<any> {
-    return this.http.delete(this.acs.simpleUrl(url + '/' + id))
-      .catch(handleError)
+    return this.http
+      .delete(this.acs.simpleUrl(url + '/' + id))
       .map((response: Response) => response.json());
   }
 

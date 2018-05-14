@@ -6,6 +6,7 @@ import {Http, Request, RequestOptions, RequestOptionsArgs, Response, XHRBackend}
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import {handleError} from '../app.helper';
 
 
 @Injectable()
@@ -16,12 +17,14 @@ export class InterceptedHttp extends Http {
   }
 
   request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-    return super.request(url, options).catch((error: Response) => {
-      if (error.status === 401) {
-        window.location.reload();
-      }
-      return Observable.throw(error);
-    });
+    return super.request(url, options)
+      .catch((error: Response) => {
+        if (error.status === 401) {
+          window.location.reload();
+        }
+        return Observable.throw(error);
+      })
+      .catch(handleError);
   }
 
 }

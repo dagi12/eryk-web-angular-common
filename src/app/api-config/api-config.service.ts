@@ -19,7 +19,7 @@ export class ApiConfigService {
     return this._apiUrl;
   }
 
-  public constructUrl(serviceUrl?: string, endpointUrl?: string): string {
+  public url(serviceUrl?: string, endpointUrl?: string): string {
     let resultUrl: string = this._apiUrl + (serviceUrl || '') + '/' + (endpointUrl || '');
     while (resultUrl.slice(-1) === '/') {
       resultUrl = resultUrl.slice(0, -1);
