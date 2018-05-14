@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AuthHttp} from 'angular2-jwt';
 import {Response} from '@angular/http';
-import {ApiConfigurationService} from '../../api-config/api-configuration.service';
+import {ApiConfigService} from '../../api-config/api-config.service';
 import {Observable} from 'rxjs/Observable';
 import {handleError} from '../../app.helper';
 
@@ -9,7 +9,7 @@ import {handleError} from '../../app.helper';
 @Injectable()
 export class CrudTableService {
 
-  constructor(private http: AuthHttp, private acs: ApiConfigurationService) {
+  constructor(private http: AuthHttp, private acs: ApiConfigService) {
   }
 
   public update(item, url: string): Observable<any> {

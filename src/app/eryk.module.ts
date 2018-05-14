@@ -3,7 +3,7 @@ import {Injector, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {TopNavbarComponent} from './topnavbar/topnavbar.component';
-import {ApiConfigurationService} from './api-config/api-configuration.service';
+import {ApiConfigService} from './api-config/api-config.service';
 import {TextInputComponent} from './ui/text-input/text-input.component';
 import {ButtonComponent} from './ui/button/button.component';
 import {LabelWrapperComponent} from './ui/label-wrapper/label-wrapper.component';
@@ -60,7 +60,7 @@ import {DataTableModule} from 'primeng/primeng';
     DataTableModule,
   ],
   providers: [
-    ApiConfigurationService,
+    ApiConfigService,
     CommonModalService,
     CrudTableService,
     InterceptedHttp

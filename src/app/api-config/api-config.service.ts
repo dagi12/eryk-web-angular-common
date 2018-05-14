@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 
 @Injectable()
-export class ApiConfigurationService {
+export class ApiConfigService {
   constructor() {
     this._apiUrl = environment.API_URL;
   }
