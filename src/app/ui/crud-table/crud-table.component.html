@@ -7,7 +7,17 @@
                  (onRowClick)="onEdit($event)"
                  [rowStyleClass]="rowStyleClass"
                  [responsive]="true">
-      <p-column *ngFor="let col of columns" [field]="col.field" [header]="col.header"></p-column>
+      <p-column *ngFor="let col of columns" [field]="col.field" [header]="col.header">
+
+        <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
+          {{item[col.field] | date }}
+        </ng-template>
+
+        <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">
+          {{item[col.field] ? "Tak" : "Nie" }}
+        </ng-template>
+      </p-column>
+
     </p-dataTable>
   </div>
   <div class="row">

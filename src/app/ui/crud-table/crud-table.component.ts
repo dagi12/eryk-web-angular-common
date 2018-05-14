@@ -4,7 +4,6 @@ import {Modal, overlayConfigFactory} from 'angular2-modal';
 import {CrudTableModalData} from './crud-table-modal-data';
 import {CrudTableService} from './crud-table.service';
 import {EditModalResult} from './edit-modal-return-type';
-import {Column} from 'primeng/primeng';
 
 @Component({
   selector: 'app-crud-table',
@@ -24,7 +23,7 @@ export class CrudTableComponent implements OnInit {
   @Input() idKey: string;
   @Input() editContainerContent;
   @Input() addContainerContent;
-  @Input() columns: Column[];
+  @Input() columns: any[];
 
   @Input() callback = items => this.items = items._embedded[this.serviceUrl];
   rowStyleClass: (rowData: any) => string = null;
