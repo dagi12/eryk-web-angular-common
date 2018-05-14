@@ -1,0 +1,16 @@
+import {Injector} from '@angular/core';
+
+export type Constructor<T> = { new (...args: any[]): T }
+
+export class Global {
+  static injector: Injector;
+}
+
+export function resolveTypesManually(ctor) {
+  const paramTypes = Reflect.getMetadata('design:paramtypes', ctor);
+  const deps = [];
+  for (const arg of paramTypes) {
+    deps.push(Global.injector.get(arg));
+  }
+  return deps;
+}

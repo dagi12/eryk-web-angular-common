@@ -1,0 +1,21 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>{{title}}</h5>
+          <div class="ibox-tools">
+            <a *ngIf="collapsable" (click)="toggleCollapse()">
+              <i [ngClass]="{'fa-chevron-down':isCollapsed, 'fa-chevron-up': !isCollapsed}"
+                 class="fa fa-2x"></i>
+            </a>
+            <app-help-dialog [helpContent]="helpContent"></app-help-dialog>
+          </div>
+        </div>
+        <div class="ibox-content" [collapse]="isCollapsed">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
