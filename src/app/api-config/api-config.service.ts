@@ -1,10 +1,12 @@
-import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
+import {Inject, Injectable} from '@angular/core';
+import {ErykConfig} from '../eryk.interface';
+import {ERYK_CONFIG} from '../eryk.token';
 
 @Injectable()
 export class ApiConfigService {
-  constructor() {
-    this._apiUrl = environment.API_URL;
+
+  constructor(@Inject(ERYK_CONFIG) config: ErykConfig) {
+    this._apiUrl = config.baseUrl;
   }
 
   private _version: string;

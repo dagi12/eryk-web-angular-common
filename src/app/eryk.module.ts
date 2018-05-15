@@ -1,4 +1,4 @@
-import {Injector, NgModule} from '@angular/core';
+import {Injector, NgModule, Optional, SkipSelf} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {Global} from './global/global';
@@ -22,6 +22,7 @@ import {CrudTableService} from './ui/crud-table/crud-table.service';
 import {InterceptedHttp} from './config/InterceptedHttp';
 import {DataTableModule} from 'primeng/primeng';
 import {CollapseModule} from 'ngx-bootstrap';
+import {ERYK_CONFIG} from './eryk.token';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import {CollapseModule} from 'ngx-bootstrap';
     ApiConfigService,
     CommonModalService,
     CrudTableService,
-    InterceptedHttp
+    InterceptedHttp,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -72,8 +73,22 @@ import {CollapseModule} from 'ngx-bootstrap';
 })
 export class ErykModule {
 
-  constructor(injector: Injector) {
-    Global.injector = injector;
+  public constructor(@Optional() @SkipSelf() parentModule: ErykModule, injector: Injector) {
+    if (parentModule) {
+      throw new Error('ErykModule has already been imported.');
+    } else {
+      Global.injector = injector;
+    }
   }
+
+  public static forRoot(config: ErykModule) {
+    return {
+      ngModule: ErykModule,
+      providers: [
+        {provide: ERYK_CONFIG, useValue: config}
+      ]
+    };
+  }
+
 
 }
