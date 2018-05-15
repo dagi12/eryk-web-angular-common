@@ -1,4 +1,5 @@
 import {Injector} from '@angular/core';
+import 'reflect-metadata';
 
 export type Constructor<T> = { new (...args: any[]): T }
 
