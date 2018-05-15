@@ -30,3 +30,27 @@ export function validateTextMask(placeholderChar?: string): ValidatorFn {
     return {error: true};
   };
 }
+
+export function dateOrder(control) {
+  const dataOd = control.get('dataOd');
+  const dataDo = control.get('dataDo');
+
+  if (!dataOd || !dataDo) {
+    return new Error('Null control');
+  }
+  if (!dataOd.value) {
+    return {empty: true};
+  }
+  if (!dataDo.value) {
+    return null;
+  }
+  if (dataOd.value === dataDo.value) {
+    return {same: true};
+  }
+  if (new Date(dataOd.value).getTime() > new Date(dataDo.value).getTime()) {
+    return {beginning: true};
+  }
+  return null;
+}
+
+
