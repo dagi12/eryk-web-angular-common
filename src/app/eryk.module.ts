@@ -1,4 +1,4 @@
-import {Injector, NgModule, Optional, SkipSelf} from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {Global} from './global/global';
