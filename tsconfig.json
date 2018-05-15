@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "../",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -13,10 +14,7 @@
     ],
     "paths": {
       "@angular/*": [
-        "../node_modules/@angular/*"
-      ],
-      "rxjs": [
-        "../node_modules/rxjs/*"
+        "node_modules/@angular/*"
       ]
     },
     "lib": [
