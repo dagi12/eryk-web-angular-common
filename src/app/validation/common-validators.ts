@@ -1,4 +1,5 @@
 import {AbstractControl, ValidatorFn} from '@angular/forms';
+import {DIGIT_REGEXP, LOWER_CHAR_REGEXP, PASSWORD_LENGTH, SPECIAL_CHAR_REGEXP, UPPER_CHAR_REGEXP} from 'eryk-web-client-common/src/const';
 
 export function mailValidator(control: AbstractControl) {
   const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
@@ -54,3 +55,19 @@ export function dateOrder(control) {
 }
 
 
+export const passwordValidator: ValidatorFn = (control: AbstractControl) => {
+  if (!control.value) {
+    return {empty: true};
+  } else if (control.value.length < PASSWORD_LENGTH) {
+    return {length: true};
+  } else if (!UPPER_CHAR_REGEXP.test(control.value)) {
+    return {upperChar: true};
+  } else if (!LOWER_CHAR_REGEXP.test(control.value)) {
+    return {lowerChar: true};
+  } else if (!SPECIAL_CHAR_REGEXP.test(control.value)) {
+    return {specialChar: true};
+  } else if (!DIGIT_REGEXP.test(control.value)) {
+    return {digit: true};
+  }
+  return null;
+};
