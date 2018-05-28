@@ -23,6 +23,9 @@ import {InterceptedHttp} from './config/InterceptedHttp';
 import {DataTableModule} from 'primeng/primeng';
 import {CollapseModule} from 'ngx-bootstrap';
 import {ERYK_CONFIG} from './eryk.token';
+import {RouterOutletComponent} from './router-outlet-component/router-outlet.component';
+import {BaseTableComponent} from './base-table/base-table.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import {ERYK_CONFIG} from './eryk.token';
     ErrorBoxComponent,
     EmptyModalComponent,
     ShakingErrorComponent,
-    CrudTableComponent
+    CrudTableComponent,
+    RouterOutletComponent,
+    BaseTableComponent
   ],
   exports: [
     TopNavbarComponent,
@@ -53,12 +58,15 @@ import {ERYK_CONFIG} from './eryk.token';
     EmptyModalComponent,
     ShakingErrorComponent,
     CrudTableComponent,
+    RouterOutletComponent,
+    BaseTableComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    CollapseModule.forRoot(),
+    CollapseModule,
     DataTableModule,
+    RouterModule
   ],
   providers: [
     ApiConfigService,

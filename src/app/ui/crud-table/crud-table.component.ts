@@ -1,41 +1,30 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 import {Modal, overlayConfigFactory} from 'angular2-modal';
 import {CrudTableModalData} from './crud-table-modal-data';
 import {CrudTableService} from './crud-table.service';
 import {EditModalResult} from './edit-modal-return-type';
+import {BaseTableComponent} from '../../base-table/base-table.component';
 
 @Component({
   selector: 'app-crud-table',
   templateUrl: './crud-table.component.html',
   styleUrls: ['./crud-table.component.scss']
 })
-export class CrudTableComponent implements OnInit {
+export class CrudTableComponent extends BaseTableComponent {
 
-  @Input() title: string;
   @Input() helpContent: string;
-  @Input() emptyMessage: string;
   @Input() createLabel: string;
-  @Input() items: any[] = [];
   @Input() disableKey?: string;
-  @Input() serviceUrl: string;
-  @Input() getAllUrl?: string;
+
   @Input() idKey: string;
   @Input() editContainerContent;
   @Input() addContainerContent;
-  @Input() columns: any[];
 
-  @Input() callback = items => this.items = items._embedded[this.serviceUrl];
   rowStyleClass: (rowData: any) => string = null;
 
-
-  // const
-  // defaultCallback = items => this.items = items;
-  // const
-  // callback = this.callback || stub;
-
-  constructor(private modal: Modal, private crudTableService: CrudTableService) {
-
+  constructor(private modal: Modal, crudTableService: CrudTableService) {
+    super(crudTableService);
   }
 
   ngOnInit(): void {
@@ -44,8 +33,7 @@ export class CrudTableComponent implements OnInit {
         return rowData[this.disableKey] ? '' : 'disabled-row';
       };
     }
-    this.getAllUrl = this.getAllUrl || this.serviceUrl;
-    this.refreshTable();
+    super.ngOnInit();
   }
 
   onUpdate(currentItem) {
@@ -97,10 +85,6 @@ export class CrudTableComponent implements OnInit {
     const i = this.items.indexOf(currentItem.data);
     this.items.splice(i, 1);
     this.items = [...this.items];
-  }
-
-  refreshTable() {
-    this.crudTableService.all(this.getAllUrl).subscribe(this.callback);
   }
 
 }

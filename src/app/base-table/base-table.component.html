@@ -1,0 +1,20 @@
+<app-ibox [title]="title">
+  <div class="ibox-content">
+    <p-dataTable [value]="items"
+                 [paginator]="true"
+                 [rows]="20"
+                 [responsive]="true">
+      <p-column [sortable]="!col.notSortable" *ngFor="let col of columns" [field]="col.field" [header]="col.header">
+
+        <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
+          {{item[col.field] | date }}
+        </ng-template>
+
+        <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">
+          {{item[col.field] ? "Tak" : "Nie" }}
+        </ng-template>
+      </p-column>
+
+    </p-dataTable>
+  </div>
+</app-ibox>
