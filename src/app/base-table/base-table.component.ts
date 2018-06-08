@@ -13,8 +13,11 @@ export class BaseTableComponent implements OnInit {
   @Input() items: any[] = [];
   @Input() serviceUrl: string;
   @Input() getAllUrl?: string;
+  @Input() filterUrl?: string;
   @Input() columns: any[];
   @Input() callback = items => this.items = items._embedded[this.serviceUrl];
+  dateFrom: Date = new Date();
+  dateTo: Date;
 
   constructor(protected crudTableService: CrudTableService) {
   }
@@ -26,6 +29,13 @@ export class BaseTableComponent implements OnInit {
 
   refreshTable() {
     this.crudTableService.all(this.getAllUrl).subscribe(this.callback);
+  }
+
+  search() {
+    this.crudTableService.all(this.filterUrl, {
+      dateFrom: this.dateFrom,
+      dateTo: this.dateTo
+    }).subscribe(this.callback);
   }
 
 }

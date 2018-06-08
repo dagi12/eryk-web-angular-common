@@ -1,4 +1,5 @@
 <app-ibox [title]="title">
+  <ng-content select="[filter]"></ng-content>
   <div class="ibox-content">
     <p-dataTable [value]="items"
                  [paginator]="true"
@@ -14,7 +15,6 @@
           {{item[col.field] ? "Tak" : "Nie" }}
         </ng-template>
       </p-column>
-
     </p-dataTable>
   </div>
 </app-ibox>
