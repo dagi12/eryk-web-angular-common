@@ -29,7 +29,15 @@ export class CrudTableService {
       .map((response: Response) => response.json());
   }
 
-  public all<T>(getAllUrl: string): Observable<T[]> {
+  public all<T>(getAllUrl: string, dateRange: any = null): Observable<T[]> {
+    if (dateRange) {
+      const params = new URLSearchParams();
+      params.set('dateFrom', dateRange.dateFrom);
+      params.set('dateTo', dateRange.dateTo);
+      return this.http
+        .get(this.acs.simpleUrl(getAllUrl) + '?' + params.toString())
+        .map(res => res.json());
+    }
     return this.http
       .get(this.acs.simpleUrl(getAllUrl))
       .map(res => res.json());

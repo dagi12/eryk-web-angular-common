@@ -21,11 +21,12 @@ import {CommonModalService} from './common-modal/common-modal.service';
 import {CrudTableService} from './ui/crud-table/crud-table.service';
 import {InterceptedHttp} from './config/InterceptedHttp';
 import {DataTableModule} from 'primeng/primeng';
-import {CollapseModule} from 'ngx-bootstrap';
 import {ERYK_CONFIG} from './eryk.token';
 import {RouterOutletComponent} from './router-outlet-component/router-outlet.component';
 import {BaseTableComponent} from './base-table/base-table.component';
 import {RouterModule} from '@angular/router';
+import {BsDatepickerModule, CollapseModule} from 'ngx-bootstrap';
+import {DatePickerComponent} from './date-picker/date-picker.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {RouterModule} from '@angular/router';
     ShakingErrorComponent,
     CrudTableComponent,
     RouterOutletComponent,
-    BaseTableComponent
+    BaseTableComponent,
+    DatePickerComponent
   ],
   exports: [
     TopNavbarComponent,
@@ -59,9 +61,11 @@ import {RouterModule} from '@angular/router';
     ShakingErrorComponent,
     CrudTableComponent,
     RouterOutletComponent,
-    BaseTableComponent
+    BaseTableComponent,
+    DatePickerComponent
   ],
   imports: [
+    BsDatepickerModule,
     BrowserModule,
     FormsModule,
     CollapseModule,
