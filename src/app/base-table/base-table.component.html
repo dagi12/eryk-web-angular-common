@@ -8,7 +8,7 @@
       <p-column [sortable]="!col.notSortable" *ngFor="let col of columns" [field]="col.field" [header]="col.header">
 
         <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
-          {{item[col.field] | date }}
+          {{item[col.field] | date:'dd-MM-yyyy HH:mm' }}
         </ng-template>
 
         <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">

@@ -47,7 +47,7 @@
     "tslint": "~5.7.0",
     "typescript": "~2.3.3",
     "primeng": "^4.3.0",
-    "ngx-bootstrap": "^1.9.3"
+    "ngx-bootstrap": "^2.0.0"
   },
   "peerDependencies": {
     "@angular/cli": "1.4.10",
