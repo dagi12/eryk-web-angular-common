@@ -3,6 +3,7 @@
   <div class="ibox-content">
     <p-dataTable [value]="items"
                  [paginator]="true"
+                 [emptyMessage]="'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.'"
                  [rows]="20"
                  [responsive]="true">
       <p-column [sortable]="!col.notSortable" *ngFor="let col of columns" [field]="col.field" [header]="col.header">
