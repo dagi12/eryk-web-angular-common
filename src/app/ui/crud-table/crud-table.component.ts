@@ -53,7 +53,9 @@ export class CrudTableComponent extends BaseTableComponent {
       dialog.result.then(result => {
         if (result) {
           this.crudTableService.add(result, this.serviceUrl)
-            .subscribe(item => this.items = [...this.items, item]);
+            .subscribe(item => {
+              this.items = [...this.items, item];
+            });
         }
       }, () => {
       });

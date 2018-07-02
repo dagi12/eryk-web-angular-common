@@ -26,7 +26,6 @@ export class CrudTableService {
   public delete(id: number, url: string): Observable<any> {
     return this.http
       .delete(this.acs.simpleUrl(url + '/' + id))
-      .map((response: Response) => response.json());
   }
 
   public all<T>(getAllUrl: string, dateRange: any = null): Observable<T[]> {
