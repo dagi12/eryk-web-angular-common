@@ -1,6 +1,6 @@
 import {Injector, NgModule, Optional, SkipSelf} from '@angular/core';
 
-import {AppComponent} from './app.component';
+
 import {Global} from './global/global';
 import {EmptyModalComponent} from './ui/empty-modal/empty-modal.component';
 import {TopNavbarComponent} from './topnavbar/topnavbar.component';
@@ -28,10 +28,11 @@ import {RouterModule} from '@angular/router';
 import {BsDatepickerModule, CollapseModule} from 'ngx-bootstrap';
 import {DatePickerComponent} from './date-picker/date-picker.component';
 import {ErykConfig} from './eryk.interface';
+import {PostConfigService} from './post-config/post-config.service';
+import {PostConfigResolver} from './post-config/post-config.resolver';
 
 @NgModule({
   declarations: [
-    AppComponent,
     TopNavbarComponent,
     TextInputComponent,
     ButtonComponent,
@@ -77,9 +78,10 @@ import {ErykConfig} from './eryk.interface';
     ApiConfigService,
     CommonModalService,
     CrudTableService,
+    PostConfigService,
+    PostConfigResolver,
     InterceptedHttp,
   ],
-  bootstrap: [AppComponent],
   entryComponents: [
     EmptyModalComponent
   ]

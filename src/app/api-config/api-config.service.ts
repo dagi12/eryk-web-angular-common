@@ -11,12 +11,6 @@ export class ApiConfigService {
     this._oauthApiUrl = config.oauthApiUrl;
   }
 
-  private _version: string;
-
-  get version(): string {
-    return this._version;
-  }
-
   private _apiUrl: string;
 
   get apiUrl(): string {

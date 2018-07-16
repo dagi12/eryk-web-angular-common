@@ -1,7 +1,9 @@
 import {Injector} from '@angular/core';
 import 'reflect-metadata';
 
-export type Constructor<T> = { new (...args: any[]): T }
+export interface Constructor<T> {
+  new (...args: any[]): T;
+}
 
 export class Global {
   static injector: Injector;
