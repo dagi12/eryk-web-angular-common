@@ -4,9 +4,11 @@ import {ERYK_CONFIG} from '../eryk.token';
 
 @Injectable()
 export class ApiConfigService {
+  private _oauthApiUrl: string;
 
   constructor(@Inject(ERYK_CONFIG) config: ErykConfig) {
     this._apiUrl = config.baseUrl;
+    this._oauthApiUrl = config.oauthApiUrl;
   }
 
   private _version: string;
@@ -31,6 +33,10 @@ export class ApiConfigService {
 
   public simpleUrl(serviceUrl: string) {
     return this._apiUrl + serviceUrl;
+  }
+
+  public oauthApiUrl(serviceUrl: string) {
+    return this._oauthApiUrl + serviceUrl;
   }
 
 }

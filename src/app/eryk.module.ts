@@ -27,6 +27,7 @@ import {BaseTableComponent} from './base-table/base-table.component';
 import {RouterModule} from '@angular/router';
 import {BsDatepickerModule, CollapseModule} from 'ngx-bootstrap';
 import {DatePickerComponent} from './date-picker/date-picker.component';
+import {ErykConfig} from './eryk.interface';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,7 @@ export class ErykModule {
     }
   }
 
-  public static forRoot(config: ErykModule) {
+  public static forRoot(config: ErykConfig) {
     return {
       ngModule: ErykModule,
       providers: [
