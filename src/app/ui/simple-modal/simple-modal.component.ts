@@ -1,5 +1,5 @@
-import {DialogRef, ModalComponent} from 'angular2-modal';
-import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
+import {DialogRef, ModalComponent} from 'ngx-modialog';
+import {BSModalContext} from 'ngx-modialog/plugins/bootstrap';
 
 export abstract class SimpleModalComponent<T extends BSModalContext> implements ModalComponent<T> {
 

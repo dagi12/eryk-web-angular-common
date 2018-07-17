@@ -1,4 +1,4 @@
-import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
+import {BSModalContext} from 'ngx-modialog/plugins/bootstrap';
 
 export class CrudTableModalData extends BSModalContext {
 

@@ -1,8 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HelpDialogComponent} from './help-dialog.component';
-import {ModalModule} from 'angular2-modal';
-import {BootstrapModalModule} from 'angular2-modal/plugins/bootstrap';
+import {ModalModule} from 'ngx-modialog';
+import {BootstrapModalModule} from 'ngx-modialog/plugins/bootstrap';
 import {CommonModalService} from '../common-modal.service';
 import {CommonModalServiceMock} from '../common-modal.service.mock';
 import {RouterTestingModule} from '@angular/router/testing';

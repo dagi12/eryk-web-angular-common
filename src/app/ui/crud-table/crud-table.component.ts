@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 
-import {Modal, overlayConfigFactory} from 'angular2-modal';
+import {Modal, overlayConfigFactory} from 'ngx-modialog';
 import {CrudTableModalData} from './crud-table-modal-data';
 import {CrudTableService} from './crud-table.service';
 import {EditModalResult} from './edit-modal-return-type';

@@ -5,7 +5,7 @@ import {CommonModalService} from '../../common-modal/common-modal.service';
 @Component({
   selector: 'app-help-dialog',
   templateUrl: './help-dialog.component.html',
-  styleUrls: ['./help-dialog.component.scss']
+  styleUrls: ['./help-dialog.component.css']
 })
 export class HelpDialogComponent implements OnInit {
 
