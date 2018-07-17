@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CrudTableService} from '../ui/crud-table/crud-table.service';
+import {MyColumn} from './my-column';
 
 @Component({
   selector: 'app-base-table',
@@ -8,16 +9,16 @@ import {CrudTableService} from '../ui/crud-table/crud-table.service';
 })
 export class BaseTableComponent implements OnInit {
 
+  dateFrom: Date = new Date();
+  dateTo: Date;
   @Input() title: string;
   @Input() emptyMessage: string;
   @Input() items: any[] = [];
   @Input() serviceUrl: string;
   @Input() getAllUrl?: string;
   @Input() filterUrl?: string;
-  @Input() columns: any[];
+  @Input() columns: MyColumn[];
   @Input() callback = items => this.items = items._embedded[this.serviceUrl];
-  dateFrom: Date = new Date();
-  dateTo: Date;
 
   constructor(protected crudTableService: CrudTableService) {
   }

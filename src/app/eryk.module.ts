@@ -20,7 +20,6 @@ import {ApiConfigService} from './api-config/api-config.service';
 import {CommonModalService} from './common-modal/common-modal.service';
 import {CrudTableService} from './ui/crud-table/crud-table.service';
 import {InterceptedHttp} from './config/InterceptedHttp';
-import {DataTableModule} from 'primeng/primeng';
 import {ERYK_CONFIG} from './eryk.token';
 import {RouterOutletComponent} from './router-outlet-component/router-outlet.component';
 import {BaseTableComponent} from './base-table/base-table.component';
@@ -30,6 +29,9 @@ import {DatePickerComponent} from './date-picker/date-picker.component';
 import {ErykConfig} from './eryk.interface';
 import {PostConfigService} from './post-config/post-config.service';
 import {PostConfigResolver} from './post-config/post-config.resolver';
+import {TableModule} from 'primeng/table';
+import {SharedModule} from 'primeng/shared';
+import {YesNoPipe} from './pipes/yes-no.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import {PostConfigResolver} from './post-config/post-config.resolver';
     CrudTableComponent,
     RouterOutletComponent,
     BaseTableComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    YesNoPipe
   ],
   exports: [
     TopNavbarComponent,
@@ -64,14 +67,16 @@ import {PostConfigResolver} from './post-config/post-config.resolver';
     CrudTableComponent,
     RouterOutletComponent,
     BaseTableComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    YesNoPipe
   ],
   imports: [
     BsDatepickerModule,
     BrowserModule,
     FormsModule,
     CollapseModule,
-    DataTableModule,
+    SharedModule,
+    TableModule,
     RouterModule
   ],
   providers: [
@@ -87,6 +92,7 @@ import {PostConfigResolver} from './post-config/post-config.resolver';
   ]
 })
 export class ErykModule {
+
 
   public constructor(@Optional() @SkipSelf() parentModule: ErykModule, injector: Injector) {
     if (parentModule) {
