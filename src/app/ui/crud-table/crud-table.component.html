@@ -1,5 +1,5 @@
 <app-ibox [title]="title" [helpContent]="helpContent">
-  <div class="ibox-content" [ngClass]="loading ? 'sk-loading' : ''">
+  <div class="ibox-content" [class.sk-loading]="loading">
     <div class="sk-spinner sk-spinner-wave">
       <div class="sk-rect1"></div>
       <div class="sk-rect2"></div>
@@ -23,6 +23,7 @@
         *ngFor="let col of columns"
         [field]="col.field"
         [header]="col.header"
+        [styleClass]="col.styleClass"
         [filter]="lazy && col.filter !== false">
 
 

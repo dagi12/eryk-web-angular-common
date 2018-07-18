@@ -5,4 +5,5 @@ export interface MyColumn {
   filter?: boolean;
   date?: boolean;
   cellRenderer?: (status: any) => string;
+  styleClass?: string;
 }
