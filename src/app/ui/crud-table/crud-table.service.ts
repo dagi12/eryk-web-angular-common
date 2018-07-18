@@ -3,6 +3,7 @@ import {AuthHttp} from 'angular2-jwt';
 import {Response} from '@angular/http';
 import {ApiConfigService} from '../../api-config/api-config.service';
 import {Observable} from 'rxjs/Observable';
+import {LazyLoadEvent} from 'primeng/primeng';
 
 
 @Injectable()
@@ -25,7 +26,7 @@ export class CrudTableService {
 
   public delete(id: number, url: string): Observable<any> {
     return this.http
-      .delete(this.acs.simpleUrl(url + '/' + id))
+      .delete(this.acs.simpleUrl(url + '/' + id));
   }
 
   public all<T>(getAllUrl: string, dateRange: any = null): Observable<T[]> {
@@ -42,5 +43,10 @@ export class CrudTableService {
       .map(res => res.json());
   }
 
+  lazy<T>(url: string, options: LazyLoadEvent): Observable<T[]> {
+    return this.http
+      .post(this.acs.simpleUrl(url), options)
+      .map(res => res.json());
+  }
 
 }
