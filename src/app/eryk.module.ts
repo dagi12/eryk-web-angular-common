@@ -29,9 +29,8 @@ import {DatePickerComponent} from './date-picker/date-picker.component';
 import {ErykConfig} from './eryk.interface';
 import {PostConfigService} from './post-config/post-config.service';
 import {PostConfigResolver} from './post-config/post-config.resolver';
-import {TableModule} from 'primeng/table';
-import {SharedModule} from 'primeng/shared';
 import {YesNoPipe} from './pipes/yes-no.pipe';
+import {DataTableModule, SharedModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -76,7 +75,7 @@ import {YesNoPipe} from './pipes/yes-no.pipe';
     FormsModule,
     CollapseModule,
     SharedModule,
-    TableModule,
+    DataTableModule,
     RouterModule
   ],
   providers: [

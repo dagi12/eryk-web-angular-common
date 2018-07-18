@@ -3,4 +3,5 @@ export interface MyColumn {
   header: string;
   isEnabledLabel?: boolean;
   date?: boolean;
+  cellRenderer?: (status: any) => string;
 }

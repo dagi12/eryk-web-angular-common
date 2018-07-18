@@ -1,48 +1,29 @@
 <app-ibox [title]="title" [helpContent]="helpContent">
   <div class="ibox-content">
-    <p-table
-      [value]="items"
-      [paginator]="true"
-      [rows]="20"
-      (onRowClick)="onEdit($event)"
-      [columns]="columns"
-      [responsive]="true">
-      <!--[rowStyleClass]="rowStyleClass"-->
-      <ng-template pTemplate="header" let-columns>
-        <tr>
-          <th *ngFor="let col of columns">
-            {{col.header}}
-          </th>
-        </tr>
-      </ng-template>
+    <p-dataTable [value]="items"
+                 [emptyMessage]="emptyMessage"
+                 [paginator]="true"
+                 [rows]="20"
+                 (onRowClick)="onEdit($event)"
+                 [rowStyleClass]="rowStyleClass"
+                 [responsive]="true">
+      <p-column *ngFor="let col of columns" [field]="col.field" [header]="col.header">
 
-      <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-          <td *ngFor="let col of columns">
-            <div *ngIf="col.date">
-              {{rowData[col.field] | date:'dd-MM-yyyy HH:mm' }}
-            </div>
+        <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
+          {{item[col.field] | date }}
+        </ng-template>
 
-            <div *ngIf="col.isEnabledLabel">
-              {{rowData[col.field] | yesNo }}
-            </div>
+        <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">
+          {{item[col.field] | yesNo }}
+        </ng-template>
 
-            <div *ngIf="!col.isEnabledLabel && !col.date">
-              {{rowData[col.field]}}
-            </div>
-          </td>
-        </tr>
-      </ng-template>
+        <ng-template *ngIf="col.cellRenderer" let-item="rowData" pTemplate type="body">
+          {{col.cellRenderer(item[col.field])}}
+        </ng-template>
 
-      <ng-template pTemplate="emptymessage" let-emptyMessage>
-        <tr>
-          <td [attr.colspan]="columns.length">
-            {{emptyMessage}}
-          </td>
-        </tr>
-      </ng-template>
-
-    </p-table>
+      </p-column>
+      <ng-content></ng-content>
+    </p-dataTable>
   </div>
   <div class="row">
     <app-button [wrapperStyle]="'col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1'"

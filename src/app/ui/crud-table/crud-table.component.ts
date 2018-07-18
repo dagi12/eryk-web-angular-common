@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 import {Modal, overlayConfigFactory} from 'ngx-modialog';
 import {CrudTableModalData} from './crud-table-modal-data';
@@ -11,7 +11,7 @@ import {BaseTableComponent} from '../../base-table/base-table.component';
   templateUrl: './crud-table.component.html',
   styleUrls: ['./crud-table.component.scss']
 })
-export class CrudTableComponent extends BaseTableComponent {
+export class CrudTableComponent extends BaseTableComponent implements OnInit {
 
   @Input() helpContent: string;
   @Input() createLabel: string;
