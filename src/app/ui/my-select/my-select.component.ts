@@ -1,6 +1,7 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {FormControlComponent} from '../../form-control/form-control.component';
+import {ValueLabelPair} from './value-label-pair';
 
 
 @Component({
@@ -15,8 +16,7 @@ import {FormControlComponent} from '../../form-control/form-control.component';
 })
 export class MySelectComponent extends FormControlComponent implements OnInit {
 
-
-  @Input() map: ValueLabelPair[];
+  @Input() map: ValueLabelPair<any>[];
   @Input() label: string;
 
   constructor() {
@@ -32,9 +32,4 @@ export class MySelectComponent extends FormControlComponent implements OnInit {
     }
   }
 
-}
-
-export class ValueLabelPair {
-  constructor(public value?: any, public label?: string) {
-  }
 }

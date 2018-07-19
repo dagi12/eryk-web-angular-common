@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {CrudTableService} from '../ui/crud-table/crud-table.service';
 import {MyColumn} from './my-column';
-import {LazyLoadEvent} from 'primeng/primeng';
+import {DataTable, LazyLoadEvent} from 'primeng/primeng';
+import {FilterMetadata} from 'primeng/components/common/filtermetadata';
 
 @Component({
   selector: 'app-base-table',
@@ -15,6 +16,8 @@ export class BaseTableComponent implements OnInit {
   totalRecords: number;
   loading = false;
   first = 0;
+  lastLazyLoadEvent: LazyLoadEvent;
+  @ViewChild(DataTable) dataTable: DataTable;
   @Input() title: string;
   @Input() emptyMessage: string;
   @Input() items: any[] = [];
@@ -23,6 +26,7 @@ export class BaseTableComponent implements OnInit {
   @Input() filterUrl?: string;
   @Input() columns: MyColumn[];
   @Input() lazy = false;
+  @Input() filterCriteria: { [_: string]: FilterMetadata } = null;
   @Input() callback = items => this.items = items._embedded[this.serviceUrl];
 
   constructor(protected crudTableService: CrudTableService) {
@@ -41,8 +45,19 @@ export class BaseTableComponent implements OnInit {
       .subscribe(this.callback);
   }
 
-  loadLazy(options: LazyLoadEvent) {
+  loadLazy(options: LazyLoadEvent, resetPaging: boolean = false) {
     this.loading = true;
+    if (this.filterCriteria) {
+      this.lastLazyLoadEvent = options;
+      options.filters = {
+        ...options.filters,
+        ...this.filterCriteria
+      };
+    }
+    if (resetPaging) {
+      options.first = 0;
+      this.first = 0;
+    }
     this.crudTableService
       .lazy(this.getAllUrl, options)
       .subscribe(items => {

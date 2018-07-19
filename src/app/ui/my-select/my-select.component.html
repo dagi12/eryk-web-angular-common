@@ -1,7 +1,7 @@
 <div class="form-group">
-  <div class="col-md-4 control-label"><label for="select" class="required">{{label}}</label></div>
-  <div class="col-md-8">
-    <select id="select" class="form-control" [(ngModel)]="model">
+  <label class="control-label col-md-3" for="select">{{label}}</label>
+  <div class="col-md-6">
+    <select id="select" name="select" class="form-control" [(ngModel)]="model">
       <option *ngFor="let key of map" [ngValue]="key.value">{{key.label}}</option>
     </select>
   </div>

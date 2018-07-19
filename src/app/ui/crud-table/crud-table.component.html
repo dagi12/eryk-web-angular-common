@@ -1,5 +1,6 @@
 <app-ibox [title]="title" [helpContent]="helpContent">
   <div class="ibox-content" [class.sk-loading]="loading">
+    <ng-content></ng-content>
     <div class="sk-spinner sk-spinner-wave">
       <div class="sk-rect1"></div>
       <div class="sk-rect2"></div>
@@ -11,6 +12,7 @@
                  [emptyMessage]="emptyMessage"
                  [paginator]="true"
                  [rows]="20"
+                 [rowsPerPageOptions]="[10,20,50]"
                  [lazy]="lazy"
                  [(first)]="first"
                  [totalRecords]="totalRecords"
@@ -40,7 +42,6 @@
         </ng-template>
 
       </p-column>
-      <ng-content></ng-content>
     </p-dataTable>
   </div>
   <div class="row">
