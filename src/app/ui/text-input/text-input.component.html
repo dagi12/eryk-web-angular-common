@@ -1,10 +1,8 @@
-<div class="form-group">
-  <div class="col-md-4 control-label"><label>{{label}}</label></div>
-  <div class="col-md-8">
-    <input
-      name="{{name}}"
-      type="text"
-      [disabled]="disabled"
-      class="form-control"
-      [(ngModel)]="model"/></div>
-</div>
+<app-form-group [label]="label">
+  <input
+    name="{{name}}"
+    type="text"
+    [disabled]="disabled"
+    class="form-control"
+    [(ngModel)]="model"/>
+</app-form-group>

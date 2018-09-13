@@ -31,6 +31,8 @@ import {PostConfigService} from './post-config/post-config.service';
 import {PostConfigResolver} from './post-config/post-config.resolver';
 import {YesNoPipe} from './pipes/yes-no.pipe';
 import {DataTableModule, SharedModule} from 'primeng/primeng';
+import {TextAreaComponent} from './ui/text-area/text-area.component';
+import {FormGroupComponent} from './ui/form-group/form-group.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import {DataTableModule, SharedModule} from 'primeng/primeng';
     RouterOutletComponent,
     BaseTableComponent,
     DatePickerComponent,
+    TextAreaComponent,
+    FormGroupComponent,
     YesNoPipe
   ],
   exports: [
@@ -67,6 +71,8 @@ import {DataTableModule, SharedModule} from 'primeng/primeng';
     RouterOutletComponent,
     BaseTableComponent,
     DatePickerComponent,
+    TextAreaComponent,
+    FormGroupComponent,
     YesNoPipe
   ],
   imports: [
