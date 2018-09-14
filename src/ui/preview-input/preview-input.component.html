@@ -1,8 +1,7 @@
-<app-form-group [label]="label">
+<app-form-group [label]="label" *ngIf="!!value">
   <input
-    name="{{name}}"
     type="text"
-    [disabled]="disabled"
+    [disabled]="true"
     class="form-control"
     [(ngModel)]="value"/>
 </app-form-group>
