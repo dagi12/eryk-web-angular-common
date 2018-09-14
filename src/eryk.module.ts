@@ -34,6 +34,7 @@ import {DataTableModule, SharedModule} from 'primeng/primeng';
 import {TextAreaComponent} from './ui/text-area/text-area.component';
 import {FormGroupComponent} from './ui/form-group/form-group.component';
 import {PreviewInputComponent} from './ui/preview-input/preview-input.component';
+import {AutoCompleteComponent} from './ui/auto-complete/auto-complete.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {PreviewInputComponent} from './ui/preview-input/preview-input.component'
     TextAreaComponent,
     FormGroupComponent,
     PreviewInputComponent,
+    AutoCompleteComponent,
     YesNoPipe
   ],
   exports: [
@@ -76,6 +78,7 @@ import {PreviewInputComponent} from './ui/preview-input/preview-input.component'
     TextAreaComponent,
     FormGroupComponent,
     PreviewInputComponent,
+    AutoCompleteComponent,
     YesNoPipe
   ],
   imports: [
