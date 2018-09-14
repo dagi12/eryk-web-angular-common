@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-form-group[label]',
+  selector: 'app-form-group',
   templateUrl: './form-group.component.html',
   styles: []
 })
