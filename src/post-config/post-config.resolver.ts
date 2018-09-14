@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {PostConfigService} from './post-config.service';
-import {UserService} from 'flota-web-angular-common/src/app/user/user.service';
+
 import {PostConfig} from './post-config.model';
+import {UserService} from '../../../flota-web-angular-common/src/user/user.service';
 
 @Injectable()
 export class PostConfigResolver implements Resolve<PostConfig> {
