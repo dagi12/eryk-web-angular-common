@@ -24,7 +24,7 @@ import {ERYK_CONFIG} from './eryk.token';
 import {RouterOutletComponent} from './router-outlet-component/router-outlet.component';
 import {BaseTableComponent} from './base-table/base-table.component';
 import {RouterModule} from '@angular/router';
-import {BsDatepickerModule, CollapseModule} from 'ngx-bootstrap';
+import {BsDatepickerModule, CollapseModule, TypeaheadModule} from 'ngx-bootstrap';
 import {DatePickerComponent} from './date-picker/date-picker.component';
 import {ErykConfig} from './eryk.interface';
 import {PostConfigService} from './post-config/post-config.service';
@@ -89,6 +89,7 @@ import {AutoCompleteComponent} from './ui/auto-complete/auto-complete.component'
     SharedModule,
     DataTableModule,
     RouterModule,
+    TypeaheadModule.forRoot()
   ],
   providers: [
     ApiConfigService,

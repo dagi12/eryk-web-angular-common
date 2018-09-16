@@ -1,3 +1,11 @@
-<p>
-  auto-complete works!
-</p>
+<app-form-group [label]="'Nazwa klienta'">
+  <input
+    [(ngModel)]="value"
+    [typeahead]="dataSource"
+    (typeaheadLoading)="changeTypeaheadLoading($event)"
+    (typeaheadOnSelect)="typeaheadOnSelect($event)"
+    typeaheadOptionField="klientNazwa"
+    placeholder="Zacznij pisać, aby wyszukać"
+    typeaheadWaitMs="1000"
+    class="form-control">
+</app-form-group>
