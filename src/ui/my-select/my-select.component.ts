@@ -14,6 +14,7 @@ import {ValueLabelPair} from './value-label-pair';
     multi: true
   }]
 })
+// TODO make AbstractValueAccessor
 export class MySelectComponent extends FormControlComponent implements OnInit {
 
   @Input() map: ValueLabelPair<any>[];

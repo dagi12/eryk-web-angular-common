@@ -1,3 +1,1 @@
-<div [hidden]="valid || (control.pristine && !submitted)" class="alert alert-danger">
-  {{message}}
-</div>
+<div *ngIf="error" class="alert alert-danger m-t-xs">{{message}}</div>

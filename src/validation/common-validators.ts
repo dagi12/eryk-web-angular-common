@@ -1,8 +1,11 @@
-import {AbstractControl, ValidatorFn} from '@angular/forms';
+import {AbstractControl, FormControl, ValidatorFn} from '@angular/forms';
 import {
-  DIGIT_REGEXP, LOWER_CHAR_REGEXP, PASSWORD_LENGTH, SPECIAL_CHAR_REGEXP,
+  DIGIT_REGEXP,
+  LOWER_CHAR_REGEXP,
+  PASSWORD_LENGTH,
+  SPECIAL_CHAR_REGEXP,
   UPPER_CHAR_REGEXP
-} from '../../../eryk-web-client-common/src/const';
+} from '../../../eryk-web-client-common/src/const.js';
 
 export function mailValidator(control: AbstractControl) {
   const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
@@ -74,3 +77,7 @@ export const passwordValidator: ValidatorFn = (control: AbstractControl) => {
   }
   return null;
 };
+
+export type ErrorChecker = (control: FormControl, submitted: boolean) => boolean;
+
+export const isError: ErrorChecker = (control: FormControl, submitted: boolean) => !control.valid && (!control.pristine || submitted);

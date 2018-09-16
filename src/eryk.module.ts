@@ -15,7 +15,7 @@ import {ErrorBoxComponent} from './ui/error-box/error-box.component';
 import {ShakingErrorComponent} from './ui/shaking-error/shaking-error.component';
 import {CrudTableComponent} from './ui/crud-table/crud-table.component';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ApiConfigService} from './api-config/api-config.service';
 import {CommonModalService} from './common-modal/common-modal.service';
 import {CrudTableService} from './ui/crud-table/crud-table.service';
@@ -35,6 +35,8 @@ import {TextAreaComponent} from './ui/text-area/text-area.component';
 import {FormGroupComponent} from './ui/form-group/form-group.component';
 import {PreviewInputComponent} from './ui/preview-input/preview-input.component';
 import {AutoCompleteComponent} from './ui/auto-complete/auto-complete.component';
+import {TextInputValidatedComponent} from './validation/text-input-validated/text-input-validated.component';
+import {AutoCompleteValidatedComponent} from './validation/auto-complete-validated/auto-complete-validated.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import {AutoCompleteComponent} from './ui/auto-complete/auto-complete.component'
     FormGroupComponent,
     PreviewInputComponent,
     AutoCompleteComponent,
+    TextInputValidatedComponent,
+    AutoCompleteValidatedComponent,
     YesNoPipe
   ],
   exports: [
@@ -79,6 +83,8 @@ import {AutoCompleteComponent} from './ui/auto-complete/auto-complete.component'
     FormGroupComponent,
     PreviewInputComponent,
     AutoCompleteComponent,
+    TextInputValidatedComponent,
+    AutoCompleteValidatedComponent,
     YesNoPipe
   ],
   imports: [
@@ -89,7 +95,8 @@ import {AutoCompleteComponent} from './ui/auto-complete/auto-complete.component'
     SharedModule,
     DataTableModule,
     RouterModule,
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [
     ApiConfigService,

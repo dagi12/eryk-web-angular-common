@@ -1,8 +1,8 @@
-<app-form-group [label]="label">
+<app-form-group [label]="label" [error]="error">
   <input
-    name="{{name}}"
     type="text"
     [disabled]="disabled"
     class="form-control"
-    [(ngModel)]="value"/>
+    [(ngModel)]="value" />
+  <ng-content></ng-content>
 </app-form-group>

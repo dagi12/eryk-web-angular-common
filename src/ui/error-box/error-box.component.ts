@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-error-box',
@@ -8,13 +7,8 @@ import {FormControl} from '@angular/forms';
 })
 export class ErrorBoxComponent implements OnInit {
 
-  @Input() control: FormControl;
-  @Input() submitted: boolean;
-  @Input() valid: boolean;
-  @Input() message: string;
-
-  constructor() {
-  }
+  @Input() message = 'Pole nie może być puste';
+  @Input() error: boolean;
 
   ngOnInit() {
   }

@@ -9,9 +9,9 @@ import {AbstractValueAccessor, MakeProvider} from '../../abstract/abstract-value
 })
 export class TextInputComponent extends AbstractValueAccessor implements OnInit {
 
-  @Input() name: string;
   @Input() label: string;
   @Input() disabled: boolean;
+  @Input() error: boolean;
 
   ngOnInit() {
 

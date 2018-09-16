@@ -15,8 +15,9 @@ import {AuthHttp} from 'angular2-jwt';
 })
 export class AutoCompleteComponent extends AbstractValueAccessor implements OnInit {
 
+  @Input() label: string;
   @Input() inputUrl: string;
-  value: string;
+  @Input() error: boolean;
   typeaheadLoading: boolean;
   dataSource: Observable<any>;
 
@@ -44,7 +45,7 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
   }
 
   typeaheadOnSelect(e: TypeaheadMatch): void {
-    console.log('Selected value: ', e.value);
+
   }
 
   ngOnInit(): void {
