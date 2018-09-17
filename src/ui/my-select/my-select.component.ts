@@ -2,6 +2,7 @@ import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {FormControlComponent} from '../../form-control/form-control.component';
 import {ValueLabelPair} from './value-label-pair';
+import {requiredProps} from '../../../../eryk-web-client-common/src/util.service.js';
 
 
 @Component({
@@ -25,12 +26,7 @@ export class MySelectComponent extends FormControlComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.label) {
-      throw new Error('attribute is required');
-    }
-    if (!this.map) {
-      throw new Error('attribute is required');
-    }
+    requiredProps(this.label, this.map);
   }
 
 }
