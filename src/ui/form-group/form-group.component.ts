@@ -10,15 +10,12 @@ export class FormGroupComponent implements OnInit {
 
   @Input() label: string;
   @Input() error: boolean;
-  formClasses: ClassNames;
-
-  constructor() {
-  }
+  @Input() required: boolean;
+  @Input() for: string;
+  labelClasses: ClassNames;
 
   ngOnInit() {
-    this.formClasses = {
-      'has-error': this.error
-    };
+    this.labelClasses = {'required': this.required};
   }
 
 }

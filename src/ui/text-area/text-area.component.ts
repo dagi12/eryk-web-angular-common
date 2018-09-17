@@ -10,10 +10,8 @@ import {AbstractValueAccessor, MakeProvider} from '../../abstract/abstract-value
 export class TextAreaComponent extends AbstractValueAccessor implements OnInit {
 
   @Input() label: string;
-
-  constructor() {
-    super();
-  }
+  @Input() error: boolean;
+  @Input() required: boolean;
 
   ngOnInit() {
   }

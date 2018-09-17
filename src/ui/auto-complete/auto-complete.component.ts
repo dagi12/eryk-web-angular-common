@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractValueAccessor, MakeProvider} from '../../abstract/abstract-value-accessor.component';
 import {Observable} from 'rxjs/Observable';
 import {TypeaheadMatch} from 'ngx-bootstrap';
@@ -18,6 +18,8 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
   @Input() label: string;
   @Input() inputUrl: string;
   @Input() error: boolean;
+  @Input() required: boolean;
+  @Output() onSelect = new EventEmitter();
   typeaheadLoading: boolean;
   dataSource: Observable<any>;
 
@@ -45,7 +47,7 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
   }
 
   typeaheadOnSelect(e: TypeaheadMatch): void {
-
+    this.onSelect.emit(e.item);
   }
 
   ngOnInit(): void {

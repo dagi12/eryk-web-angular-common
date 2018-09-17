@@ -5,6 +5,7 @@ import {CrudTableModalData} from './crud-table-modal-data';
 import {CrudTableService} from './crud-table.service';
 import {EditModalResult} from './edit-modal-return-type';
 import {BaseTableComponent} from '../../base-table/base-table.component';
+import {stubFun} from '../../utils';
 
 @Component({
   selector: 'app-crud-table',
@@ -49,17 +50,11 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
     this.modal.open(
       this.addContainerContent,
       overlayConfigFactory(new CrudTableModalData(currentItem, this.items), CrudTableModalData)
-    ).then(dialog => {
-      dialog.result.then(result => {
-        if (result) {
-          this.crudTableService.add(result, this.serviceUrl)
-            .subscribe(item => {
-              this.items = [...this.items, item];
-            });
-        }
-      }, () => {
-      });
-    });
+    ).then(dialog => dialog.result.then(result => {
+      if (result) {
+        this.refreshTable();
+      }
+    }, stubFun), stubFun);
   }
 
   onEdit(currentItem) {
@@ -78,8 +73,7 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
           default:
             break;
         }
-      }, () => {
-      });
+      }, stubFun);
     });
   }
 

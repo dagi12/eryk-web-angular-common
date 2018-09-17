@@ -1,8 +1,10 @@
-<app-form-group [label]="label" [error]="error">
+<app-form-group [for]="id" [label]="label" [error]="error" [required]="required">
+  <!--suppress HtmlFormInputWithoutLabel -->
   <input
+    id="{{id}}"
     type="text"
     [disabled]="disabled"
     class="form-control"
-    [(ngModel)]="value" />
+    [(ngModel)]="value"/>
   <ng-content></ng-content>
 </app-form-group>

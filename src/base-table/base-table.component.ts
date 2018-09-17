@@ -2,7 +2,9 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {CrudTableService} from '../ui/crud-table/crud-table.service';
 import {MyColumn} from './my-column';
 import {DataTable, LazyLoadEvent} from 'primeng/primeng';
-import {FilterMetadata} from 'primeng/components/common/filtermetadata';
+
+import {arrayToMap2} from '../../../eryk-web-client-common/src/array.helper.js';
+import {NgFilters} from '../model/ng-filters';
 
 @Component({
   selector: 'app-base-table',
@@ -25,28 +27,45 @@ export class BaseTableComponent implements OnInit {
   @Input() getAllUrl?: string;
   @Input() filterUrl?: string;
   @Input() columns: MyColumn[];
+
+  columnMap: { [_: string]: MyColumn };
+
   @Input() lazy = false;
-  @Input() filterCriteria: { [_: string]: FilterMetadata } = null;
+  @Input() filterCriteria: NgFilters = null;
   @Input() callback = items => this.items = items._embedded[this.serviceUrl];
 
   constructor(protected crudTableService: CrudTableService) {
   }
 
   ngOnInit() {
-    this.getAllUrl = this.getAllUrl || this.serviceUrl;
+    this.columnMap = arrayToMap2(this.columns, 'field');
+    this.getAllUrl = this.getAllUrl || (this.serviceUrl + '/table');
     if (!this.lazy) {
       this.refreshTable();
     }
   }
 
   refreshTable() {
-    this.crudTableService
-      .all(this.getAllUrl)
-      .subscribe(this.callback);
+    if (this.lazy) {
+      this.loadLazy(this.lastLazyLoadEvent, true);
+    } else {
+      this.crudTableService
+        .all(this.getAllUrl)
+        .subscribe(this.callback);
+    }
+  }
+
+  addFilterTypes(filters: NgFilters) {
+    for (const key in filters) {
+      if (filters.hasOwnProperty(key)) {
+        filters[key].filterType = this.columnMap[key].filterType;
+      }
+    }
   }
 
   loadLazy(options: LazyLoadEvent, resetPaging: boolean = false) {
     this.loading = true;
+    this.addFilterTypes(<NgFilters>options.filters);
     if (this.filterCriteria) {
       this.lastLazyLoadEvent = options;
       options.filters = {

@@ -1,4 +1,5 @@
-<app-form-group [label]="'Nazwa klienta'" [error]="error">
+<app-form-group [label]="'Nazwa klienta'" [error]="error" [required]="required">
+  <!--suppress HtmlUnknownAttribute -->
   <input
     [(ngModel)]="value"
     [typeahead]="dataSource"
@@ -6,7 +7,7 @@
     (typeaheadOnSelect)="typeaheadOnSelect($event)"
     typeaheadOptionField="klientNazwa"
     placeholder="Zacznij pisać, aby wyszukać"
-    typeaheadWaitMs="1000"
+    typeaheadWaitMs="500"
     class="form-control">
   <ng-content></ng-content>
 </app-form-group>

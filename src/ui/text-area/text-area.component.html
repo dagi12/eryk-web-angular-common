@@ -1,5 +1,6 @@
-<app-form-group [label]="label">
+<app-form-group [label]="label" [error]="error" [required]="required">
   <textarea
     class="form-control"
     [(ngModel)]="value"></textarea>
+  <ng-content></ng-content>
 </app-form-group>

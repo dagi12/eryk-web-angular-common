@@ -37,6 +37,9 @@ import {PreviewInputComponent} from './ui/preview-input/preview-input.component'
 import {AutoCompleteComponent} from './ui/auto-complete/auto-complete.component';
 import {TextInputValidatedComponent} from './validation/text-input-validated/text-input-validated.component';
 import {AutoCompleteValidatedComponent} from './validation/auto-complete-validated/auto-complete-validated.component';
+import {TextAreaValidatedComponent} from './validation/text-area-validated/text-area-validated.component';
+import {ToastrModule} from 'ngx-toastr';
+import {MyToastService} from './service/my-toast.service';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,7 @@ import {AutoCompleteValidatedComponent} from './validation/auto-complete-validat
     AutoCompleteComponent,
     TextInputValidatedComponent,
     AutoCompleteValidatedComponent,
+    TextAreaValidatedComponent,
     YesNoPipe
   ],
   exports: [
@@ -85,6 +89,7 @@ import {AutoCompleteValidatedComponent} from './validation/auto-complete-validat
     AutoCompleteComponent,
     TextInputValidatedComponent,
     AutoCompleteValidatedComponent,
+    TextAreaValidatedComponent,
     YesNoPipe
   ],
   imports: [
@@ -96,7 +101,8 @@ import {AutoCompleteValidatedComponent} from './validation/auto-complete-validat
     DataTableModule,
     RouterModule,
     TypeaheadModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     ApiConfigService,
@@ -104,6 +110,7 @@ import {AutoCompleteValidatedComponent} from './validation/auto-complete-validat
     CrudTableService,
     PostConfigService,
     PostConfigResolver,
+    MyToastService,
     InterceptedHttp,
   ],
   entryComponents: [

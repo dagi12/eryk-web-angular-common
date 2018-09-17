@@ -1,16 +1,40 @@
 import {Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import {MyToastService} from './service/my-toast.service';
+import {environment} from '../../../environments/environment';
 
-
-export function cloneObject<T>(clonedObject: T): T {
-  const newObject = Object.assign({}, clonedObject);
-  for (const prop in clonedObject) {
-    if (clonedObject.hasOwnProperty(prop)) {
-      newObject[prop] = clonedObject[prop];
-    }
+export const handleToastError = (myToastService: MyToastService) => (err: Response | any): Observable<any> => {
+  if (!(err instanceof Response)) {
+    throw err;
   }
-  return newObject;
-}
+  const msg = handelNetworkErrorMsg(err);
+  myToastService.error(msg);
+  return Observable.throw(msg);
+};
+
+export const handelNetworkErrorMsg = (response: Response, msg = null) => {
+  let data;
+  try {
+    data = response.json();
+  } catch (err) {
+    if (!environment.production) {
+      console.log(err);
+    }
+    data = null;
+  }
+  if (data) {
+    if (!data.done && data.errorMessage) {
+      return data.errorMessage;
+    } else if (msg) {
+      return msg;
+    }
+    return data.error + ' ' + data.message;
+  } else if (response) {
+    return msg || JSON.stringify(response);
+  }
+  return 'Brak połączenia z serwerem';
+};
+
 
 export function handleError(error: Response | any) {
   let errMsg: string;
@@ -50,20 +74,3 @@ export const handleJsonError = (callback: ErrorCallback) => {
     return Observable.throw(errMsg);
   };
 };
-
-export function dateStr(date: Date): string {
-
-  function addZero(item) {
-    if (item < 10) {
-      return '0' + item;
-    }
-    return item;
-  }
-
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  return addZero(day) + '.' + addZero(month) + '.' + year + ' ' + addZero(hours) + ':' + addZero(minutes);
-}

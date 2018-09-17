@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractValueAccessor, MakeProvider} from '../../abstract/abstract-value-accessor.component';
+import {newId} from '../../utils';
 
 @Component({
   selector: 'app-text-input',
@@ -12,6 +13,8 @@ export class TextInputComponent extends AbstractValueAccessor implements OnInit 
   @Input() label: string;
   @Input() disabled: boolean;
   @Input() error: boolean;
+  @Input() required: boolean;
+  id = newId();
 
   ngOnInit() {
 
