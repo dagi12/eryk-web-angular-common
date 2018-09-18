@@ -66,8 +66,8 @@ export class BaseTableComponent implements OnInit {
   loadLazy(options: LazyLoadEvent, resetPaging: boolean = false) {
     this.loading = true;
     this.addFilterTypes(<NgFilters>options.filters);
+    this.lastLazyLoadEvent = options;
     if (this.filterCriteria) {
-      this.lastLazyLoadEvent = options;
       options.filters = {
         ...options.filters,
         ...this.filterCriteria
