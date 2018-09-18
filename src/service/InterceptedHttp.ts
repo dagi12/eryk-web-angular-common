@@ -6,8 +6,8 @@ import {Http, Request, RequestOptions, RequestOptionsArgs, Response, XHRBackend}
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import {handleToastError} from '../error-handler';
-import {MyToastService} from '../service/my-toast.service';
+import {handleToastError} from '../util/error-handler';
+import {MyToastService} from './my-toast.service';
 
 
 @Injectable()

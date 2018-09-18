@@ -4,8 +4,8 @@ import {Modal, overlayConfigFactory} from 'ngx-modialog';
 import {CrudTableModalData} from './crud-table-modal-data';
 import {CrudTableService} from './crud-table.service';
 import {EditModalResult} from './edit-modal-return-type';
-import {BaseTableComponent} from '../../base-table/base-table.component';
-import {stubFun} from '../../utils';
+import {BaseTableComponent} from '../../component/base-table/base-table.component';
+import {stubFun} from '../../util/utils';
 
 @Component({
   selector: 'app-crud-table',

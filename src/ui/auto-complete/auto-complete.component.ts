@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractValueAccessor, MakeProvider} from '../../abstract/abstract-value-accessor.component';
 import {Observable} from 'rxjs/Observable';
 import {TypeaheadMatch} from 'ngx-bootstrap';
-import {ApiConfigService} from '../../api-config/api-config.service';
+import {ApiConfigService} from '../../service/api-config.service';
 import {of} from 'rxjs/observable/of';
 import {mergeMap} from 'rxjs/operators';
 import {AuthHttp} from 'angular2-jwt';

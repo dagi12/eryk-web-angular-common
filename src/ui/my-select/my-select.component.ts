@@ -1,8 +1,8 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
-import {FormControlComponent} from '../../form-control/form-control.component';
+import {FormControlComponent} from '../../component/form-control/form-control.component';
 import {ValueLabelPair} from './value-label-pair';
-import {requiredProps} from '../../../../eryk-web-client-common/src/util.service.js';
+import {requiredProps} from '../../util/util.service';
 
 
 @Component({

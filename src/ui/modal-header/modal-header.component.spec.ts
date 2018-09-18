@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ModalHeaderComponent} from './modal-header.component';
 import {HelpDialogComponent} from '../help-dialog/help-dialog.component';
-import {CommonModalService} from '../../common-modal/common-modal.service';
-import {CommonModalServiceMock} from '../../common-modal/common-modal.service.mock';
+import {CommonModalService} from '../../service/common-modal/common-modal.service';
+import {CommonModalServiceMock} from '../../service/common-modal/common-modal.service.mock';
 
 describe('ModalHeaderComponent', () => {
   let component: ModalHeaderComponent;

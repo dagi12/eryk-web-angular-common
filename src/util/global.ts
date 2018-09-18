@@ -2,6 +2,7 @@ import {Injector} from '@angular/core';
 import 'reflect-metadata';
 
 export interface Constructor<T> {
+  // noinspection JSUnusedLocalSymbols
   new (...args: any[]): T;
 }
 

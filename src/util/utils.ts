@@ -1,6 +1,5 @@
 import {EventEmitter} from '@angular/core';
-import {environment} from '../../../environments/environment';
-import {FilterMetadataExt} from '../../applications/application-list/filtermetadataext';
+import {environment} from '../../../../environments/environment';
 
 export function stubFun() {
   if (!environment.production) {

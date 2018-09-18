@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {PostConfigService} from './post-config.service';
 
 import {PostConfig} from './post-config.model';
-import {UserService} from '../../../flota-web-angular-common/src/user/user.service';
+import {UserService} from '../../../../flota-web-angular-common/src/user/user.service';
 
 @Injectable()
 export class PostConfigResolver implements Resolve<PostConfig> {

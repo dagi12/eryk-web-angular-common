@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AuthHttp} from 'angular2-jwt';
-import {ApiConfigService} from '../../api-config/api-config.service';
+import {ApiConfigService} from '../../service/api-config.service';
 import {Observable} from 'rxjs/Observable';
 import {LazyLoadEvent} from 'primeng/primeng';
 

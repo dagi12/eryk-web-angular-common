@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {requiredProps} from '../../../../eryk-web-client-common/src/util.service.js';
+import {requiredProps} from '../../util/util.service';
 
 @Component({
   selector: 'app-button',

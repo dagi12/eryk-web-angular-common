@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 
-interface ModalCallback {
-  (result: boolean): void;
-}
+type ModalCallback = (result: boolean) => void;
 
 @Injectable()
 export class CommonModalServiceMock {

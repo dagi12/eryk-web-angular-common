@@ -1,7 +1,7 @@
 import {Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import {MyToastService} from './service/my-toast.service';
-import {environment} from '../../../environments/environment';
+import {MyToastService} from '../service/my-toast.service';
+import {environment} from '../../../../environments/environment';
 
 export const handleToastError = (myToastService: MyToastService) => (err: Response | any): Observable<any> => {
   if (!(err instanceof Response)) {

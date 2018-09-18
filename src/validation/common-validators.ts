@@ -1,11 +1,5 @@
 import {AbstractControl, FormControl, ValidatorFn} from '@angular/forms';
-import {
-  DIGIT_REGEXP,
-  LOWER_CHAR_REGEXP,
-  PASSWORD_LENGTH,
-  SPECIAL_CHAR_REGEXP,
-  UPPER_CHAR_REGEXP
-} from '../../../eryk-web-client-common/src/const.js';
+import {DIGIT_REGEXP, LOWER_CHAR_REGEXP, PASSWORD_LENGTH, SPECIAL_CHAR_REGEXP, UPPER_CHAR_REGEXP} from '../util/const';
 
 export function mailValidator(control: AbstractControl) {
   const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;

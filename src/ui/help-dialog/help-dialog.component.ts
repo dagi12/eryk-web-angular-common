@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CommonModalService} from '../../common-modal/common-modal.service';
+import {CommonModalService} from '../../service/common-modal/common-modal.service';
 
 
 @Component({

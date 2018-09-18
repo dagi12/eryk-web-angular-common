@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractValueAccessor, MakeProvider} from '../../abstract/abstract-value-accessor.component';
-import {newId} from '../../utils';
+import {newId} from '../../util/utils';
 
 @Component({
   selector: 'app-text-input',

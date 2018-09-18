@@ -1,10 +1,10 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {CrudTableService} from '../ui/crud-table/crud-table.service';
+import {CrudTableService} from '../../ui/crud-table/crud-table.service';
 import {MyColumn} from './my-column';
 import {DataTable, LazyLoadEvent} from 'primeng/primeng';
 
-import {arrayToMap2} from '../../../eryk-web-client-common/src/array.helper.js';
-import {NgFilters} from '../model/ng-filters';
+import {arrayToMap2} from '../../util/array.helper';
+import {NgFilters} from '../../model/ng-filters';
 
 @Component({
   selector: 'app-base-table',

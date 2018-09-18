@@ -1,9 +1,9 @@
 import {Injector, NgModule, Optional, SkipSelf} from '@angular/core';
 
 
-import {Global} from './global/global';
+import {Global} from './util/global';
 import {EmptyModalComponent} from './ui/empty-modal/empty-modal.component';
-import {TopNavbarComponent} from './topnavbar/topnavbar.component';
+import {TopNavbarComponent} from './component/topnavbar/topnavbar.component';
 import {TextInputComponent} from './ui/text-input/text-input.component';
 import {ButtonComponent} from './ui/button/button.component';
 import {LabelWrapperComponent} from './ui/label-wrapper/label-wrapper.component';
@@ -16,19 +16,19 @@ import {ShakingErrorComponent} from './ui/shaking-error/shaking-error.component'
 import {CrudTableComponent} from './ui/crud-table/crud-table.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ApiConfigService} from './api-config/api-config.service';
-import {CommonModalService} from './common-modal/common-modal.service';
+import {ApiConfigService} from './service/api-config.service';
+import {CommonModalService} from './service/common-modal/common-modal.service';
 import {CrudTableService} from './ui/crud-table/crud-table.service';
-import {InterceptedHttp} from './config/InterceptedHttp';
+import {InterceptedHttp} from './service/InterceptedHttp';
 import {ERYK_CONFIG} from './eryk.token';
-import {RouterOutletComponent} from './router-outlet-component/router-outlet.component';
-import {BaseTableComponent} from './base-table/base-table.component';
+import {RouterOutletComponent} from './component/router-outlet-component/router-outlet.component';
+import {BaseTableComponent} from './component/base-table/base-table.component';
 import {RouterModule} from '@angular/router';
 import {BsDatepickerModule, CollapseModule, TypeaheadModule} from 'ngx-bootstrap';
-import {DatePickerComponent} from './date-picker/date-picker.component';
+import {DatePickerComponent} from './component/date-picker/date-picker.component';
 import {ErykConfig} from './eryk.interface';
-import {PostConfigService} from './post-config/post-config.service';
-import {PostConfigResolver} from './post-config/post-config.resolver';
+import {PostConfigService} from './service/post-config/post-config.service';
+import {PostConfigResolver} from './service/post-config/post-config.resolver';
 import {YesNoPipe} from './pipes/yes-no.pipe';
 import {DataTableModule, SharedModule} from 'primeng/primeng';
 import {TextAreaComponent} from './ui/text-area/text-area.component';

@@ -2,9 +2,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AutoCompleteComponent} from '../../ui/auto-complete/auto-complete.component';
 import {FormControl} from '@angular/forms';
 import {AuthHttp} from 'angular2-jwt';
-import {ApiConfigService} from '../../api-config/api-config.service';
+import {ApiConfigService} from '../../service/api-config.service';
 import {isError} from '../common-validators';
-import {EmitterPass, passEmitter} from '../../utils';
+import {EmitterPass, passEmitter} from '../../util/utils';
 
 @Component({
   selector: 'app-auto-complete-validated',
