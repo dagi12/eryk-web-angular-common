@@ -22,15 +22,12 @@ export const handelNetworkErrorMsg = (response: Response, msg = null) => {
     }
     data = null;
   }
-  if (data) {
-    if (!data.done && data.errorMessage) {
-      return data.errorMessage;
-    } else if (msg) {
-      return msg;
-    }
+  if (data && !data.done && data.errorMessage) {
+    return data.errorMessage;
+  } else if (msg) {
+    return msg;
+  } else if (data && data.error && data.message) {
     return data.error + ' ' + data.message;
-  } else if (response) {
-    return msg || JSON.stringify(response);
   }
   return 'Brak połączenia z serwerem';
 };
