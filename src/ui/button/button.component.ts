@@ -12,6 +12,7 @@ export class ButtonComponent implements OnInit {
   @Input() style = 'btn-primary';
   @Input() wrapperStyle: string;
   @Input() disabled: boolean;
+  @Input() icon = 'fa-check';
   @Output() onClick: EventEmitter<any> = new EventEmitter();
 
   constructor() {

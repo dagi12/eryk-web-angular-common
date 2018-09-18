@@ -1,7 +1,9 @@
 <div class="{{wrapperStyle}}">
   <button type="button"
-          class="btn {{style}} full-width"
+          class="btn {{style}} full-width m-b-sm"
           [disabled]="disabled"
-          (click)="clickCallbackBound()">{{label}}
+          (click)="clickCallbackBound()">
+    <i class="fa {{icon}} m-r-sm"></i>
+    <span>{{label}}</span>
   </button>
 </div>

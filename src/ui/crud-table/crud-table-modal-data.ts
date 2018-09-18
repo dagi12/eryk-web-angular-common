@@ -7,6 +7,7 @@ export class CrudTableModalData extends BSModalContext {
     super();
     this.isBlocking = false;
     this.showClose = true;
+    this.size = 'lg';
   }
 
 }
