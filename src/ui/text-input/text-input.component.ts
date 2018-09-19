@@ -14,6 +14,7 @@ export class TextInputComponent extends AbstractValueAccessor implements OnInit 
   @Input() disabled: boolean;
   @Input() error: boolean;
   @Input() required: boolean;
+  @Input() maxLength = 19;
   id = newId();
 
   ngOnInit() {
