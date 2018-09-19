@@ -1,44 +1,42 @@
-<app-ibox [title]="title">
-  <ng-content select="[filter]"></ng-content>
-  <div class="ibox-content" [ngClass]="loading ? 'sk-loading' : ''">
-    <div class="sk-spinner sk-spinner-wave">
-      <div class="sk-rect1"></div>
-      <div class="sk-rect2"></div>
-      <div class="sk-rect3"></div>
-      <div class="sk-rect4"></div>
-      <div class="sk-rect5"></div>
-    </div>
-    <p-dataTable [value]="items"
-                 [emptyMessage]="'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.'"
-                 [paginator]="!slim"
-                 [rows]="20"
-                 [lazy]="lazy"
-                 [(first)]="first"
-                 [totalRecords]="totalRecords"
-                 (onLazyLoad)="loadLazy($event)"
-                 [rowsPerPageOptions]="[10,20,50]"
-                 [responsive]="true">
-      <p-column
-        [sortable]="!col.notSortable"
-        *ngFor="let col of columns"
-        [field]="col.field"
-        [header]="col.header"
-        [styleClass]="col.styleClass"
-        [filter]="!slim && lazy && col.filter !== false">
-
-        <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
-          {{item[col.field] | date:'dd-MM-yyyy HH:mm' }}
-        </ng-template>
-
-        <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">
-          {{item[col.field] | yesNo }}
-        </ng-template>
-
-        <ng-template *ngIf="col.cellRenderer" let-item="rowData" pTemplate type="body">
-          {{col.cellRenderer(item[col.field])}}
-        </ng-template>
-      </p-column>
-    </p-dataTable>
-    <ng-content></ng-content>
+<ng-content select="[filter]"></ng-content>
+<div class="loading-container m-b" [class.sk-loading]="loading">
+  <div class="sk-spinner sk-spinner-wave">
+    <div class="sk-rect1"></div>
+    <div class="sk-rect2"></div>
+    <div class="sk-rect3"></div>
+    <div class="sk-rect4"></div>
+    <div class="sk-rect5"></div>
   </div>
-</app-ibox>
+  <p-dataTable [value]="items"
+               [emptyMessage]="'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.'"
+               [paginator]="!slim"
+               [rows]="20"
+               [lazy]="lazy"
+               [(first)]="first"
+               [totalRecords]="totalRecords"
+               (onLazyLoad)="loadLazy($event)"
+               [rowsPerPageOptions]="[10,20,50]"
+               [responsive]="true">
+    <p-column
+      [sortable]="!col.notSortable"
+      *ngFor="let col of columns"
+      [field]="col.field"
+      [header]="col.header"
+      [styleClass]="col.styleClass"
+      [filter]="!slim && lazy && col.filter !== false">
+
+      <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
+        {{item[col.field] | date:'dd-MM-yyyy HH:mm' }}
+      </ng-template>
+
+      <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">
+        {{item[col.field] | yesNo }}
+      </ng-template>
+
+      <ng-template *ngIf="col.cellRenderer" let-item="rowData" pTemplate type="body">
+        {{col.cellRenderer(item[col.field])}}
+      </ng-template>
+    </p-column>
+  </p-dataTable>
+  <ng-content></ng-content>
+</div>

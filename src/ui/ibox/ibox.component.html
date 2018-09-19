@@ -9,7 +9,7 @@
               <i [ngClass]="{'fa-chevron-down':isCollapsed, 'fa-chevron-up': !isCollapsed}"
                  class="fa fa-2x"></i>
             </a>
-            <app-help-dialog [helpContent]="helpContent"></app-help-dialog>
+            <app-help-dialog *ngIf="!!helpContent" [helpContent]="helpContent"></app-help-dialog>
           </div>
         </div>
         <div class="ibox-content" [collapse]="isCollapsed">

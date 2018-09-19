@@ -8,7 +8,7 @@ import {requiredProps} from '../../util/util.service';
 })
 export class ButtonComponent implements OnInit {
 
-  @Input() label: string;
+  @Input() label = 'Zatwierdź';
   @Input() style = 'btn-primary';
   @Input() wrapperStyle: string;
   @Input() disabled: boolean;

@@ -1,9 +1,11 @@
 import {BSModalContext} from 'ngx-modialog/plugins/bootstrap';
+import {MODE} from '../../util/const';
 
 export class CrudTableModalData extends BSModalContext {
 
   constructor(public currentItem = {},
-              public items: any[] = []) {
+              public items: any[] = [],
+              public mode: number = MODE.PREVIEW) {
     super();
     this.isBlocking = false;
     this.showClose = true;

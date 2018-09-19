@@ -20,7 +20,6 @@ export class BaseTableComponent implements OnInit {
   first = 0;
   lastLazyLoadEvent: LazyLoadEvent;
   @ViewChild(DataTable) dataTable: DataTable;
-  @Input() title: string;
   @Input() emptyMessage = 'Brak danych';
   @Input() items: any[] = [];
   @Input() serviceUrl: string;

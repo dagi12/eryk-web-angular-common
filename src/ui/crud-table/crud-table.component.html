@@ -1,54 +1,53 @@
-<app-ibox [title]="title" [helpContent]="helpContent">
-  <div class="ibox-content" [class.sk-loading]="loading">
-    <ng-content></ng-content>
-    <div class="sk-spinner sk-spinner-wave">
-      <div class="sk-rect1"></div>
-      <div class="sk-rect2"></div>
-      <div class="sk-rect3"></div>
-      <div class="sk-rect4"></div>
-      <div class="sk-rect5"></div>
-    </div>
-    <p-dataTable [value]="items"
-                 [emptyMessage]="emptyMessage"
-                 [paginator]="!slim"
-                 [rows]="20"
-                 [rowsPerPageOptions]="[10,20,50]"
-                 [lazy]="lazy"
-                 [(first)]="first"
-                 [totalRecords]="totalRecords"
-                 (onRowClick)="onEdit($event)"
-                 [rowStyleClass]="rowStyleClass"
-                 (onLazyLoad)="loadLazy($event)"
-                 [responsive]="true">
-      <p-column
-        [sortable]="!col.notSortable"
-        *ngFor="let col of columns"
-        [field]="col.field"
-        [header]="col.header"
-        [styleClass]="col.styleClass"
-        [filter]="!slim && lazy && col.filter !== false">
-
-
-        <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
-          {{item[col.field] | date }}
-        </ng-template>
-
-        <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">
-          {{item[col.field] | yesNo }}
-        </ng-template>
-
-        <ng-template *ngIf="col.cellRenderer" let-item="rowData" pTemplate type="body">
-          {{col.cellRenderer(item[col.field])}}
-        </ng-template>
-
-      </p-column>
-    </p-dataTable>
+<div class="loading-container m-b" [class.sk-loading]="loading">
+  <ng-content></ng-content>
+  <div class="sk-spinner sk-spinner-wave">
+    <div class="sk-rect1"></div>
+    <div class="sk-rect2"></div>
+    <div class="sk-rect3"></div>
+    <div class="sk-rect4"></div>
+    <div class="sk-rect5"></div>
   </div>
-  <div class="row">
-    <app-button
-      [wrapperStyle]="'col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1'"
-      (onClick)="onCreate($event)"
-      icon="fa-plus"
-      [label]="createLabel"></app-button>
-  </div>
-</app-ibox>
+  <p-dataTable [value]="items"
+               [emptyMessage]="emptyMessage"
+               [paginator]="!slim"
+               [rows]="20"
+               [rowsPerPageOptions]="[10,20,50]"
+               [lazy]="lazy"
+               [(first)]="first"
+               [totalRecords]="totalRecords"
+               (onRowClick)="onEdit($event)"
+               [rowStyleClass]="rowStyleClass"
+               (onLazyLoad)="loadLazy($event)"
+               [responsive]="true">
+    <p-column
+      [sortable]="!col.notSortable"
+      *ngFor="let col of columns"
+      [field]="col.field"
+      [header]="col.header"
+      [styleClass]="col.styleClass"
+      [filter]="!slim && lazy && col.filter !== false">
+
+
+      <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
+        {{item[col.field] | date }}
+      </ng-template>
+
+      <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">
+        {{item[col.field] | yesNo }}
+      </ng-template>
+
+      <ng-template *ngIf="col.cellRenderer" let-item="rowData" pTemplate type="body">
+        {{col.cellRenderer(item[col.field])}}
+      </ng-template>
+
+    </p-column>
+  </p-dataTable>
+</div>
+<div class="row">
+  <app-button
+    [wrapperStyle]="'col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1'"
+    (onClick)="onCreate($event)"
+    icon="fa-plus"
+    [label]="createLabel"></app-button>
+</div>
+

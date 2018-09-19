@@ -5,6 +5,7 @@ import {CrudTableModalData} from './crud-table-modal-data';
 import {CrudTableService} from './crud-table.service';
 import {BaseTableComponent} from '../../component/base-table/base-table.component';
 import {stubFun} from '../../util/utils';
+import {MODE} from '../../util/const';
 
 @Component({
   selector: 'app-crud-table',
@@ -13,7 +14,6 @@ import {stubFun} from '../../util/utils';
 })
 export class CrudTableComponent extends BaseTableComponent implements OnInit {
 
-  @Input() helpContent: string;
   @Input() createLabel: string;
   @Input() disableKey?: string;
 
@@ -40,7 +40,7 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
   onCreate(currentItem) {
     this.modal.open(
       this.addContainerContent,
-      overlayConfigFactory(new CrudTableModalData(currentItem, this.items), CrudTableModalData)
+      overlayConfigFactory(new CrudTableModalData(currentItem, this.items, MODE.CREATE), CrudTableModalData)
     ).then(dialog => dialog.result.then(result => {
       if (result) {
         this.refreshTable();
@@ -51,7 +51,7 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
   onEdit(currentItem) {
     this.modal.open(
       this.editContainerContent,
-      overlayConfigFactory(new CrudTableModalData(currentItem.data, this.items), CrudTableModalData)
+      overlayConfigFactory(new CrudTableModalData(currentItem.data, this.items, MODE.EDIT), CrudTableModalData)
     ).then(dialog => dialog.result.then(result => {
       if (result) {
         this.refreshTable();
