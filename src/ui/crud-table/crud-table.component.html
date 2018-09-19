@@ -10,7 +10,7 @@
     </div>
     <p-dataTable [value]="items"
                  [emptyMessage]="emptyMessage"
-                 [paginator]="true"
+                 [paginator]="!slim"
                  [rows]="20"
                  [rowsPerPageOptions]="[10,20,50]"
                  [lazy]="lazy"
@@ -26,7 +26,7 @@
         [field]="col.field"
         [header]="col.header"
         [styleClass]="col.styleClass"
-        [filter]="lazy && col.filter !== false">
+        [filter]="!slim && lazy && col.filter !== false">
 
 
         <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">

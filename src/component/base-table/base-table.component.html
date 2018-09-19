@@ -10,7 +10,7 @@
     </div>
     <p-dataTable [value]="items"
                  [emptyMessage]="'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.'"
-                 [paginator]="true"
+                 [paginator]="!slim"
                  [rows]="20"
                  [lazy]="lazy"
                  [(first)]="first"
@@ -24,7 +24,7 @@
         [field]="col.field"
         [header]="col.header"
         [styleClass]="col.styleClass"
-        [filter]="lazy && col.filter !== false">
+        [filter]="!slim && lazy && col.filter !== false">
 
         <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
           {{item[col.field] | date:'dd-MM-yyyy HH:mm' }}

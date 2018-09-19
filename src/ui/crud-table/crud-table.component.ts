@@ -18,13 +18,14 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
   @Input() disableKey?: string;
 
   @Input() idKey: string;
-  @Input() editContainerContent;
   @Input() addContainerContent;
+  @Input() editContainerContent = this.addContainerContent;
 
   rowStyleClass: (rowData: any) => string = null;
 
   constructor(private modal: Modal, crudTableService: CrudTableService) {
     super(crudTableService);
+    this.lazy = true;
   }
 
   ngOnInit(): void {

@@ -21,12 +21,13 @@ export class BaseTableComponent implements OnInit {
   lastLazyLoadEvent: LazyLoadEvent;
   @ViewChild(DataTable) dataTable: DataTable;
   @Input() title: string;
-  @Input() emptyMessage: string;
+  @Input() emptyMessage = 'Brak danych';
   @Input() items: any[] = [];
   @Input() serviceUrl: string;
   @Input() getAllUrl?: string;
   @Input() filterUrl?: string;
   @Input() columns: MyColumn[];
+  @Input() slim = false;
 
   columnMap: { [_: string]: MyColumn };
 
