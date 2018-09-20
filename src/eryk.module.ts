@@ -42,6 +42,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {MyToastService} from './service/my-toast.service';
 import {PanelComponent} from './ui/panel/panel.component';
 import {HeaderModalComponent} from './component/modal/header-modal/header-modal.component';
+import {SpinnerComponent} from './component/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {HeaderModalComponent} from './component/modal/header-modal/header-modal.
     PanelComponent,
     YesNoPipe,
     HeaderModalComponent,
+    SpinnerComponent,
   ],
   exports: [
     TopNavbarComponent,
@@ -96,6 +98,7 @@ import {HeaderModalComponent} from './component/modal/header-modal/header-modal.
     TextAreaValidatedComponent,
     PanelComponent,
     HeaderModalComponent,
+    SpinnerComponent,
     YesNoPipe
   ],
   imports: [
