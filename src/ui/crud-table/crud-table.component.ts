@@ -6,6 +6,8 @@ import {CrudTableService} from './crud-table.service';
 import {BaseTableComponent} from '../../component/base-table/base-table.component';
 import {stubFun} from '../../util/utils';
 import {MODE} from '../../util/const';
+import {LazyLoadEventExt} from '../../component/base-table/lazyloadeventext';
+
 
 @Component({
   selector: 'app-crud-table',
@@ -20,6 +22,7 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
   @Input() idKey: string;
   @Input() addContainerContent;
   @Input() editContainerContent = this.addContainerContent;
+  @Input() additionalOptions: LazyLoadEventExt = {};
 
   rowStyleClass: (rowData: any) => string = null;
 
@@ -37,10 +40,19 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
     super.ngOnInit();
   }
 
-  onCreate(currentItem) {
+  loadLazy(options: LazyLoadEventExt, resetPaging: boolean = false): void {
+    super.loadLazy({
+      ...options,
+      ...this.additionalOptions
+    }, resetPaging);
+  }
+
+  onCreate() {
     this.modal.open(
       this.addContainerContent,
-      overlayConfigFactory(new CrudTableModalData(currentItem, this.items, MODE.CREATE), CrudTableModalData)
+      overlayConfigFactory(new CrudTableModalData({
+        linkId: this.srcId
+      }, this.items, MODE.CREATE), CrudTableModalData)
     ).then(dialog => dialog.result.then(result => {
       if (result) {
         this.refreshTable();

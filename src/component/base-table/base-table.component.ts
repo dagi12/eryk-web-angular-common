@@ -1,10 +1,11 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {CrudTableService} from '../../ui/crud-table/crud-table.service';
 import {MyColumn} from './my-column';
-import {DataTable, LazyLoadEvent} from 'primeng/primeng';
+import {DataTable} from 'primeng/primeng';
 
 import {arrayToMap2} from '../../util/array.helper';
 import {NgFilters} from '../../model/ng-filters';
+import {LazyLoadEventExt} from './lazyloadeventext';
 
 @Component({
   selector: 'app-base-table',
@@ -18,7 +19,7 @@ export class BaseTableComponent implements OnInit {
   totalRecords: number;
   loading = false;
   first = 0;
-  lastLazyLoadEvent: LazyLoadEvent;
+  lastLazyLoadEvent: LazyLoadEventExt;
   @ViewChild(DataTable) dataTable: DataTable;
   @Input() emptyMessage = 'Brak danych';
   @Input() items: any[] = [];
@@ -27,6 +28,7 @@ export class BaseTableComponent implements OnInit {
   @Input() filterUrl?: string;
   @Input() columns: MyColumn[];
   @Input() slim = false;
+  @Input() srcId: number;
 
   columnMap: { [_: string]: MyColumn };
 
@@ -63,7 +65,7 @@ export class BaseTableComponent implements OnInit {
     }
   }
 
-  loadLazy(options: LazyLoadEvent, resetPaging: boolean = false) {
+  loadLazy(options: LazyLoadEventExt, resetPaging: boolean = false) {
     this.loading = true;
     this.addFilterTypes(<NgFilters>options.filters);
     this.lastLazyLoadEvent = options;
@@ -76,6 +78,9 @@ export class BaseTableComponent implements OnInit {
     if (resetPaging) {
       options.first = 0;
       this.first = 0;
+    }
+    if (this.srcId) {
+      options.srcId = this.srcId;
     }
     this.crudTableService
       .lazy(this.getAllUrl, options)
