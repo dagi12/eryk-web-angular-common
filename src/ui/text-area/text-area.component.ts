@@ -12,6 +12,8 @@ export class TextAreaComponent extends AbstractValueAccessor implements OnInit {
   @Input() label: string;
   @Input() error: boolean;
   @Input() required: boolean;
+  @Input() placeholder: string;
+  @Input() rows = 3;
 
   ngOnInit() {
   }

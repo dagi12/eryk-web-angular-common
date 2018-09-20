@@ -1,3 +1,4 @@
-<app-text-area [formControl]="control" [label]="label" [error]="locIsError()" [required]="true">
+<app-text-area [rows]="rows" [formControl]="control" [label]="label" [error]="locIsError()" [required]="true"
+               [placeholder]="placeholder">
   <app-error-box [error]="locIsError()"></app-error-box>
 </app-text-area>

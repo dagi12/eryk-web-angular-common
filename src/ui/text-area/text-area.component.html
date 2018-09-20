@@ -1,6 +1,8 @@
 <app-form-group [label]="label" [error]="error" [required]="required">
   <textarea
     class="form-control"
+    [rows]="rows"
+    placeholder="{{placeholder}}"
     [(ngModel)]="value"></textarea>
   <ng-content></ng-content>
 </app-form-group>
