@@ -19,9 +19,8 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
   @Input() createLabel: string;
   @Input() disableKey?: string;
 
-  @Input() idKey: string;
   @Input() addContainerContent;
-  @Input() editContainerContent = this.addContainerContent;
+  @Input() editContainerContent;
   @Input() additionalOptions: LazyLoadEventExt = {};
 
   rowStyleClass: (rowData: any) => string = null;
@@ -36,6 +35,9 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
       this.rowStyleClass = (rowData) => {
         return rowData[this.disableKey] ? '' : 'disabled-row';
       };
+    }
+    if (!this.editContainerContent) {
+      this.editContainerContent = this.addContainerContent;
     }
     super.ngOnInit();
   }

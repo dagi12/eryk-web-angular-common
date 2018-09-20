@@ -119,3 +119,16 @@ export class UtilService {
 export function isPreviewOrEdit(mode) {
   return mode === 2 || mode === 3;
 }
+
+export function serializeParams(obj: any): string {
+  let str = '';
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      if (str !== '') {
+        str += '&';
+      }
+      str += key + '=' + encodeURIComponent(obj[key]);
+    }
+  }
+  return str;
+}
