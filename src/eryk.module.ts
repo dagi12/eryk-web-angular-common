@@ -41,6 +41,7 @@ import {TextAreaValidatedComponent} from './validation/text-area-validated/text-
 import {ToastrModule} from 'ngx-toastr';
 import {MyToastService} from './service/my-toast.service';
 import {PanelComponent} from './ui/panel/panel.component';
+import {HeaderModalComponent} from './component/modal/header-modal/header-modal.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import {PanelComponent} from './ui/panel/panel.component';
     TextAreaValidatedComponent,
     PanelComponent,
     YesNoPipe,
+    HeaderModalComponent,
   ],
   exports: [
     TopNavbarComponent,
@@ -93,6 +95,7 @@ import {PanelComponent} from './ui/panel/panel.component';
     AutoCompleteValidatedComponent,
     TextAreaValidatedComponent,
     PanelComponent,
+    HeaderModalComponent,
     YesNoPipe
   ],
   imports: [
