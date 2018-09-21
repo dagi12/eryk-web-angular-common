@@ -16,3 +16,12 @@ export function newId(): string {
   lastId++;
   return lastId.toString();
 }
+
+export const defaultValues = (object: {}, values: {}) => {
+  for (const key in values) {
+    if (values.hasOwnProperty(key)) {
+      object[key] = object[key] || values[key];
+    }
+  }
+  return object;
+};

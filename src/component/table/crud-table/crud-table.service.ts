@@ -3,6 +3,7 @@ import {AuthHttp} from 'angular2-jwt';
 import {Observable} from 'rxjs/Observable';
 import {ApiConfigService} from '../../../service/api-config.service';
 import {LazyLoadEventExt} from '../base-table/lazyloadeventext';
+import {Response} from '@angular/http';
 
 
 @Injectable()
@@ -17,10 +18,9 @@ export class CrudTableService {
       .map(res => res.json());
   }
 
-  public add<T>(item: T, url: string): Observable<T> {
+  public add<T>(item: T, url: string): Observable<Response> {
     return this.http
-      .post(this.acs.simpleUrl(url), item)
-      .map(res => res.json());
+      .post(this.acs.simpleUrl(url), item);
   }
 
   public remove(id: number, url: string): Observable<any> {

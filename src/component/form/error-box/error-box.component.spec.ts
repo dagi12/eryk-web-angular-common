@@ -1,7 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ErrorBoxComponent} from './error-box.component';
-import {FormControl} from '@angular/forms';
 
 describe('ErrorBoxComponent', () => {
   let component: ErrorBoxComponent;
@@ -17,7 +16,6 @@ describe('ErrorBoxComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ErrorBoxComponent);
     component = fixture.componentInstance;
-    component.control = new FormControl();
     fixture.detectChanges();
   });
 

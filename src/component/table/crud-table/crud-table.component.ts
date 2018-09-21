@@ -18,7 +18,7 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
 
   @Input() createLabel: string;
   @Input() disableKey?: string;
-
+  @Input() hideCreate: boolean;
   @Input() addContainerContent;
   @Input() editContainerContent;
   @Input() additionalOptions: LazyLoadEventExt = {};

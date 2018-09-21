@@ -17,7 +17,6 @@ describe('MySelectComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MySelectComponent);
     component = fixture.componentInstance;
-    component.model = {};
     component.label = 'Foo';
     fixture.detectChanges();
   });
