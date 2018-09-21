@@ -51,6 +51,8 @@ import {NumberInputComponent} from './component/form/input/number-input/number-i
 import {MoneyInputComponent} from './component/form/validated/money-input/money-input.component';
 import {defineLocale} from 'ngx-bootstrap/chronos';
 import {plLocale} from 'ngx-bootstrap/locale';
+import {ErrorBoxesComponent} from './component/form/error-boxes/error-boxes.component';
+import {NgForInDirective} from './directives/ng-for-in.directive';
 
 @NgModule({
   declarations: [
@@ -84,6 +86,8 @@ import {plLocale} from 'ngx-bootstrap/locale';
     NumberInputValidatedComponent,
     NumberInputComponent,
     MoneyInputComponent,
+    ErrorBoxesComponent,
+    NgForInDirective,
   ],
   exports: [
     TopNavbarComponent,
@@ -116,6 +120,7 @@ import {plLocale} from 'ngx-bootstrap/locale';
     NumberInputValidatedComponent,
     NumberInputComponent,
     MoneyInputComponent,
+    ErrorBoxesComponent
   ],
   imports: [
     BsDatepickerModule.forRoot(),

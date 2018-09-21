@@ -9,12 +9,6 @@
     [disabled]="disabled"
     [placeholder]="placeholder"
     [(ngModel)]="value">
-  <div *ngIf="formControl.hasError('required') && (!formControl.pristine || submitted)"
-       class="alert alert-danger m-t-xs">
-    Pole nie może być puste
-  </div>
-  <div *ngIf="formControl.hasError('date') && (!formControl.pristine || submitted)" class="alert alert-danger m-t-xs">
-    Data musi być późniejsza od daty dzisiejszej
-  </div>
+  <app-error-boxes [submitted]="submitted" [control]="formControl" [config]="config"></app-error-boxes>
 
 </app-form-group>

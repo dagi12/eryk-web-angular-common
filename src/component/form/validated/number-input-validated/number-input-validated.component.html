@@ -9,6 +9,5 @@
     min="0"
     [max]="max"
     (ngModelChange)="onModelChange($event)"/>
-  <div *ngIf="numberIsError('required')" class="alert alert-danger m-t-xs">Pole nie może być puste</div>
-  <div *ngIf="formControl.hasError('range')" class="alert alert-danger m-t-xs">Pole musi być mniejsze od 999999999</div>
+  <app-error-boxes [submitted]="submitted" [control]="formControl" [config]="config"></app-error-boxes>
 </app-form-group>

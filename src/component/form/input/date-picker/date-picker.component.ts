@@ -21,4 +21,9 @@ export class DatePickerComponent extends AbstractValueAccessor<Date> {
     super(injector);
   }
 
+  config = {
+    required: 'Pole nie może być puste',
+    date: 'Data musi być późniejsza od daty dzisiejszej'
+  };
+
 }

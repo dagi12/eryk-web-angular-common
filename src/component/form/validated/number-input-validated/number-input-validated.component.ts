@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {MakeProvider} from '../../input/abstract-value-accessor.component';
 import {NumberInputComponent} from '../../input/number-input/number-input.component';
-import {isError} from '../common-validators';
 
 @Component({
   selector: 'app-number-input-validated',
@@ -14,6 +13,9 @@ export class NumberInputValidatedComponent extends NumberInputComponent {
   @Input() required: boolean;
   @Input() submitted: boolean;
 
-  numberIsError = (errorName) => isError(this.formControl, this.submitted, !this.formControl.hasError(errorName));
+  config = {
+    required: 'Pole nie może być puste',
+    range: 'Pole musi być mniejsze od 999999999'
+  };
 
 }
