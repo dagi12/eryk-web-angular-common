@@ -1,8 +1,14 @@
 import {AbstractControl, FormControl, ValidatorFn} from '@angular/forms';
 import {
-  DEC_MAX_VALUE, DIGIT_REGEXP, LOWER_CHAR_REGEXP, MAX_VALUE, PASSWORD_LENGTH, SPECIAL_CHAR_REGEXP,
+  DEC_MAX_VALUE,
+  DIGIT_REGEXP,
+  LOWER_CHAR_REGEXP,
+  MAX_VALUE,
+  PASSWORD_LENGTH,
+  SPECIAL_CHAR_REGEXP,
   UPPER_CHAR_REGEXP
 } from '../../../util/const';
+import {isUndefined} from 'ngx-bootstrap/chronos/utils/type-checks';
 
 export function mailValidator(control: AbstractControl) {
   const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
@@ -93,5 +99,7 @@ export const greaterThanToday = dateGreaterThan(new Date());
 
 export type ErrorChecker = (control: FormControl, submitted: boolean, valid?: boolean) => boolean;
 
-export const isError: ErrorChecker = (control: FormControl, submitted: boolean,
-                                      valid: boolean = control.valid) => !valid && (!control.pristine || submitted);
+export const isError: ErrorChecker = (control: FormControl, submitted: boolean, valid?: boolean) => {
+  const resValid = isUndefined(valid) ? control.valid : valid;
+  return !resValid && (!control.pristine || submitted);
+};

@@ -53,6 +53,7 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.outputUrl = this.apiConfigService.url(this.inputUrl);
   }
 

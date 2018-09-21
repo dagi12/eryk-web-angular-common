@@ -10,7 +10,6 @@ import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.co
   styleUrls: ['./my-select.component.scss'],
   providers: [MakeProvider(MySelectComponent)]
 })
-// TODO make AbstractValueAccessor
 export class MySelectComponent extends AbstractValueAccessor implements OnInit {
 
   @Input() map: ValueLabelPair<any>[];
@@ -18,6 +17,7 @@ export class MySelectComponent extends AbstractValueAccessor implements OnInit {
 
 
   ngOnInit() {
+    super.ngOnInit();
     requiredProps(this.label, this.map);
   }
 
