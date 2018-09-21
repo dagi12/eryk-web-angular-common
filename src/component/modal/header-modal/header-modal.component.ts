@@ -9,6 +9,7 @@ import {EmitterPass, passEmitter} from '../../../util/utils';
 export class HeaderModalComponent {
 
   @Input() modalTitle: string;
+  @Input() helpContent: string;
   @Output() close = new EventEmitter();
   locClose: EmitterPass;
 
