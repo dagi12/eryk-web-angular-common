@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Modal} from 'ngx-modialog/plugins/bootstrap';
 import {overlayConfigFactory} from 'ngx-modialog';
-import {EmptyModalComponent, EmptyModalData} from '../../ui/empty-modal/empty-modal.component';
+import {EmptyModalComponent, EmptyModalData} from '../../component/modal/empty-modal/empty-modal.component';
+
 
 type ModalCallback = (result: boolean) => void;
 

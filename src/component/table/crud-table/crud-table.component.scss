@@ -1,0 +1,22 @@
+@import '../../../../../flota-web-inspina/assets/inspina/mixins';
+@import '../../../../../flota-web-inspina/assets/inspina/variables';
+
+.disabled-row {
+  background: $label-badget-color !important;
+  color: $dark-gray;
+}
+
+#main-button-wrapper {
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+@media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+  #main-button-wrapper {
+    margin-bottom: 120px;
+  }
+}
+
+.ibox {
+  @include common-shadow();
+}
