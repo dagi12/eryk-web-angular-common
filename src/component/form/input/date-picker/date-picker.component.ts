@@ -1,52 +1,24 @@
-import {Component, forwardRef, Input, OnInit} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {BsLocaleService} from 'ngx-bootstrap';
+import {Component, Injector, Input} from '@angular/core';
+import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.component';
+import {newId} from '../../../../util/utils';
 
 @Component({
   selector: 'app-date-picker',
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => DatePickerComponent),
-    multi: true
-  }]
+  providers: [MakeProvider(DatePickerComponent)]
 })
-export class DatePickerComponent implements OnInit, ControlValueAccessor {
+export class DatePickerComponent extends AbstractValueAccessor<Date> {
+
   @Input() placeholder: string;
-  onChange;
+  id = newId();
+  @Input() label: string;
+  @Input() required: boolean;
+  @Input() disabled: boolean;
+  @Input() submitted: boolean;
 
-  constructor(private localeService: BsLocaleService) {
-    this.localeService.use('pl');
+  constructor(injector: Injector) {
+    super(injector);
   }
-
-  private _model = null;
-
-  get model(): any {
-    return this._model;
-  }
-
-  set model(model: any) {
-    this.writeValue(model);
-    this._model = model;
-  }
-
-  ngOnInit(): void {
-  }
-
-  writeValue(obj: any): void {
-    if (this.onChange) {
-      this.onChange(obj);
-    }
-    this._model = obj;
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-  }
-
 
 }

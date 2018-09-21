@@ -1,0 +1,9 @@
+@import "../../../flota-web-inspina/assets/inspina/variables";
+
+.bs-datepicker.theme-green .bs-datepicker-head {
+  background-color: $accent;
+}
+
+html bs-datepicker-container {
+  z-index: 2000;
+}

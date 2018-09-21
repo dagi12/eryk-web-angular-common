@@ -30,7 +30,8 @@ import {YesNoPipe} from './pipes/yes-no.pipe';
 import {HeaderModalComponent} from './component/modal/header-modal/header-modal.component';
 import {CheckboxComponent} from './component/form/input/checkbox/checkbox.component';
 import {NumberInputValidatedComponent} from './component/form/validated/number-input-validated/number-input-validated.component';
-import {BsDatepickerModule, CollapseModule, TypeaheadModule} from 'ngx-bootstrap';
+import {BsLocaleService, CollapseModule, DatepickerModule, TypeaheadModule} from 'ngx-bootstrap';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DataTableModule, SharedModule} from 'primeng/primeng';
@@ -48,7 +49,8 @@ import {ErykConfig} from './eryk.interface';
 import {ERYK_CONFIG} from './eryk.token';
 import {NumberInputComponent} from './component/form/input/number-input/number-input.component';
 import {MoneyInputComponent} from './component/form/validated/money-input/money-input.component';
-
+import {defineLocale} from 'ngx-bootstrap/chronos';
+import {plLocale} from 'ngx-bootstrap/locale';
 
 @NgModule({
   declarations: [
@@ -116,7 +118,8 @@ import {MoneyInputComponent} from './component/form/validated/money-input/money-
     MoneyInputComponent,
   ],
   imports: [
-    BsDatepickerModule,
+    BsDatepickerModule.forRoot(),
+    DatepickerModule,
     BrowserModule,
     FormsModule,
     CollapseModule,
@@ -143,13 +146,14 @@ import {MoneyInputComponent} from './component/form/validated/money-input/money-
 })
 export class ErykModule {
 
-
-  public constructor(@Optional() @SkipSelf() parentModule: ErykModule, injector: Injector) {
+  public constructor(@Optional() @SkipSelf() parentModule: ErykModule, injector: Injector, localeService: BsLocaleService) {
     if (parentModule) {
       throw new Error('ErykModule has already been imported.');
     } else {
       Global.injector = injector;
     }
+    defineLocale('pl', plLocale);
+    localeService.use('pl');
   }
 
   public static forRoot(config: ErykConfig) {
@@ -160,6 +164,5 @@ export class ErykModule {
       ]
     };
   }
-
 
 }

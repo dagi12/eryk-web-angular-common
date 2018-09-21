@@ -1,6 +1,20 @@
-<input type="text"
-       class="form-control"
-       #dp="bsDatepicker"
-       bsDatepicker
-       placeholder="{{placeholder}}"
-       [(ngModel)]="model">
+<app-form-group [for]="id" [label]="label" [error]="locIsError()" [required]="required">
+  <!--suppress HtmlFormInputWithoutLabel -->
+  <input
+    id="{{id}}"
+    type="text"
+    class="form-control"
+    #dp="bsDatepicker"
+    bsDatepicker
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [(ngModel)]="value">
+  <div *ngIf="formControl.hasError('required') && (!formControl.pristine || submitted)"
+       class="alert alert-danger m-t-xs">
+    Pole nie może być puste
+  </div>
+  <div *ngIf="formControl.hasError('date') && (!formControl.pristine || submitted)" class="alert alert-danger m-t-xs">
+    Data musi być późniejsza od daty dzisiejszej
+  </div>
+
+</app-form-group>

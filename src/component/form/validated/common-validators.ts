@@ -78,9 +78,18 @@ export const ltN = n => value => {
   return null;
 };
 
+export const dateGreaterThan = (date: Date): ValidatorFn => control => {
+  if (date && (new Date(control.value).getTime() < date.getTime())) {
+    return {date: true};
+  }
+  return null;
+};
+
 export const lessThanIntegerValidation = ltN(MAX_VALUE);
 
 export const lessThanFloatValidation = ltN(DEC_MAX_VALUE);
+
+export const greaterThanToday = dateGreaterThan(new Date());
 
 export type ErrorChecker = (control: FormControl, submitted: boolean, valid?: boolean) => boolean;
 
