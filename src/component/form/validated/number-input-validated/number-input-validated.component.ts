@@ -1,25 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {newId} from '../../../../util/utils';
-import {FormControl} from '@angular/forms';
+import {Component, Input} from '@angular/core';
+import {MakeProvider} from '../../input/abstract-value-accessor.component';
+import {NumberInputComponent} from '../../input/number-input/number-input.component';
+import {isError} from '../common-validators';
 
 @Component({
   selector: 'app-number-input-validated',
   templateUrl: './number-input-validated.component.html',
-  styles: []
+  styles: [],
+  providers: [MakeProvider(NumberInputValidatedComponent)]
 })
-export class NumberInputValidatedComponent implements OnInit {
+export class NumberInputValidatedComponent extends NumberInputComponent {
 
-  @Input() label: string;
-  @Input() disabled: boolean;
-  @Input() error: boolean;
   @Input() required: boolean;
-  @Input() control: FormControl;
-  id = newId();
+  @Input() submitted: boolean;
 
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+  numberIsError = (errorName) => isError(this.formControl, this.submitted, !this.formControl.hasError(errorName));
 
 }

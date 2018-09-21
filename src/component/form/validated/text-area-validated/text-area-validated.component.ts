@@ -1,21 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {isError} from '../common-validators';
+import {Component, Input} from '@angular/core';
 import {TextAreaComponent} from '../../input/text-area/text-area.component';
+import {MakeProvider} from '../../input/abstract-value-accessor.component';
 
 @Component({
   selector: 'app-text-area-validated',
   templateUrl: './text-area-validated.component.html',
-  styles: []
+  styles: [],
+  providers: [MakeProvider(TextAreaValidatedComponent)]
 })
-export class TextAreaValidatedComponent extends TextAreaComponent implements OnInit {
+export class TextAreaValidatedComponent extends TextAreaComponent {
 
-  @Input() control: FormControl;
   @Input() submitted: boolean;
-
-  locIsError = () => isError(this.control, this.submitted);
-
-  ngOnInit() {
-  }
 
 }

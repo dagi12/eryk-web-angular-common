@@ -16,9 +16,6 @@ export class MySelectComponent extends AbstractValueAccessor implements OnInit {
   @Input() map: ValueLabelPair<any>[];
   @Input() label: string;
 
-  constructor() {
-    super();
-  }
 
   ngOnInit() {
     requiredProps(this.label, this.map);

@@ -1,8 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Injector, Input, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {AuthHttp} from 'angular2-jwt';
 import {ApiConfigService} from '../../../../service/api-config.service';
-import {isError} from '../common-validators';
 import {EmitterPass, passEmitter} from '../../../../util/utils';
 import {AutoCompleteComponent} from '../../input/auto-complete/auto-complete.component';
 
@@ -11,20 +10,16 @@ import {AutoCompleteComponent} from '../../input/auto-complete/auto-complete.com
   templateUrl: './auto-complete-validated.component.html',
   styles: []
 })
-export class AutoCompleteValidatedComponent extends AutoCompleteComponent implements OnInit {
+export class AutoCompleteValidatedComponent extends AutoCompleteComponent {
 
   @Input() control: FormControl;
   @Input() submitted: boolean;
   @Output() onSelect = new EventEmitter();
   locOnSelect: EmitterPass;
-  locIsError = () => isError(this.control, this.submitted);
 
-  constructor(authHttp: AuthHttp, apiConfigService: ApiConfigService) {
-    super(authHttp, apiConfigService);
+  constructor(authHttp: AuthHttp, apiConfigService: ApiConfigService, injector: Injector) {
+    super(authHttp, apiConfigService, injector);
     this.locOnSelect = passEmitter(this.onSelect);
-  }
-
-  ngOnInit() {
   }
 
 }

@@ -46,6 +46,8 @@ import {MyToastService} from './service/my-toast.service';
 import {InterceptedHttp} from './service/InterceptedHttp';
 import {ErykConfig} from './eryk.interface';
 import {ERYK_CONFIG} from './eryk.token';
+import {NumberInputComponent} from './component/form/input/number-input/number-input.component';
+import {MoneyInputComponent} from './component/form/validated/money-input/money-input.component';
 
 
 @NgModule({
@@ -78,6 +80,8 @@ import {ERYK_CONFIG} from './eryk.token';
     SpinnerComponent,
     CheckboxComponent,
     NumberInputValidatedComponent,
+    NumberInputComponent,
+    MoneyInputComponent,
   ],
   exports: [
     TopNavbarComponent,
@@ -106,7 +110,10 @@ import {ERYK_CONFIG} from './eryk.token';
     HeaderModalComponent,
     SpinnerComponent,
     CheckboxComponent,
-    YesNoPipe
+    YesNoPipe,
+    NumberInputValidatedComponent,
+    NumberInputComponent,
+    MoneyInputComponent,
   ],
   imports: [
     BsDatepickerModule,

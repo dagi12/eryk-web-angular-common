@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.component';
 import {newId} from '../../../../util/utils';
 
@@ -9,7 +9,7 @@ import {newId} from '../../../../util/utils';
   styleUrls: ['./text-input.component.scss'],
   providers: [MakeProvider(TextInputComponent)]
 })
-export class TextInputComponent extends AbstractValueAccessor implements OnInit {
+export class TextInputComponent extends AbstractValueAccessor {
 
   @Input() label: string;
   @Input() disabled: boolean;
@@ -17,9 +17,5 @@ export class TextInputComponent extends AbstractValueAccessor implements OnInit 
   @Input() required: boolean;
   @Input() maxLength = 19;
   id = newId();
-
-  ngOnInit() {
-
-  }
 
 }

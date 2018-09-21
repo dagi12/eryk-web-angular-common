@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Injector, Input, OnInit, Output} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {TypeaheadMatch} from 'ngx-bootstrap';
 
@@ -27,8 +27,9 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
   private outputUrl: string;
 
   constructor(private authHttp: AuthHttp,
-              private apiConfigService: ApiConfigService) {
-    super();
+              private apiConfigService: ApiConfigService,
+              injector: Injector) {
+    super(injector);
     this
       .dataSource = Observable
       .create((observer: any) => observer.next(this.value))

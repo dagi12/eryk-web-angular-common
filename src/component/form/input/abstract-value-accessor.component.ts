@@ -1,19 +1,31 @@
-import {forwardRef} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {forwardRef, Injectable, Injector, OnInit} from '@angular/core';
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
+import {isError} from '../validated/common-validators';
 
-export abstract class AbstractValueAccessor implements ControlValueAccessor {
+@Injectable()
+export abstract class AbstractValueAccessor<T = string> implements ControlValueAccessor, OnInit {
 
-  _value: any = '';
+  formControl: FormControl;
+  submitted: boolean;
 
-  get value(): any {
+  constructor(private injector: Injector) {
+  }
+
+  private _value: T;
+
+  get value(): T {
     return this._value;
   }
 
-  set value(v: any) {
+  set value(v: T) {
     if (v !== this._value) {
       this._value = v;
       this.onChange(v);
     }
+  }
+
+  locIsError() {
+    return isError(this.formControl, this.submitted);
   }
 
   // noinspection JSUnusedLocalSymbols
@@ -35,6 +47,13 @@ export abstract class AbstractValueAccessor implements ControlValueAccessor {
 
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
+  }
+
+  ngOnInit() {
+    const ngControl = this.injector.get(NgControl, null);
+    if (ngControl) {
+      this.formControl = <FormControl> ngControl;
+    }
   }
 
 }

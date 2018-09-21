@@ -1,0 +1,12 @@
+<app-form-group [for]="id" [label]="label">
+  <!--suppress HtmlFormInputWithoutLabel -->
+  <input
+    id="{{id}}"
+    type="number"
+    [disabled]="disabled"
+    class="form-control"
+    [ngModel]="value"
+    min="0"
+    [max]="max"
+    (ngModelChange)="onModelChange($event)"/>
+</app-form-group>

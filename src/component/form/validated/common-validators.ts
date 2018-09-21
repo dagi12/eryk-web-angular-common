@@ -1,5 +1,8 @@
 import {AbstractControl, FormControl, ValidatorFn} from '@angular/forms';
-import {DIGIT_REGEXP, LOWER_CHAR_REGEXP, PASSWORD_LENGTH, SPECIAL_CHAR_REGEXP, UPPER_CHAR_REGEXP} from '../../../util/const';
+import {
+  DEC_MAX_VALUE, DIGIT_REGEXP, LOWER_CHAR_REGEXP, MAX_VALUE, PASSWORD_LENGTH, SPECIAL_CHAR_REGEXP,
+  UPPER_CHAR_REGEXP
+} from '../../../util/const';
 
 export function mailValidator(control: AbstractControl) {
   const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
@@ -9,28 +12,24 @@ export function mailValidator(control: AbstractControl) {
   return null;
 }
 
-export function requiredUniqueUserName(clientUsers: any[]): ValidatorFn {
-  return (control: AbstractControl) => {
-    if (!control.value) {
-      return {error: true};
-    } else if (clientUsers.filter(item => item.email === control.value).length !== 0) {
-      return {nonUnique: true};
-    }
-    return null;
-  };
-}
-
-export function validateTextMask(placeholderChar?: string): ValidatorFn {
-  return (control: AbstractControl) => {
-    placeholderChar = placeholderChar ? placeholderChar : '_';
-    if (!control.value || control.disabled) {
-      return null;
-    } else if (!control.value.includes(placeholderChar)) {
-      return null;
-    }
+export const requiredUniqueUserName = (clientUsers: any[]): ValidatorFn => (control: AbstractControl) => {
+  if (!control.value) {
     return {error: true};
-  };
-}
+  } else if (clientUsers.filter(item => item.email === control.value).length !== 0) {
+    return {nonUnique: true};
+  }
+  return null;
+};
+
+export const validateTextMask = (placeholderChar?: string): ValidatorFn => (control: AbstractControl) => {
+  placeholderChar = placeholderChar ? placeholderChar : '_';
+  if (!control.value || control.disabled) {
+    return null;
+  } else if (!control.value.includes(placeholderChar)) {
+    return null;
+  }
+  return {error: true};
+};
 
 export function dateOrder(control) {
   const dataOd = control.get('dataOd');
@@ -72,6 +71,18 @@ export const passwordValidator: ValidatorFn = (control: AbstractControl) => {
   return null;
 };
 
-export type ErrorChecker = (control: FormControl, submitted: boolean) => boolean;
+export const ltN = n => value => {
+  if (value > n) {
+    return {range: true};
+  }
+  return null;
+};
 
-export const isError: ErrorChecker = (control: FormControl, submitted: boolean) => !control.valid && (!control.pristine || submitted);
+export const lessThanIntegerValidation = ltN(MAX_VALUE);
+
+export const lessThanFloatValidation = ltN(DEC_MAX_VALUE);
+
+export type ErrorChecker = (control: FormControl, submitted: boolean, valid?: boolean) => boolean;
+
+export const isError: ErrorChecker = (control: FormControl, submitted: boolean,
+                                      valid: boolean = control.valid) => !valid && (!control.pristine || submitted);

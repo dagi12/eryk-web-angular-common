@@ -1,4 +1,6 @@
-<app-text-area [rows]="rows" [formControl]="control" [label]="label" [error]="locIsError()" [required]="true"
+<app-text-area [rows]="rows" [(ngModel)]="value"
+               [label]="label"
+               [error]="locIsError()"
                [placeholder]="placeholder">
   <app-error-box [error]="locIsError()"></app-error-box>
 </app-text-area>

@@ -1,7 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {MakeProvider} from '../../input/abstract-value-accessor.component';
 import {FormControl} from '@angular/forms';
-import {isError} from '../common-validators';
 import {TextInputComponent} from '../../input/text-input/text-input.component';
 
 @Component({
@@ -10,12 +9,9 @@ import {TextInputComponent} from '../../input/text-input/text-input.component';
   styles: [],
   providers: [MakeProvider(TextInputValidatedComponent)]
 })
-export class TextInputValidatedComponent extends TextInputComponent implements OnInit {
+export class TextInputValidatedComponent extends TextInputComponent {
+
   @Input() control: FormControl;
   @Input() submitted: boolean;
-  locIsError = () => isError(this.control, this.submitted);
-
-  ngOnInit() {
-  }
 
 }

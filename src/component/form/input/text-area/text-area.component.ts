@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.component';
 
 
@@ -8,15 +8,12 @@ import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.co
   styles: [],
   providers: [MakeProvider(TextAreaComponent)]
 })
-export class TextAreaComponent extends AbstractValueAccessor implements OnInit {
+export class TextAreaComponent extends AbstractValueAccessor {
 
   @Input() label: string;
   @Input() error: boolean;
-  @Input() required: boolean;
   @Input() placeholder: string;
   @Input() rows = 3;
-
-  ngOnInit() {
-  }
+  @Input() required: boolean;
 
 }
