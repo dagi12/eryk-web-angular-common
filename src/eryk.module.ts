@@ -43,6 +43,8 @@ import {MyToastService} from './service/my-toast.service';
 import {PanelComponent} from './ui/panel/panel.component';
 import {HeaderModalComponent} from './component/modal/header-modal/header-modal.component';
 import {SpinnerComponent} from './component/spinner/spinner.component';
+import {CheckboxComponent} from './component/checkbox/checkbox.component';
+import {UiSwitchModule} from 'ngx-ui-switch';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,7 @@ import {SpinnerComponent} from './component/spinner/spinner.component';
     YesNoPipe,
     HeaderModalComponent,
     SpinnerComponent,
+    CheckboxComponent,
   ],
   exports: [
     TopNavbarComponent,
@@ -99,6 +102,7 @@ import {SpinnerComponent} from './component/spinner/spinner.component';
     PanelComponent,
     HeaderModalComponent,
     SpinnerComponent,
+    CheckboxComponent,
     YesNoPipe
   ],
   imports: [
@@ -111,7 +115,8 @@ import {SpinnerComponent} from './component/spinner/spinner.component';
     RouterModule,
     TypeaheadModule.forRoot(),
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    UiSwitchModule
   ],
   providers: [
     ApiConfigService,
