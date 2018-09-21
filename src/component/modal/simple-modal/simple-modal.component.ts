@@ -15,7 +15,9 @@ export abstract class SimpleModalComponent<T extends BSModalContext> implements 
     }
   }
 
-  abstract apply();
+  apply() {
+    this.dialog.close(true);
+  }
 
   public close() {
     this.dialog.dismiss();

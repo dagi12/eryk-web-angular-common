@@ -1,7 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Type} from '@angular/core';
 import {Modal} from 'ngx-modialog/plugins/bootstrap';
-import {overlayConfigFactory} from 'ngx-modialog';
+import {DialogRef, overlayConfigFactory} from 'ngx-modialog';
 import {EmptyModalComponent, EmptyModalData} from '../../component/modal/empty-modal/empty-modal.component';
+import {CrudTableModalData} from '../../component/table/crud-table/crud-table-modal-data';
+import {SimpleModalComponent} from '../../component/modal/simple-modal/simple-modal.component';
 
 
 type ModalCallback = (result: boolean) => void;
@@ -17,6 +19,12 @@ export class CommonModalService {
       message: message,
       closeHolder: closeHolder
     }, EmptyModalData));
+  }
+
+  simpleModal<T extends SimpleModalComponent<any>>(type: Type<T>, item: {} = {}): Promise<DialogRef<string>> {
+    return this.modal.open(type,
+      overlayConfigFactory(new CrudTableModalData(item), CrudTableModalData)
+    );
   }
 
   confirm(message: string, callback: ModalCallback) {

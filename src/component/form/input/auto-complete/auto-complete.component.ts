@@ -44,11 +44,11 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
   }
 
 
-  changeTypeaheadLoading(b: boolean): void {
+  changeTypeAheadLoading(b: boolean): void {
     this.typeaheadLoading = b;
   }
 
-  typeaheadOnSelect(e: TypeaheadMatch): void {
+  typeAheadOnSelect(e: TypeaheadMatch): void {
     this.onSelect.emit(e.item);
   }
 

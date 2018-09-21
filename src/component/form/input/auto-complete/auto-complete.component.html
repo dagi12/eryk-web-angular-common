@@ -3,8 +3,8 @@
   <input
     [(ngModel)]="value"
     [typeahead]="dataSource"
-    (typeaheadLoading)="changeTypeaheadLoading($event)"
-    (typeaheadOnSelect)="typeaheadOnSelect($event)"
+    (typeaheadLoading)="changeTypeAheadLoading($event)"
+    (typeaheadOnSelect)="typeAheadOnSelect($event)"
     typeaheadOptionField="klientNazwa"
     placeholder="Zacznij pisać, aby wyszukać"
     typeaheadWaitMs="500"
