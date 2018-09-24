@@ -1,4 +1,4 @@
-import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-shaking-error',
@@ -9,32 +9,25 @@ export class ShakingErrorComponent implements OnInit {
 
   @ViewChild('errorEl') errorEl: ElementRef;
   currentErrorStatement: string;
-  shakeState: string = 'inactive';
-  private errorAlready: boolean;
+  shakeState = 'inactive';
+  shake: boolean;
   private previousMessage: string;
-
-  constructor(private zone: NgZone) {
-    this.errorAlready = false;
-  }
 
   ngOnInit() {
   }
 
-  public errorAttempt(message: string) {
-    if (this.errorAlready && this.previousMessage === message) {
-      this.shakeState = 'active';
+  errorAttempt(errorMessage: string) {
+    if (this.previousMessage !== errorMessage) {
+      this.currentErrorStatement = errorMessage;
+      this.previousMessage = errorMessage;
     } else {
-      this.currentErrorStatement = message;
-      this.previousMessage = message;
-      this.errorAlready = true;
+      this.shake = true;
+      setTimeout(() => {
+        this.shake = false;
+      }, ANIMATION_DURATION);
     }
   }
 
-  reset() {
-    this.zone.run(() => {
-      this.shakeState = 'inactive';
-    });
-  }
-
-
 }
+
+const ANIMATION_DURATION = 500;

@@ -1,5 +1,5 @@
 <div *ngIf="currentErrorStatement" class="form-group">
-  <div class="center-block error-statement">
+  <div class="center-block error-statement animated" [ngClass]="{'shake': shake}">
     <p>{{ currentErrorStatement }}</p>
   </div>
 </div>
