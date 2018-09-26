@@ -1,0 +1,7 @@
+typeahead-container {
+  width: 100%;
+}
+
+.dropdown-menu {
+  width: calc(100% - 31px);
+}
