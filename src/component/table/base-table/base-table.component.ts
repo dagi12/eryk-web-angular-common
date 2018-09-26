@@ -29,6 +29,7 @@ export class BaseTableComponent implements OnInit {
   @Input() columns: MyColumn[];
   @Input() slim = false;
   @Input() srcId: number;
+  @Input() hideExport: boolean;
 
   columnMap: { [_: string]: MyColumn };
 

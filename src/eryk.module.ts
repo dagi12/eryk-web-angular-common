@@ -53,6 +53,7 @@ import {defineLocale} from 'ngx-bootstrap/chronos';
 import {plLocale} from 'ngx-bootstrap/locale';
 import {ErrorBoxesComponent} from './component/form/error-boxes/error-boxes.component';
 import {NgForInDirective} from './directives/ng-for-in.directive';
+import {ExcelBtnComponent} from './component/table/excel-btn/excel-btn.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import {NgForInDirective} from './directives/ng-for-in.directive';
     MoneyInputComponent,
     ErrorBoxesComponent,
     NgForInDirective,
+    ExcelBtnComponent,
   ],
   exports: [
     TopNavbarComponent,
