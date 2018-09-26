@@ -3,7 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 @Component({
   selector: 'app-label-wrapper',
   templateUrl: './label-wrapper.component.html',
-  styleUrls: ['./label-wrapper.component.scss']
+    styleUrls: ['./label-wrapper.component.css']
 })
 export class LabelWrapperComponent implements OnInit {
   @Input() label: string;

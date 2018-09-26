@@ -7,7 +7,7 @@ import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.co
 @Component({
   selector: 'app-my-select',
   templateUrl: './my-select.component.html',
-  styleUrls: ['./my-select.component.scss'],
+  styleUrls: ['./my-select.component.css'],
   providers: [MakeProvider(MySelectComponent)]
 })
 export class MySelectComponent extends AbstractValueAccessor implements OnInit {

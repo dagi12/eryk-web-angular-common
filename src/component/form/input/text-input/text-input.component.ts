@@ -6,7 +6,7 @@ import {newId} from '../../../../util/utils';
 @Component({
   selector: 'app-text-input',
   templateUrl: './text-input.component.html',
-  styleUrls: ['./text-input.component.scss'],
+    styleUrls: ['./text-input.component.css'],
   providers: [MakeProvider(TextInputComponent)]
 })
 export class TextInputComponent extends AbstractValueAccessor {

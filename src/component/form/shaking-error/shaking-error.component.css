@@ -1,8 +1,6 @@
-@import "../../../../../flota-web-inspina/assets/inspina/variables";
-
 .error-statement {
   text-align: center;
-  color: $error-color;
+    color: var(--error-color);
   font-weight: bold;
 }
 

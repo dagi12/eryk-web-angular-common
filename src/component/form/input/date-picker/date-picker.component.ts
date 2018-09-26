@@ -7,7 +7,7 @@ import 'rxjs/add/observable/fromEvent';
 @Component({
   selector: 'app-date-picker',
   templateUrl: './date-picker.component.html',
-  styleUrls: ['./date-picker.component.scss'],
+  styleUrls: ['./date-picker.component.css'],
   providers: [MakeProvider(DatePickerComponent)]
 })
 export class DatePickerComponent extends AbstractValueAccessor<Date> implements OnInit, OnDestroy {
@@ -24,13 +24,14 @@ export class DatePickerComponent extends AbstractValueAccessor<Date> implements 
     required: 'Pole nie może być puste',
     date: 'Data musi być późniejsza od daty dzisiejszej'
   };
+
   scroll = (): void => {
     if (this.datepicker.isOpen) {
       this.ngZone.run(() => {
         this.datepicker.hide();
       });
     }
-  };
+  }
 
   constructor(injector: Injector, private ngZone: NgZone) {
     super(injector);

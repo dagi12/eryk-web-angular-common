@@ -3,13 +3,12 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 @Component({
   selector: 'app-shaking-error',
   templateUrl: './shaking-error.component.html',
-  styleUrls: ['./shaking-error.component.scss'],
+  styleUrls: ['./shaking-error.component.css'],
 })
 export class ShakingErrorComponent implements OnInit {
 
   @ViewChild('errorEl') errorEl: ElementRef;
   currentErrorStatement: string;
-  shakeState = 'inactive';
   shake: boolean;
   private previousMessage: string;
 

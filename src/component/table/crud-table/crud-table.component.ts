@@ -12,7 +12,7 @@ import {stubFun} from '../../../util/utils';
 @Component({
   selector: 'app-crud-table',
   templateUrl: './crud-table.component.html',
-  styleUrls: ['./crud-table.component.scss']
+    styleUrls: ['./crud-table.component.css']
 })
 export class CrudTableComponent extends BaseTableComponent implements OnInit {
 
