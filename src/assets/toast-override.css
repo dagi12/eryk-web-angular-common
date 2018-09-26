@@ -61,3 +61,18 @@
 #toast-container > .toast.toast-warning {
   background-color: #f8ac59;
 }
+
+@media (max-width: 768px) {
+  #toast-container {
+    width: 100%;
+    top: inherit !important;
+    right: 0;
+    bottom: 0;
+  }
+
+  #toast-container .toast {
+    width: 100%;
+    margin: 0;
+  }
+
+}
