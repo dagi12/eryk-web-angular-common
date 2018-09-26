@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {MakeProvider} from '../../input/abstract-value-accessor.component';
-import {FormControl} from '@angular/forms';
 import {TextInputComponent} from '../../input/text-input/text-input.component';
 
 @Component({
@@ -11,7 +10,6 @@ import {TextInputComponent} from '../../input/text-input/text-input.component';
 })
 export class TextInputValidatedComponent extends TextInputComponent {
 
-  @Input() control: FormControl;
   @Input() submitted: boolean;
 
 }
