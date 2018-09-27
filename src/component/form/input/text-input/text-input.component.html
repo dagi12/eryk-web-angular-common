@@ -5,6 +5,7 @@
     type="text"
     [disabled]="disabled"
     class="form-control"
+    (blur)="onBlur($event)"
     [maxlength]="maxLength"
     [(ngModel)]="value"/>
   <ng-content></ng-content>

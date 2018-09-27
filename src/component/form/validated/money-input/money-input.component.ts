@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {MakeProvider} from '../../input/abstract-value-accessor.component';
 import {NumberInputValidatedComponent} from '../number-input-validated/number-input-validated.component';
 import {DEC_MAX_VALUE} from '../../../../util/const';
+import {applyMixins} from 'rxjs/util/applyMixins';
+import {IValidated} from '../ivalidated';
 
 @Component({
   selector: 'app-money-input',
@@ -9,7 +11,7 @@ import {DEC_MAX_VALUE} from '../../../../util/const';
   styles: [],
   providers: [MakeProvider(MoneyInputComponent)]
 })
-export class MoneyInputComponent extends NumberInputValidatedComponent {
+export class MoneyInputComponent extends NumberInputValidatedComponent implements IValidated {
 
   max = DEC_MAX_VALUE;
   config = {
@@ -18,3 +20,6 @@ export class MoneyInputComponent extends NumberInputValidatedComponent {
   };
 
 }
+
+applyMixins(MoneyInputComponent, [IValidated]);
+

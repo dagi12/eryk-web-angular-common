@@ -1,6 +1,7 @@
 <app-text-area [rows]="rows" [(ngModel)]="value"
                [label]="label"
                [error]="locIsError()"
+               (blur)="onBlur($event)"
                [placeholder]="placeholder">
   <app-error-box [error]="locIsError()"></app-error-box>
 </app-text-area>

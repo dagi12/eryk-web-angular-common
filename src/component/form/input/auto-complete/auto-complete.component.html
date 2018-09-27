@@ -2,6 +2,7 @@
   <!--suppress HtmlUnknownAttribute -->
   <input
     [(ngModel)]="value"
+    (blur)="onBlur($event)"
     [typeahead]="dataSource"
     (typeaheadLoading)="changeTypeAheadLoading($event)"
     (typeaheadOnSelect)="typeAheadOnSelect($event)"

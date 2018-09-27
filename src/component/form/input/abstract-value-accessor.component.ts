@@ -1,12 +1,13 @@
-import {forwardRef, Injectable, Injector, OnInit} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
+import {EventEmitter, forwardRef, Injectable, Injector, OnInit, Output} from '@angular/core';
+import {ControlValueAccessor, FormControlDirective, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
 import {isError} from '../validated/common-validators';
 
 @Injectable()
 export abstract class AbstractValueAccessor<T = string> implements ControlValueAccessor, OnInit {
 
-  formControl: FormControl;
+  formControl: FormControlDirective;
   submitted: boolean;
+  @Output() blur = new EventEmitter();
 
   constructor(private injector: Injector) {
   }
@@ -24,8 +25,13 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
     }
   }
 
+  // noinspection JSUnusedGlobalSymbols
+  onBlur() {
+    this.blur.emit();
+  }
+
   locIsError() {
-    return isError(this.formControl, this.submitted);
+    return isError(this.formControl.control, this.submitted);
   }
 
   // noinspection JSUnusedLocalSymbols
@@ -52,7 +58,7 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
   ngOnInit() {
     const ngControl = this.injector.get(NgControl, null);
     if (ngControl) {
-      this.formControl = <FormControl> ngControl;
+      this.formControl = <FormControlDirective> ngControl;
     }
   }
 

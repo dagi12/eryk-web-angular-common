@@ -1,4 +1,10 @@
-<app-auto-complete [label]="label" [inputUrl]="inputUrl" [error]="locIsError()" [(ngModel)]="value"
-  [required]="true" (onSelect)="locOnSelect($event)">
+<app-auto-complete
+  [label]="label"
+  [inputUrl]="inputUrl"
+  [error]="locIsError()"
+  [(ngModel)]="value"
+  [required]="true"
+  (blur)="onBlur($event)"
+  (onSelect)="locOnSelect($event)">
   <app-error-box [error]="locIsError()"></app-error-box>
 </app-auto-complete>
