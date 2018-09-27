@@ -14,10 +14,6 @@ import {IValidated} from '../ivalidated';
 export class MoneyInputComponent extends NumberInputValidatedComponent implements IValidated {
 
   max = DEC_MAX_VALUE;
-  config = {
-    required: 'Pole nie może być puste',
-    range: 'Pole musi być mniejsze od 999999999'
-  };
 
 }
 

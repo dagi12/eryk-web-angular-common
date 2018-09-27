@@ -5,8 +5,7 @@
     type="number"
     [disabled]="disabled"
     class="form-control"
-    [ngModel]="value"
+    [(ngModel)]="value"
     min="0"
-    [max]="max"
-    (ngModelChange)="onModelChange($event)"/>
+    [max]="max"/>
 </app-form-group>

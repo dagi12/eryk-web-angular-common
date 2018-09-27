@@ -15,7 +15,8 @@ export class NumberInputValidatedComponent extends NumberInputComponent {
 
   config = {
     required: 'Pole nie może być puste',
-    range: 'Pole musi być mniejsze od 999999999'
+    max: 'Pole musi być mniejsze od 999999999',
+    min: 'Pole musi być większe od 1'
   };
 
 }
