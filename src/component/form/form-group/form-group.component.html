@@ -1,6 +1,6 @@
 <div class="form-group" [ngClass]="{'has-error': this.error}">
-  <label [for]="for" class="control-label col-md-4" [ngClass]="labelClasses">{{label}}</label>
-  <div class="col-md-8">
+  <label *ngIf="!!label" [for]="for" class="control-label col-md-4" [ngClass]="labelClasses">{{label}}</label>
+  <div [ngClass]="{'col-md-8': !!label, 'col-xs-12': !label}">
     <ng-content></ng-content>
   </div>
 </div>
