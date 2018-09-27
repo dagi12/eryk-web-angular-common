@@ -22,3 +22,14 @@ body .ui-datatable-scrollable-wrapper {
 body .ui-datatable-scrollable-body {
   overflow-x: hidden;
 }
+
+body .ui-multiselect .ui-multiselect-label {
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  width: 100%;
+}
+
+body .ui-multiselect {
+  float: left;
+}

@@ -1,0 +1,49 @@
+<p-dataTable
+  #dt
+  [reorderableColumns]="true"
+  [resizableColumns]="true"
+  [value]="items"
+  [emptyMessage]="emptyMessage"
+  [rows]="20"
+  [scrollable]="!slim"
+  scrollHeight="400px"
+  [lazy]="lazy"
+  [(first)]="first"
+  [totalRecords]="totalRecords"
+  [rowStyleClass]="rowStyleClass"
+  (onRowClick)="edit.emit($event)"
+  (onLazyLoad)="loadLazy.emit($event)"
+  [virtualScroll]="true"
+  [responsive]="true">
+  <p-header>
+    <p-multiSelect
+      [options]="columnOptions"
+      [(ngModel)]="columns"
+      selectedItemsLabel="{0} wybranych elementów"></p-multiSelect>
+    <app-excel-btn *ngIf="!hideExport" (onExport)="dt.exportCSV()"></app-excel-btn>
+  </p-header>
+  <p-column
+    [hidden]="col.hideOnMobile && isMobile"
+    [sortable]="!col.notSortable"
+    *ngFor="let col of columns"
+    [field]="col.field"
+    [header]="col.header"
+    [styleClass]="col.styleClass"
+    [filter]="!slim && lazy && col.filter !== false">
+
+
+    <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
+      {{item[col.field] | date:'dd-MM-yyyy HH:mm' }}
+    </ng-template>
+
+    <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">
+      {{item[col.field] | yesNo }}
+    </ng-template>
+
+    <ng-template *ngIf="col.cellRenderer" let-item="rowData" pTemplate type="body">
+      {{col.cellRenderer(item[col.field])}}
+    </ng-template>
+
+  </p-column>
+  <p-footer></p-footer>
+</p-dataTable>

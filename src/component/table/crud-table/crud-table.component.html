@@ -1,49 +1,24 @@
 <div class="loading-container m-b" [class.sk-loading]="loading">
   <ng-content></ng-content>
   <app-spinner></app-spinner>
-  <p-dataTable
-    #dt
-    [value]="items"
+  <app-my-table-internal
     [emptyMessage]="emptyMessage"
-    [rows]="20"
-    [scrollable]="!slim"
-    scrollHeight="400px"
+    [items]="items"
+    [serviceUrl]="serviceUrl"
+    [getAllUrl]="getAllUrl"
+    [filterUrl]="filterUrl"
+    [columns]="columns"
+    [srcId]="srcId"
+    [hideExport]="hideExport"
+    [slim]="slim"
     [lazy]="lazy"
-    [(first)]="first"
+    [filterCriteria]="filterCriteria"
+    [callback]="callback"
+    [first]="first"
     [totalRecords]="totalRecords"
-    (onRowClick)="onEdit($event)"
     [rowStyleClass]="rowStyleClass"
-    (onLazyLoad)="loadLazy($event)"
-    [virtualScroll]="true"
-    [responsive]="true">
-    <p-header *ngIf="!hideExport">
-      <app-excel-btn (onExport)="dt.exportCSV()"></app-excel-btn>
-    </p-header>
-    <p-column
-      [hidden]="col.hideOnMobile && isMobile"
-      [sortable]="!col.notSortable"
-      *ngFor="let col of columns"
-      [field]="col.field"
-      [header]="col.header"
-      [styleClass]="col.styleClass"
-      [filter]="!slim && lazy && col.filter !== false">
-
-
-      <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
-        {{item[col.field] | date }}
-      </ng-template>
-
-      <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">
-        {{item[col.field] | yesNo }}
-      </ng-template>
-
-      <ng-template *ngIf="col.cellRenderer" let-item="rowData" pTemplate type="body">
-        {{col.cellRenderer(item[col.field])}}
-      </ng-template>
-
-    </p-column>
-    <p-footer></p-footer>
-  </p-dataTable>
+    (loadLazy)="loadLazy($event)"
+    (edit)="onEdit($event)"></app-my-table-internal>
 </div>
 <div class="row" *ngIf="!hideCreate">
   <app-button

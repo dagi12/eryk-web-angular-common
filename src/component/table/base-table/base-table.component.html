@@ -1,45 +1,21 @@
 <ng-content select="[filter]"></ng-content>
 <div class="loading-container m-b" [class.sk-loading]="loading">
   <app-spinner></app-spinner>
-  <div class="row" *ngIf="!hideExport">
-  </div>
-  <p-dataTable
-    #dt
-    [value]="items"
-    [emptyMessage]="'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.'"
-    [rows]="20"
-    [scrollable]="!slim"
-    scrollHeight="400px"
+  <app-my-table-internal
+    [emptyMessage]="emptyMessage"
+    [items]="items"
+    [serviceUrl]="serviceUrl"
+    [getAllUrl]="getAllUrl"
+    [filterUrl]="filterUrl"
+    [columns]="columns"
+    [srcId]="srcId"
+    [hideExport]="hideExport"
+    [slim]="slim"
     [lazy]="lazy"
-    [(first)]="first"
+    [filterCriteria]="filterCriteria"
+    [callback]="callback"
+    [first]="first"
     [totalRecords]="totalRecords"
-    (onLazyLoad)="loadLazy($event)"
-    [virtualScroll]="true"
-    [responsive]="true">
-    <p-header *ngIf="!hideExport">
-      <app-excel-btn (onExport)="dt.exportCSV()"></app-excel-btn>
-    </p-header>
-    <p-column
-      [hidden]="col.hideOnMobile && isMobile"
-      [sortable]="!col.notSortable"
-      *ngFor="let col of columns"
-      [field]="col.field"
-      [header]="col.header"
-      [styleClass]="col.styleClass"
-      [filter]="!slim && lazy && col.filter !== false">
-
-      <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
-        {{item[col.field] | date:'dd-MM-yyyy HH:mm' }}
-      </ng-template>
-
-      <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">
-        {{item[col.field] | yesNo }}
-      </ng-template>
-
-      <ng-template *ngIf="col.cellRenderer" let-item="rowData" pTemplate type="body">
-        {{col.cellRenderer(item[col.field])}}
-      </ng-template>
-    </p-column>
-  </p-dataTable>
+    (loadLazy)="loadLazy($event)"></app-my-table-internal>
   <ng-content></ng-content>
 </div>

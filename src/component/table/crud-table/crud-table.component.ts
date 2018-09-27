@@ -7,13 +7,12 @@ import {BaseTableComponent} from '../base-table/base-table.component';
 import {LazyLoadEventExt} from '../base-table/lazyloadeventext';
 import {MODE} from '../../../util/const';
 import {stubFun} from '../../../util/utils';
-import {MyMobileDetectService} from '../../../service/my-mobile-detect.service';
 
 
 @Component({
   selector: 'app-crud-table',
   templateUrl: './crud-table.component.html',
-    styleUrls: ['./crud-table.component.css']
+  styleUrls: ['./crud-table.component.css']
 })
 export class CrudTableComponent extends BaseTableComponent implements OnInit {
 
@@ -26,8 +25,8 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
 
   rowStyleClass: (rowData: any) => string = null;
 
-  constructor(private modal: Modal, crudTableService: CrudTableService, myMobileDetectService: MyMobileDetectService) {
-    super(crudTableService, myMobileDetectService);
+  constructor(private modal: Modal, crudTableService: CrudTableService) {
+    super(crudTableService);
     this.lazy = true;
   }
 

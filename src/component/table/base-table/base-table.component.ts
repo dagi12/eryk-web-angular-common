@@ -6,7 +6,6 @@ import {DataTable} from 'primeng/primeng';
 import {arrayToMap2} from '../../../util/array.helper';
 import {NgFilters} from '../../../model/ng-filters';
 import {LazyLoadEventExt} from './lazyloadeventext';
-import {MyMobileDetectService} from '../../../service/my-mobile-detect.service';
 
 @Component({
   selector: 'app-base-table',
@@ -22,7 +21,7 @@ export class BaseTableComponent implements OnInit {
   totalRecords = 0;
   lastLazyLoadEvent: LazyLoadEventExt;
   @ViewChild(DataTable) dataTable: DataTable;
-  @Input() emptyMessage = 'Brak danych';
+  @Input() emptyMessage = 'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.';
   @Input() items: any[] = [];
   @Input() serviceUrl: string;
   @Input() getAllUrl?: string;
@@ -33,13 +32,12 @@ export class BaseTableComponent implements OnInit {
   @Input() slim = false;
 
   columnMap: { [_: string]: MyColumn };
-  isMobile: boolean = this.myMobileDetectService.isMobile;
 
   @Input() lazy = false;
   @Input() filterCriteria: NgFilters = null;
   @Input() callback = items => this.items = items._embedded[this.serviceUrl];
 
-  constructor(protected crudTableService: CrudTableService, private myMobileDetectService: MyMobileDetectService) {
+  constructor(protected crudTableService: CrudTableService) {
 
   }
 

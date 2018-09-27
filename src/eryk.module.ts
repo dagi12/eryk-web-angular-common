@@ -34,7 +34,7 @@ import {BsLocaleService, CollapseModule, DatepickerModule, TypeaheadModule} from
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DataTableModule, SharedModule} from 'primeng/primeng';
+import {DataTableModule, MultiSelectModule, SharedModule} from 'primeng/primeng';
 import {RouterModule} from '@angular/router';
 import {ToastrModule} from 'ngx-toastr';
 import {UiSwitchModule} from 'ngx-ui-switch';
@@ -55,6 +55,7 @@ import {ErrorBoxesComponent} from './component/form/error-boxes/error-boxes.comp
 import {NgForInDirective} from './directives/ng-for-in.directive';
 import {ExcelBtnComponent} from './component/table/excel-btn/excel-btn.component';
 import {MyMobileDetectService} from './service/my-mobile-detect.service';
+import {MyTableInternalComponent} from './component/table/my-table-internal/my-table-internal.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import {MyMobileDetectService} from './service/my-mobile-detect.service';
     ErrorBoxesComponent,
     NgForInDirective,
     ExcelBtnComponent,
+    MyTableInternalComponent,
   ],
   exports: [
     TopNavbarComponent,
@@ -137,7 +139,8 @@ import {MyMobileDetectService} from './service/my-mobile-detect.service';
     TypeaheadModule.forRoot(),
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    UiSwitchModule
+    UiSwitchModule,
+    MultiSelectModule
   ],
   providers: [
     ApiConfigService,
