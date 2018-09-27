@@ -7,7 +7,7 @@ export abstract class SimpleModalComponent<T extends BSModalContext> implements 
 
   constructor(public dialog: DialogRef<T>, large?: boolean, dialogClass?: string) {
     // todo usuń po toście
-    dialog.context.isBlocking = true;
+    dialog.context.isBlocking = false;
     dialog.context.showClose = true;
     if (large) {
       dialog.context.size = 'lg';
@@ -23,6 +23,7 @@ export abstract class SimpleModalComponent<T extends BSModalContext> implements 
     this.dialog.dismiss();
   }
 
+  // noinspection JSUnusedGlobalSymbols
   onKeyUp(value) {
     if (value === SimpleModalComponent.ESC_KEY_VALUE) {
       this.dialog.dismiss();
