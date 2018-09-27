@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
+import {requiredProps} from '../../../util/util.service';
 
 @Component({
   selector: 'app-error-boxes',
@@ -16,6 +17,7 @@ export class ErrorBoxesComponent implements OnInit {
   }
 
   ngOnInit() {
+    requiredProps(this.submitted, this.config, this.control);
   }
 
 }

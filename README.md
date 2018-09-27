@@ -11,3 +11,15 @@ Common angular componets user by me across js projects.
   "ngx-ui-switch": "^1.4.4"
 }
 ```
+
+## Snippets
+Decorator
+```typescript
+export function Validated() {
+  return function <T extends Constructor<any>>(constructor: T) {
+    return class extends constructor {
+
+    };
+  };
+}
+```

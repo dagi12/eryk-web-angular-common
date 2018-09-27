@@ -1,6 +1,8 @@
+import {isUndefined} from './JsHelper';
+
 export function requiredProps(...props) {
   for (const item of props) {
-    if (!item) {
+    if (isUndefined(item)) {
       throw new Error('attribute is required');
     }
   }
