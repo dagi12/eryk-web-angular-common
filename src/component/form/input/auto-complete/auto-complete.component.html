@@ -8,6 +8,14 @@
     typeaheadOptionField="klientNazwa"
     placeholder="Zacznij pisać, aby wyszukać"
     typeaheadWaitMs="500"
+    [disabled]="disabled"
     class="form-control">
   <ng-content></ng-content>
+  <button
+    *ngIf="!disabled"
+    class="no-bg glyphicon glyphicon-remove auto-complete-clear-button"
+    [ngClass]="{visible: !!value}"
+    type="button"
+    (click)="clear()"
+  ></button>
 </app-form-group>

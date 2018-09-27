@@ -52,4 +52,7 @@ export class DatePickerComponent extends AbstractValueAccessor<Date> implements 
     window.removeEventListener('scroll', this.scroll, <any>this.eventOptions);
   }
 
+  clear() {
+    this.value = null;
+  }
 }

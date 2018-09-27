@@ -11,7 +11,7 @@ import {ApiConfigService} from '../../../../service/api-config.service';
 @Component({
   selector: 'app-auto-complete',
   templateUrl: './auto-complete.component.html',
-  styles: [],
+  styles: [''],
   providers: [MakeProvider(AutoCompleteComponent)]
 })
 export class AutoCompleteComponent extends AbstractValueAccessor implements OnInit {
@@ -20,6 +20,7 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
   @Input() inputUrl: string;
   @Input() error: boolean;
   @Input() required: boolean;
+  @Input() disabled: boolean;
   @Output() onSelect = new EventEmitter();
   typeaheadLoading: boolean;
   dataSource: Observable<any>;
@@ -56,5 +57,10 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
     super.ngOnInit();
     this.outputUrl = this.apiConfigService.url(this.inputUrl);
   }
+
+  clear() {
+    this.value = null;
+  }
+
 
 }

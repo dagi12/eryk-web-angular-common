@@ -12,3 +12,20 @@
 @import "assets/prime-ng-override.css";
 @import "assets/bs-datepicker-override";
 @import "assets/ngx-bootstrap-override.css";
+
+.form-group .auto-complete-clear-button {
+  right: 15px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  display: none;
+}
+
+.form-group .auto-complete-clear-button.visible {
+  display: block;
+}
