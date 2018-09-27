@@ -5,15 +5,16 @@
     #dt
     [value]="items"
     [emptyMessage]="emptyMessage"
-    [paginator]="!slim"
     [rows]="20"
-    [rowsPerPageOptions]="[10,20,50]"
+    [scrollable]="true"
+    scrollHeight="400px"
     [lazy]="lazy"
     [(first)]="first"
     [totalRecords]="totalRecords"
     (onRowClick)="onEdit($event)"
     [rowStyleClass]="rowStyleClass"
     (onLazyLoad)="loadLazy($event)"
+    [virtualScroll]="true"
     [responsive]="true">
     <p-header *ngIf="!hideExport">
       <app-excel-btn (onExport)="dt.exportCSV()"></app-excel-btn>
@@ -40,6 +41,7 @@
       </ng-template>
 
     </p-column>
+    <p-footer></p-footer>
   </p-dataTable>
 </div>
 <div class="row" *ngIf="!hideCreate">

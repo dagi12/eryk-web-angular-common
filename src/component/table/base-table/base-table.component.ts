@@ -27,7 +27,6 @@ export class BaseTableComponent implements OnInit {
   @Input() getAllUrl?: string;
   @Input() filterUrl?: string;
   @Input() columns: MyColumn[];
-  @Input() slim = false;
   @Input() srcId: number;
   @Input() hideExport: boolean;
 

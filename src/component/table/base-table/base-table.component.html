@@ -7,13 +7,14 @@
     #dt
     [value]="items"
     [emptyMessage]="'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.'"
-    [paginator]="!slim"
     [rows]="20"
+    [scrollable]="true"
+    scrollHeight="400px"
     [lazy]="lazy"
     [(first)]="first"
     [totalRecords]="totalRecords"
     (onLazyLoad)="loadLazy($event)"
-    [rowsPerPageOptions]="[10,20,50]"
+    [virtualScroll]="true"
     [responsive]="true">
     <p-header *ngIf="!hideExport">
       <app-excel-btn (onExport)="dt.exportCSV()"></app-excel-btn>
