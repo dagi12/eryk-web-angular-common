@@ -17,9 +17,9 @@ export class BaseTableComponent implements OnInit {
 
   dateFrom: Date = new Date();
   dateTo: Date;
-  totalRecords: number;
   loading = false;
   first = 0;
+  totalRecords = 0;
   lastLazyLoadEvent: LazyLoadEventExt;
   @ViewChild(DataTable) dataTable: DataTable;
   @Input() emptyMessage = 'Brak danych';
@@ -91,7 +91,7 @@ export class BaseTableComponent implements OnInit {
       .subscribe(items => {
         this.items = items;
         if (this.items.length < options.rows) {
-          this.totalRecords = this.first + options.rows;
+          this.totalRecords = (this.first + items.length) || 1;
         } else {
           this.totalRecords = this.first + options.rows + 1;
         }
