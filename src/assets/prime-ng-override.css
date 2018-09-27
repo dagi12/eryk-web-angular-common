@@ -11,3 +11,14 @@ body .ui-fileupload .ui-button:hover {
   background-color: #18a689;
 }
 
+body .ui-datatable.ui-datatable-scrollable .ui-datatable-footer.ui-widget-header {
+  border: 1px solid #cdcdcd;
+}
+
+body .ui-datatable-scrollable-wrapper {
+  border-right: 1px solid #cdcdcd;
+}
+
+body .ui-datatable-scrollable-body {
+  overflow-x: hidden;
+}

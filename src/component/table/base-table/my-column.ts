@@ -6,6 +6,7 @@ export interface MyColumn {
   header: string;
   isEnabledLabel?: boolean;
   filter?: boolean;
+  hideOnMobile?: boolean;
   filterType?: FilterType;
   date?: boolean;
   cellRenderer?: CellRenderer;

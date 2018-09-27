@@ -54,6 +54,7 @@ import {plLocale} from 'ngx-bootstrap/locale';
 import {ErrorBoxesComponent} from './component/form/error-boxes/error-boxes.component';
 import {NgForInDirective} from './directives/ng-for-in.directive';
 import {ExcelBtnComponent} from './component/table/excel-btn/excel-btn.component';
+import {MyMobileDetectService} from './service/my-mobile-detect.service';
 
 @NgModule({
   declarations: [
@@ -145,6 +146,7 @@ import {ExcelBtnComponent} from './component/table/excel-btn/excel-btn.component
     PostConfigService,
     PostConfigResolver,
     MyToastService,
+    MyMobileDetectService,
     InterceptedHttp,
   ],
   entryComponents: [

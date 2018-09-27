@@ -8,7 +8,7 @@
     [value]="items"
     [emptyMessage]="'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.'"
     [rows]="20"
-    [scrollable]="true"
+    [scrollable]="!slim"
     scrollHeight="400px"
     [lazy]="lazy"
     [(first)]="first"
@@ -20,6 +20,7 @@
       <app-excel-btn (onExport)="dt.exportCSV()"></app-excel-btn>
     </p-header>
     <p-column
+      [hidden]="col.hideOnMobile && isMobile"
       [sortable]="!col.notSortable"
       *ngFor="let col of columns"
       [field]="col.field"
