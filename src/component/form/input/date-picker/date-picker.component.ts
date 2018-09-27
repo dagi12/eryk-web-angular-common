@@ -13,7 +13,7 @@ import 'rxjs/add/observable/fromEvent';
 export class DatePickerComponent extends AbstractValueAccessor<Date> implements OnInit, OnDestroy {
 
   @ViewChild(BsDatepickerDirective) datepicker: BsDatepickerDirective;
-  @Input() placeholder: string;
+  @Input() placeholder = 'Kliknij, aby wybrać datę...';
   @Input() label: string;
   @Input() required: boolean;
   @Input() disabled: boolean;
@@ -53,6 +53,6 @@ export class DatePickerComponent extends AbstractValueAccessor<Date> implements 
   }
 
   clear() {
-    this.value = null;
+    this.value = void 0;
   }
 }
