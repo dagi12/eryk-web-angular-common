@@ -1,0 +1,7 @@
+<app-text-input [required]="true"
+                label="Email"
+                [(ngModel)]="value"
+                [maxLength]="37"
+                (blur)="onBlur($event)">
+  <app-error-boxes [submitted]="submitted" [control]="formControl" [config]="errorConfig"></app-error-boxes>
+</app-text-input>

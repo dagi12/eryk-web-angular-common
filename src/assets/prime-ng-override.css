@@ -33,7 +33,3 @@ body .ui-multiselect .ui-multiselect-label {
 body .ui-multiselect {
   float: left;
 }
-
-body .ui-datatable-header {
-  overflow: hidden;
-}

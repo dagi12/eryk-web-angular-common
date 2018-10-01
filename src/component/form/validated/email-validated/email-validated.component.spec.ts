@@ -1,20 +1,20 @@
-/* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {LabelWrapperComponent} from './label-wrapper.component';
 
-describe('LabelWrapperComponent', () => {
-  let component: LabelWrapperComponent;
-  let fixture: ComponentFixture<LabelWrapperComponent>;
+import {EmailValidatedComponent} from './email-validated.component';
+
+describe('EmailValidatedComponent', () => {
+  let component: EmailValidatedComponent;
+  let fixture: ComponentFixture<EmailValidatedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LabelWrapperComponent]
+      declarations: [EmailValidatedComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LabelWrapperComponent);
+    fixture = TestBed.createComponent(EmailValidatedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

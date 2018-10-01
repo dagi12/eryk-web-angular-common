@@ -22,13 +22,17 @@ export const handelNetworkErrorMsg = (response: Response, msg = null) => {
       data = null;
     }
   }
+  // general response
   if (data && !data.done && data.errorMessage) {
     return data.errorMessage;
+    // provided error message
   } else if (msg) {
     return msg;
-  } else if (data && data.error && data.message) {
-    return data.error + ' ' + data.message;
+    // spring error
+  } else if (data && data.message) {
+    return data.message;
   }
+  // response is not json
   return 'Brak połączenia z serwerem';
 };
 

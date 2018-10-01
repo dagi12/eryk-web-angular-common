@@ -23,3 +23,9 @@ export function Validated() {
   };
 }
 ```
+
+## Common errors
+```javascript
+"Error: No value accessor for form control with unspecified name attribute"
+```
+Forget to MakeProvider

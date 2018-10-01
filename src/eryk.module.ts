@@ -6,7 +6,6 @@ import {SpinnerComponent} from './component/table/spinner/spinner.component';
 import {TopNavbarComponent} from './component/topnavbar/topnavbar.component';
 import {TextInputComponent} from './component/form/input/text-input/text-input.component';
 import {ButtonComponent} from './component/form/button/button.component';
-import {LabelWrapperComponent} from './component/wrapper/label-wrapper/label-wrapper.component';
 import {HelpDialogComponent} from './component/modal/help-dialog/help-dialog.component';
 import {MySelectComponent} from './component/form/input/my-select/my-select.component';
 import {IboxComponent} from './component/wrapper/ibox/ibox.component';
@@ -56,13 +55,15 @@ import {NgForInDirective} from './directives/ng-for-in.directive';
 import {ExcelBtnComponent} from './component/table/excel-btn/excel-btn.component';
 import {MyMobileDetectService} from './service/my-mobile-detect.service';
 import {MyTableInternalComponent} from './component/table/my-table-internal/my-table-internal.component';
+import {EmailValidatedComponent} from './component/form/validated/email-validated/email-validated.component';
+import {PasswordValidatedComponent} from './component/form/validated/password-validated/password-validated.component';
+import {ValidationService} from './component/form/validated/validation.service';
 
 @NgModule({
   declarations: [
     TopNavbarComponent,
     TextInputComponent,
     ButtonComponent,
-    LabelWrapperComponent,
     HelpDialogComponent,
     MySelectComponent,
     IboxComponent,
@@ -93,12 +94,13 @@ import {MyTableInternalComponent} from './component/table/my-table-internal/my-t
     NgForInDirective,
     ExcelBtnComponent,
     MyTableInternalComponent,
+    EmailValidatedComponent,
+    PasswordValidatedComponent,
   ],
   exports: [
     TopNavbarComponent,
     TextInputComponent,
     ButtonComponent,
-    LabelWrapperComponent,
     HelpDialogComponent,
     MySelectComponent,
     IboxComponent,
@@ -125,7 +127,9 @@ import {MyTableInternalComponent} from './component/table/my-table-internal/my-t
     NumberInputValidatedComponent,
     NumberInputComponent,
     MoneyInputComponent,
-    ErrorBoxesComponent
+    ErrorBoxesComponent,
+    EmailValidatedComponent,
+    PasswordValidatedComponent
   ],
   imports: [
     BsDatepickerModule.forRoot(),
@@ -150,6 +154,7 @@ import {MyTableInternalComponent} from './component/table/my-table-internal/my-t
     PostConfigResolver,
     MyToastService,
     MyMobileDetectService,
+    ValidationService,
     InterceptedHttp,
   ],
   entryComponents: [
