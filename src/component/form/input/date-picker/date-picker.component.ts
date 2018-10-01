@@ -17,7 +17,7 @@ export class DatePickerComponent extends AbstractValueAccessor<Date> implements 
   @Input() label: string;
   @Input() required: boolean;
   @Input() disabled: boolean;
-  @Input() submitted: boolean;
+  @Input() submitted = false;
   id = newId();
   eventOptions: boolean | { capture?: boolean, passive?: boolean };
   config = {
@@ -31,7 +31,7 @@ export class DatePickerComponent extends AbstractValueAccessor<Date> implements 
         this.datepicker.hide();
       });
     }
-  }
+  };
 
   constructor(injector: Injector, private ngZone: NgZone) {
     super(injector);

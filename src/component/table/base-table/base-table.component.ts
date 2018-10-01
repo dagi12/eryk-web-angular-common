@@ -44,9 +44,7 @@ export class BaseTableComponent implements OnInit {
   ngOnInit() {
     this.columnMap = arrayToMap2(this.columns, 'field');
     this.getAllUrl = this.getAllUrl || (this.serviceUrl + '/table');
-    if (!this.lazy) {
-      this.refreshTable();
-    }
+    this.refreshTable();
   }
 
   refreshTable() {

@@ -5,15 +5,15 @@
   [value]="items"
   [emptyMessage]="emptyMessage"
   [rows]="20"
-  [scrollable]="!slim"
-  scrollHeight="400px"
   [lazy]="lazy"
   [(first)]="first"
+  [scrollable]="!slim"
+  [virtualScroll]="!slim"
+  scrollHeight="400px"
   [totalRecords]="totalRecords"
   [rowStyleClass]="rowStyleClass"
   (onRowClick)="edit.emit($event)"
   (onLazyLoad)="loadLazy.emit($event)"
-  [virtualScroll]="true"
   [responsive]="true">
   <p-header>
     <p-multiSelect

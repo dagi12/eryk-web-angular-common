@@ -27,7 +27,6 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
 
   constructor(private modal: Modal, crudTableService: CrudTableService) {
     super(crudTableService);
-    this.lazy = true;
   }
 
   ngOnInit(): void {

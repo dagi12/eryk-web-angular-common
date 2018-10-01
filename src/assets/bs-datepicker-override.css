@@ -1,3 +1,14 @@
+.bs-datepicker.theme-green .bs-datepicker-body table td.week span {
+  color: var(--accent);
+}
+
+.bs-datepicker.theme-green .bs-datepicker-body table td span.selected,
+.bs-datepicker.theme-green .bs-datepicker-body table td.selected span,
+.bs-datepicker.theme-green .bs-datepicker-body table td span[class*="select-"]:after,
+.bs-datepicker.theme-green .bs-datepicker-body table td[class*="select-"] span:after {
+  background-color: var(--accent);
+}
+
 .bs-datepicker.theme-green .bs-datepicker-head {
   background-color: var(--accent);
 }

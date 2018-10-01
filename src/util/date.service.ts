@@ -139,3 +139,9 @@ export function diffInYears(d1, d2) {
   return d2.getFullYear() - d1.getFullYear();
 }
 
+export function toDateInputValue(): string {
+  const today = new Date();
+  const local = new Date();
+  local.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+  return local.toJSON().slice(0, 10);
+}

@@ -1,7 +1,7 @@
 // libs
 @import "~primeicons/primeicons.css";
-@import "~primeng/resources/themes/bootstrap/theme.css";
 @import "~primeng/resources/primeng.css";
+@import "~primeng/resources/themes/bootstrap/theme.css";
 @import "~ngx-toastr/toastr.css";
 @import "~ngx-bootstrap/datepicker/bs-datepicker.css";
 @import "../../flota-web-inspina/index";
@@ -13,7 +13,7 @@
 @import "assets/bs-datepicker-override";
 @import "assets/ngx-bootstrap-override.css";
 
-.form-group .auto-complete-clear-button {
+.auto-complete-clear-button {
   right: 15px;
   padding: 0;
   position: absolute;
@@ -26,6 +26,6 @@
   display: none;
 }
 
-.form-group .auto-complete-clear-button.visible {
+.auto-complete-clear-button.visible {
   display: block;
 }

@@ -6,7 +6,6 @@ export abstract class SimpleModalComponent<T extends BSModalContext> implements 
   private static readonly ESC_KEY_VALUE = 27;
 
   constructor(public dialog: DialogRef<T>, large?: boolean, dialogClass?: string) {
-    // todo usuń po toście
     dialog.context.isBlocking = false;
     dialog.context.showClose = true;
     if (large) {

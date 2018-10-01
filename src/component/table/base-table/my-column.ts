@@ -1,5 +1,5 @@
 import {CellRenderer} from '../../form/input/my-select/value-label-pair';
-import {FilterType} from '../../../../../sample';
+import {FilterType} from '../../../model/ng-filters';
 
 export interface MyColumn {
   field: string;
