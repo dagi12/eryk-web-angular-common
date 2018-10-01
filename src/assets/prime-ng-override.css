@@ -32,4 +32,5 @@ body .ui-multiselect .ui-multiselect-label {
 
 body .ui-multiselect {
   float: left;
+  width: 100%;
 }

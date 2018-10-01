@@ -15,11 +15,13 @@
   (onRowClick)="edit.emit($event)"
   (onLazyLoad)="loadLazy.emit($event)"
   [responsive]="true">
-  <p-header>
-    <p-multiSelect
-      [options]="columnOptions"
-      [(ngModel)]="columns"
-      selectedItemsLabel="{0} wybranych elementów"></p-multiSelect>
+  <p-header class="ui-helper-clearfix">
+    <div class="col-xs-12 col-sm-6 col-md-3 m-b-xs">
+      <p-multiSelect
+        [options]="columnOptions"
+        [(ngModel)]="columns"
+        selectedItemsLabel="{0} wybranych elementów"></p-multiSelect>
+    </div>
     <app-excel-btn *ngIf="!hideExport" (onExport)="dt.exportCSV()"></app-excel-btn>
   </p-header>
   <p-column

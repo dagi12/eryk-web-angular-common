@@ -1,4 +1,4 @@
-import {AbstractControl, FormControl, ValidatorFn} from '@angular/forms';
+import {AbstractControl, FormControl, ValidatorFn, Validators} from '@angular/forms';
 import {
   DEC_MAX_VALUE,
   DIGIT_REGEXP,
@@ -26,6 +26,8 @@ export const requiredUniqueUserName = (clientUsers: any[]): ValidatorFn => (cont
   }
   return null;
 };
+
+export const requiredMail = (items: any[]): ValidatorFn => Validators.compose([requiredUniqueUserName(items), mailValidator]);
 
 export const validateTextMask = (placeholderChar?: string): ValidatorFn => (control: AbstractControl) => {
   placeholderChar = placeholderChar ? placeholderChar : '_';
