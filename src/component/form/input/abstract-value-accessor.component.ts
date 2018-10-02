@@ -12,7 +12,7 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
   constructor(private injector: Injector) {
   }
 
-  private _value: T;
+  _value: T;
 
   get value(): T {
     return this._value;
@@ -20,8 +20,7 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
 
   set value(v: T) {
     if (v !== this._value) {
-      this._value = v;
-      this.onChange(v);
+      this.writeValue(v);
     }
   }
 
@@ -43,7 +42,6 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
 
   writeValue(value: any) {
     this._value = value;
-    // warning: comment below if only want to emit on user intervention
     this.onChange(value);
   }
 

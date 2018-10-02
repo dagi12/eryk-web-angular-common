@@ -1,6 +1,15 @@
+<!--suppress HtmlFormInputWithoutLabel, XmlDuplicatedId -->
 <app-form-group [for]="id" [label]="label" [error]="locIsError()" [required]="required">
-  <!--suppress HtmlFormInputWithoutLabel -->
   <input
+    *ngIf="myMobileDetectService.isMobile"
+    id="{{id}}"
+    type="date"
+    class="form-control"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [(ngModel)]="mobileValue">
+  <input
+    *ngIf="!myMobileDetectService.isMobile"
     id="{{id}}"
     type="text"
     class="form-control"

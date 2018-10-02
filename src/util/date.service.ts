@@ -145,3 +145,10 @@ export function toDateInputValue(): string {
   local.setMinutes(today.getMinutes() - today.getTimezoneOffset());
   return local.toJSON().slice(0, 10);
 }
+
+export function fromDateToDateInputValue(date: Date): string {
+  if (date) {
+    return date.toISOString().substring(0, 10);
+  }
+  return '';
+}

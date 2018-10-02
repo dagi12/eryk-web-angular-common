@@ -3,6 +3,9 @@ import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.co
 import {newId} from '../../../../util/utils';
 import {BsDatepickerDirective} from 'ngx-bootstrap';
 import 'rxjs/add/observable/fromEvent';
+import {MyMobileDetectService} from '../../../../service/my-mobile-detect.service';
+import {fromDateToDateInputValue} from '../../../../util/date.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-date-picker',
@@ -33,8 +36,27 @@ export class DatePickerComponent extends AbstractValueAccessor<Date> implements 
     }
   };
 
-  constructor(injector: Injector, private ngZone: NgZone) {
+  constructor(injector: Injector, private ngZone: NgZone, public myMobileDetectService: MyMobileDetectService) {
     super(injector);
+  }
+
+  private _mobileValue: string;
+
+
+  get mobileValue(): string {
+    return this._mobileValue;
+  }
+
+  set mobileValue(value: string) {
+    this._mobileValue = value;
+    super.writeValue(moment(value).toDate());
+  }
+
+  writeValue(value: Date): void {
+    if (this.myMobileDetectService.isMobile) {
+      this._mobileValue = fromDateToDateInputValue(value);
+    }
+    super.writeValue(value);
   }
 
   ngOnInit() {
