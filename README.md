@@ -1,11 +1,19 @@
 # eryk-web-angular-common
 Common angular componets user by me across js projects.
 
-# Common pitfalls
+## Cli update should fix
+- form control, updateOn 'blur'
+
+## Webstorm update should fix
+- member ordering (arrow funcitons with member function tslint)
+- new components are recognized immediately (angular framework service)
+- <ng-content> tag is recognized
+
+## Common pitfalls
 - watch for polish signs in package.json
 - add compileOnSave tsconfig.app.json
 
-# Dependencies 
+## Dependencies 
 ```json
 {
   "ngx-ui-switch": "^1.4.4"
@@ -25,7 +33,12 @@ export function Validated() {
 ```
 
 ## Common errors
+Forget to MakeProvider
 ```javascript
 "Error: No value accessor for form control with unspecified name attribute"
 ```
-Forget to MakeProvider
+Add MakeProvider to the component
+```js
+ERROR Error: No value accessor for form control with
+```
+
