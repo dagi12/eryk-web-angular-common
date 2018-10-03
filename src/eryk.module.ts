@@ -58,6 +58,7 @@ import {MyTableInternalComponent} from './component/table/my-table-internal/my-t
 import {EmailValidatedComponent} from './component/form/validated/email-validated/email-validated.component';
 import {PasswordValidatedComponent} from './component/form/validated/password-validated/password-validated.component';
 import {ValidationService} from './component/form/validated/validation.service';
+import './extensions/rx-extensions';
 
 @NgModule({
   declarations: [
