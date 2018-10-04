@@ -24,7 +24,7 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
     }
   }
 
-  // noinspection JSUnusedGlobalSymbols
+  // noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols
   onBlur() {
     this.blur.emit();
   }

@@ -5,7 +5,7 @@
   [error]="locIsError()"
   [(ngModel)]="value"
   [required]="true"
-  (blur)="onBlur($event)"
+  (blur)="onBlur()"
   (onSelect)="locOnSelect($event)">
   <app-error-box [error]="locIsError()"></app-error-box>
 </app-auto-complete>
