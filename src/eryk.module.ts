@@ -59,6 +59,7 @@ import {EmailValidatedComponent} from './component/form/validated/email-validate
 import {PasswordValidatedComponent} from './component/form/validated/password-validated/password-validated.component';
 import {ValidationService} from './component/form/validated/validation.service';
 import './extensions/rx-extensions';
+import {NullDefaultValueDirective} from './directives/null-default-value.directive';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import './extensions/rx-extensions';
     MyTableInternalComponent,
     EmailValidatedComponent,
     PasswordValidatedComponent,
+    NullDefaultValueDirective,
   ],
   exports: [
     TopNavbarComponent,
@@ -130,7 +132,8 @@ import './extensions/rx-extensions';
     MoneyInputComponent,
     ErrorBoxesComponent,
     EmailValidatedComponent,
-    PasswordValidatedComponent
+    PasswordValidatedComponent,
+    NullDefaultValueDirective,
   ],
   imports: [
     BsDatepickerModule.forRoot(),

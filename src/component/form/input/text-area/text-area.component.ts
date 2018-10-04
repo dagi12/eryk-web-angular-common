@@ -15,5 +15,6 @@ export class TextAreaComponent extends AbstractValueAccessor {
   @Input() placeholder: string;
   @Input() rows = 3;
   @Input() required: boolean;
+  @Input() disabled: boolean;
 
 }

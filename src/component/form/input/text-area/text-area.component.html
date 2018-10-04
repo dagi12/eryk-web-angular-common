@@ -3,7 +3,10 @@
     class="form-control"
     [rows]="rows"
     placeholder="{{placeholder}}"
+    maxlength="254"
     (blur)="onBlur($event)"
-    [(ngModel)]="value"></textarea>
+    [(ngModel)]="value"
+    [disabled]="disabled"
+    appNull></textarea>
   <ng-content></ng-content>
 </app-form-group>

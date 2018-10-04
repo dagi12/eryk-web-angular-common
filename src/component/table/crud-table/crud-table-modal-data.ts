@@ -6,7 +6,8 @@ export class CrudTableModalData extends BSModalContext {
 
   constructor(public currentItem = {},
               public items: any[] = [],
-              public mode: number = MODE.PREVIEW) {
+              public mode: number = MODE.PREVIEW,
+              public helpContent: string = '') {
     super();
     this.isBlocking = false;
     this.showClose = true;
