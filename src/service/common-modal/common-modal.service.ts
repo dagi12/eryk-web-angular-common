@@ -57,13 +57,14 @@ export class CommonModalService {
       .open().then();
   }
 
-  error(message: string) {
+  error(message: string, blocking = false) {
+    const okBtnClasses = 'btn btn-danger col-xs-12 col-sm-3 pull-right' + (blocking ? ' disabled' : '');
     this.modal.alert()
       .isBlocking(true)
       .showClose(false)
       .title('Błąd')
       .body(message)
-      .okBtnClass('btn btn-danger col-xs-12 col-sm-3 pull-right')
+      .okBtnClass(okBtnClasses)
       .open().then();
   }
 
