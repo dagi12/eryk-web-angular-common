@@ -36,6 +36,7 @@ export class BaseTableComponent implements OnInit {
   @Input() lazy = false;
   @Input() filterCriteria: NgFilters = null;
   @Input() callback = items => this.items = items._embedded[this.serviceUrl];
+  private isPostOrGet = false;
 
   constructor(protected crudTableService: CrudTableService) {
 
@@ -43,7 +44,12 @@ export class BaseTableComponent implements OnInit {
 
   ngOnInit() {
     this.columnMap = arrayToMap2(this.columns, 'field');
-    this.getAllUrl = this.getAllUrl || (this.serviceUrl + '/table');
+    if (!this.getAllUrl) {
+      this.getAllUrl = this.serviceUrl + '/table';
+      this.isPostOrGet = true;
+    } else {
+      this.refreshTable();
+    }
   }
 
   refreshTable() {
