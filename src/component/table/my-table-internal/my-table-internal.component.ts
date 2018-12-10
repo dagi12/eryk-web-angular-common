@@ -11,14 +11,17 @@ import {MyMobileDetectService} from '../../../service/my-mobile-detect.service';
 export class MyTableInternalComponent implements OnInit {
 
   @Input() emptyMessage;
-  @Input() items: any[];
+  @Input() items: any[] = [{}];
   @Input() serviceUrl: string;
   @Input() getAllUrl?: string;
   @Input() filterUrl?: string;
   @Input() columns: MyColumn[];
   @Input() srcId: number;
   @Input() hideExport: boolean;
-  @Input() slim: boolean;
+
+  // FIXME if false rent-history not visible
+  @Input() slim;
+
   @Input() lazy: boolean;
   @Input() filterCriteria: NgFilters;
   @Input() callback: Function;
