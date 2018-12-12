@@ -14,13 +14,12 @@ import {LazyLoadEventExt} from './lazyloadeventext';
 })
 export class BaseTableComponent implements OnInit {
 
-  dateFrom: Date = new Date();
-  dateTo: Date;
-  loading = false;
   first = 0;
   totalRecords = 0;
   lastLazyLoadEvent: LazyLoadEventExt;
   @ViewChild(DataTable) dataTable: DataTable;
+  // nie dodawaj Inputa
+  loading;
   @Input() emptyMessage = 'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.';
   @Input() items: any[] = [];
   @Input() serviceUrl: string;
@@ -33,6 +32,7 @@ export class BaseTableComponent implements OnInit {
 
   columnMap: { [_: string]: MyColumn };
 
+  // ładuj grid wraz z pokazaniem komponentu
   @Input() lazy = false;
   @Input() filterCriteria: NgFilters = null;
   @Input() callback = items => this.items = items._embedded[this.serviceUrl];
@@ -45,7 +45,8 @@ export class BaseTableComponent implements OnInit {
   ngOnInit() {
     this.columnMap = arrayToMap2(this.columns, 'field');
     if (!this.getAllUrl) {
-      this.getAllUrl = this.serviceUrl + '/table';
+      // for every angular table
+      this.getAllUrl = this.serviceUrl + '/table2';
       this.isPostOrGet = true;
     } else {
       this.refreshTable();
@@ -71,14 +72,33 @@ export class BaseTableComponent implements OnInit {
   }
 
   loadLazy(options: LazyLoadEventExt, resetPaging: boolean = false) {
-    this.loading = true;
-    this.addFilterTypes(<NgFilters>options.filters);
     this.lastLazyLoadEvent = options;
+    this.prepareRequestParams(options, resetPaging);
+    this.crudTableService
+      .lazy(this.getAllUrl, options)
+      .doOnSubscribe(() => this.loading = true)
+      .finally(() => this.loading = false)
+      .subscribe(items => {
+        this.items = items;
+        if (this.items.length < options.rows) {
+          this.totalRecords = (this.first + items.length) || 1;
+        } else {
+          this.totalRecords = this.first + options.rows + 1;
+        }
+      });
+  }
+
+  private prepareRequestParams(options: LazyLoadEventExt, resetPaging: boolean) {
+    this.addFilterTypes(<NgFilters>options.filters);
     if (this.filterCriteria) {
-      options.filters = {
-        ...options.filters,
-        ...this.filterCriteria
-      };
+      for (const filter in this.filterCriteria) {
+        if (this.filterCriteria.hasOwnProperty(filter)) {
+          const filterCriterion = this.filterCriteria[filter];
+          if (filterCriterion.value) {
+            options.filters[filter] = filterCriterion;
+          }
+        }
+      }
     }
     if (resetPaging) {
       options.first = 0;
@@ -87,24 +107,5 @@ export class BaseTableComponent implements OnInit {
     if (this.srcId) {
       options.srcId = this.srcId;
     }
-    this.crudTableService
-      .lazy(this.getAllUrl, options)
-      .subscribe(items => {
-        this.items = items;
-        if (this.items.length < options.rows) {
-          this.totalRecords = (this.first + items.length) || 1;
-        } else {
-          this.totalRecords = this.first + options.rows + 1;
-        }
-        this.loading = false;
-      });
   }
-
-  search() {
-    this.crudTableService.all(this.filterUrl, {
-      dateFrom: this.dateFrom,
-      dateTo: this.dateTo
-    }).subscribe(this.callback);
-  }
-
 }

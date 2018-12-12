@@ -18,8 +18,11 @@
   <p-header class="ui-helper-clearfix">
     <div class="col-xs-12 col-sm-6 col-md-3 m-b-xs">
       <p-multiSelect
+        defaultLabel="Wybierz kolumny"
         [options]="columnOptions"
-        [(ngModel)]="columns"
+        [(ngModel)]="selectedColumns"
+        [scrollHeight]="'1000px'"
+        [optionLabel]="'header'"
         selectedItemsLabel="{0} wybranych elementów"></p-multiSelect>
     </div>
     <app-excel-btn *ngIf="!hideExport" (onExport)="dt.exportCSV()"></app-excel-btn>
@@ -27,7 +30,7 @@
   <p-column
     [hidden]="col.hideOnMobile && isMobile"
     [sortable]="!col.notSortable"
-    *ngFor="let col of columns"
+    *ngFor="let col of selectedColumns"
     [field]="col.field"
     [header]="col.header"
     [styleClass]="col.styleClass"
@@ -44,6 +47,15 @@
 
     <ng-template *ngIf="col.cellRenderer" let-item="rowData" pTemplate type="body">
       {{col.cellRenderer(item[col.field])}}
+    </ng-template>
+
+    <ng-template *ngIf="col.filterType === 'number'" pTemplate="filter" let-col>
+      <i class="fa fa-close" (click)="numberFilter[col.field]=null;dt.filter(null,col.field,col.filterMatchMode)"></i>
+      <p-slider [style]="{'width':'100%','margin-top':'8px'}"
+                [(ngModel)]="numberFilter[col.field]"
+                [min]="0"
+                [max]="10000"
+                (onChange)="onNumberChange($event, dt, col)"></p-slider>
     </ng-template>
 
   </p-column>

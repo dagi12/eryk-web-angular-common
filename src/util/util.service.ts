@@ -104,14 +104,14 @@ export class UtilService {
     return obj;
   }
 
-  static clone(obj) {
+  static deepClone(obj) {
     return JSON.parse(JSON.stringify(obj));
   }
 
   static cloneArr(arr) {
     const clonedArr = [];
     for (const item of arr) {
-      clonedArr.push(this.clone(item));
+      clonedArr.push(this.deepClone(item));
     }
     return clonedArr;
   }

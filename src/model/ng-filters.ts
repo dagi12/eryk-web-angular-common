@@ -6,6 +6,7 @@ export interface NgFilters {
 
 export interface FilterMetadataExt extends FilterMetadata {
   enumType?: boolean;
+  // should be required (even if columnMap defines type)
   filterType: FilterType;
 }
 

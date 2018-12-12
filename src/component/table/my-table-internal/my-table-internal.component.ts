@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgFilters} from '../../../model/ng-filters';
 import {MyColumn} from '../base-table/my-column';
 import {MyMobileDetectService} from '../../../service/my-mobile-detect.service';
+import {Column} from 'primeng/primeng';
+import {UtilService} from '../../../util/util.service';
 
 @Component({
   selector: 'app-my-table-internal',
@@ -31,16 +33,28 @@ export class MyTableInternalComponent implements OnInit {
   @Output() loadLazy = new EventEmitter();
   @Output() edit = new EventEmitter();
   columnOptions: any[] = [];
+  selectedColumns: Column[] = [];
   isMobile: boolean = this.myMobileDetectService.isMobile;
+  numberFilter: {
+    [_: string]: number
+  } = {};
+  private timer: any;
 
   constructor(private myMobileDetectService: MyMobileDetectService) {
   }
 
-
   ngOnInit() {
-    this.columnOptions = this.columns.map(value => {
-      return {label: value.header, value};
-    });
+    this.columnOptions = UtilService.deepClone(this.columns);
+    this.selectedColumns = UtilService.deepClone(this.columns);
+  }
+
+  onNumberChange(event, dt, col) {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    this.timer = setTimeout(() => {
+      dt.filter(event.value, col.field, col.filterMatchMode);
+    }, 250);
   }
 
 }

@@ -6,12 +6,13 @@ import {newId} from '../../../../util/utils';
 @Component({
   selector: 'app-text-input',
   templateUrl: './text-input.component.html',
-    styleUrls: ['./text-input.component.css'],
+  styleUrls: ['./text-input.component.css'],
   providers: [MakeProvider(TextInputComponent)]
 })
 export class TextInputComponent extends AbstractValueAccessor {
 
   @Input() label: string;
+  @Input() placeholder: string = '';
   @Input() disabled: boolean;
   @Input() error: boolean;
   @Input() required: boolean;

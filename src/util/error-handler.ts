@@ -23,7 +23,7 @@ export const handelNetworkErrorMsg = (response: Response, msg = null) => {
     }
   }
   // general response
-  if (data && !data.done && data.errorMessage) {
+  if (data && !data.success && data.errorMessage) {
     return data.errorMessage;
     // provided error message
   } else if (msg) {

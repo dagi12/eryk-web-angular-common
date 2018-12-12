@@ -33,7 +33,7 @@ import {BsLocaleService, CollapseModule, DatepickerModule, TypeaheadModule} from
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DataTableModule, MultiSelectModule, SharedModule} from 'primeng/primeng';
+import {DataTableModule, MultiSelectModule, SharedModule, SliderModule} from 'primeng/primeng';
 import {RouterModule} from '@angular/router';
 import {ToastrModule} from 'ngx-toastr';
 import {UiSwitchModule} from 'ngx-ui-switch';
@@ -148,7 +148,8 @@ import {NullDefaultValueDirective} from './directives/null-default-value.directi
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     UiSwitchModule,
-    MultiSelectModule
+    MultiSelectModule,
+    SliderModule
   ],
   providers: [
     ApiConfigService,
