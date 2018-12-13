@@ -51,6 +51,7 @@
 
     <ng-template *ngIf="col.filterType === 'number'" pTemplate="filter" let-col>
       <i class="fa fa-close" (click)="numberFilter[col.field]=null;dt.filter(null,col.field,col.filterMatchMode)"></i>
+      <p *ngIf="numberFilter[col.field]">Większe od {{numberFilter[col.field]}}</p>
       <p-slider [style]="{'width':'100%','margin-top':'8px'}"
                 [(ngModel)]="numberFilter[col.field]"
                 [min]="0"

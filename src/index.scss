@@ -5,7 +5,6 @@
 @import "~ngx-toastr/toastr.css";
 @import "~ngx-bootstrap/datepicker/bs-datepicker.css";
 @import "../../flota-web-inspina/index";
-
 // overrides
 @import "assets/variables-css.css";
 @import "assets/toast-override.css";
@@ -28,4 +27,12 @@
 
 .auto-complete-clear-button.visible {
   display: block;
+}
+
+.nav.navbar-top-links > li > a:focus, .nav.navbar-top-links > li > a:hover {
+  background-color: #1b6396
+}
+
+nav.navbar.navbar-static-top a.nav-link.active {
+  color: var(--light-gray);
 }
