@@ -50,13 +50,24 @@
     </ng-template>
 
     <ng-template *ngIf="col.filterType === 'number'" pTemplate="filter" let-col>
-      <i class="fa fa-close" (click)="numberFilter[col.field]=null;dt.filter(null,col.field,col.filterMatchMode)"></i>
-      <p *ngIf="numberFilter[col.field]">Większe od {{numberFilter[col.field]}}</p>
-      <p-slider [style]="{'width':'100%','margin-top':'8px'}"
-                [(ngModel)]="numberFilter[col.field]"
-                [min]="0"
-                [max]="10000"
-                (onChange)="onNumberChange($event, dt, col)"></p-slider>
+      <i class="fa fa-close" (click)="clearNumberFilter(dt, col)"></i>
+      <br/>
+      <input type="number"
+             placeholder="Większe od"
+             [style]="{'width':'50%','margin-top':'8px'}"
+             [ngModel]="numberFilter[col.field + 'From']"
+             (ngModelChange)="onNumberChange($event, dt, col, 'greaterThanOrEqual')"
+             [min]="0"
+             [max]="100000"
+      />
+      <input type="number"
+             placeholder="Mniejsze od"
+             [style]="{'width':'50%','margin-top':'8px'}"
+             [ngModel]="numberFilter[col.field + 'To']"
+             (ngModelChange)="onNumberChange($event, dt, col, 'lessThanOrEqual')"
+             [min]="0"
+             [max]="100000"
+      />
     </ng-template>
 
   </p-column>

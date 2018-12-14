@@ -66,7 +66,7 @@ export class BaseTableComponent implements OnInit {
   addFilterTypes(filters: NgFilters) {
     for (const key in filters) {
       if (filters.hasOwnProperty(key)) {
-        filters[key].filterType = this.columnMap[key].filterType;
+        filters[key].filterType = this.switchType(filters[key].value);
       }
     }
   }
@@ -86,6 +86,22 @@ export class BaseTableComponent implements OnInit {
           this.totalRecords = this.first + options.rows + 1;
         }
       });
+  }
+
+  private switchType(value: any) {
+    switch (typeof value) {
+      case 'object':
+        if (value instanceof Date) {
+          return 'date';
+        } else if (Array.isArray(value)) {
+          return 'set';
+        }
+        throw new Error('unkown type');
+      case 'number':
+        return 'number';
+      case 'string':
+        return 'text';
+    }
   }
 
   private prepareRequestParams(options: LazyLoadEventExt, resetPaging: boolean) {

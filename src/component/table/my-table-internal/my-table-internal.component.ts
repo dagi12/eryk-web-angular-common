@@ -48,12 +48,20 @@ export class MyTableInternalComponent implements OnInit {
     this.selectedColumns = UtilService.deepClone(this.columns);
   }
 
-  onNumberChange(event, dt, col) {
+  clearNumberFilter(dt, col) {
+    this.numberFilter = {};
+    dt.filter(null, col.field + 'From', 'greaterThanOrEqual');
+    dt.filter(null, col.field + 'To', 'lessThanOrEqual');
+  }
+
+  onNumberChange(value, dt, col, filterMatchMode) {
+    const newVar = col.field + (filterMatchMode === 'greaterThanOrEqual' ? 'From' : 'To');
+    this.numberFilter[newVar] = value;
     if (this.timer) {
       clearTimeout(this.timer);
     }
     this.timer = setTimeout(() => {
-      dt.filter(event.value, col.field, col.filterMatchMode);
+      dt.filter(value, newVar, filterMatchMode);
     }, 250);
   }
 
