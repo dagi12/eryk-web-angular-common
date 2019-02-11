@@ -4,6 +4,7 @@
     *ngIf="myMobileDetectService.isMobile"
     id="{{id}}"
     type="date"
+    autocomplete="off"
     class="form-control"
     [disabled]="disabled"
     [placeholder]="placeholder"
@@ -12,6 +13,7 @@
     *ngIf="!myMobileDetectService.isMobile"
     id="{{id}}"
     type="text"
+    autocomplete="off"
     class="form-control"
     #dp="bsDatepicker"
     bsDatepicker
@@ -21,7 +23,7 @@
   <app-error-boxes [submitted]="submitted" [control]="formControl" [config]="config"></app-error-boxes>
   <button
     *ngIf="!disabled"
-    class="no-bg glyphicon glyphicon-remove auto-complete-clear-button"
+    class="no-bg fa fa-close auto-complete-clear-button"
     [ngClass]="{visible: !!value}"
     type="button"
     (click)="clear()"

@@ -4,11 +4,12 @@ import {MyColumn} from '../base-table/my-column';
 import {MyMobileDetectService} from '../../../service/my-mobile-detect.service';
 import {Column} from 'primeng/primeng';
 import {UtilService} from '../../../util/util.service';
+import {Sums} from './sums';
 
 @Component({
   selector: 'app-my-table-internal',
   templateUrl: './my-table-internal.component.html',
-  styles: []
+  styleUrls: ['./my-table-internal.css']
 })
 export class MyTableInternalComponent implements OnInit {
 
@@ -30,6 +31,7 @@ export class MyTableInternalComponent implements OnInit {
   @Input() first = 0;
   @Input() totalRecords = 0;
   @Input() rowStyleClass: Function;
+  @Input() sums: Sums;
   @Output() loadLazy = new EventEmitter();
   @Output() edit = new EventEmitter();
   columnOptions: any[] = [];
@@ -62,7 +64,7 @@ export class MyTableInternalComponent implements OnInit {
     }
     this.timer = setTimeout(() => {
       dt.filter(value, newVar, filterMatchMode);
-    }, 250);
+    }, 1000);
   }
 
 }

@@ -53,16 +53,16 @@
       <i class="fa fa-close" (click)="clearNumberFilter(dt, col)"></i>
       <br/>
       <input type="number"
-             placeholder="Większe od"
-             [style]="{'width':'50%','margin-top':'8px'}"
+             placeholder="Od"
              [ngModel]="numberFilter[col.field + 'From']"
              (ngModelChange)="onNumberChange($event, dt, col, 'greaterThanOrEqual')"
              [min]="0"
              [max]="100000"
+             class="ui-column-filter ui-inputtext ui-widget ui-corner-all number-filter"
       />
       <input type="number"
-             placeholder="Mniejsze od"
-             [style]="{'width':'50%','margin-top':'8px'}"
+             class="ui-column-filter ui-inputtext ui-widget ui-corner-all number-filter"
+             placeholder="Do"
              [ngModel]="numberFilter[col.field + 'To']"
              (ngModelChange)="onNumberChange($event, dt, col, 'lessThanOrEqual')"
              [min]="0"
@@ -71,5 +71,14 @@
     </ng-template>
 
   </p-column>
+  <p-footerColumnGroup *ngIf="items.length && sums">
+    <p-row>
+      <p-column footer="Suma:" colspan="5"></p-column>
+      <p-column [footer]="sums.driveTimeSum"></p-column>
+      <p-column [footer]="sums.haltTimeSum"></p-column>
+      <p-column [footer]="sums.kmCountSum"></p-column>
+      <p-column [footer]="sums.amountSum"></p-column>
+    </p-row>
+  </p-footerColumnGroup>
   <p-footer></p-footer>
 </p-dataTable>

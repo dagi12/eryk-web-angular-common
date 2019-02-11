@@ -4,7 +4,7 @@
 }
 
 body .ui-fileupload .ui-button {
-  background-color: #1ab394;
+  background-color: var(--accent);
 }
 
 body .ui-fileupload .ui-button:hover {

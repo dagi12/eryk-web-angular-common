@@ -47,7 +47,7 @@
 }
 
 #toast-container > .toast.toast-success {
-  background-color: #1ab394;
+  background-color: var(--accent);
 }
 
 #toast-container > .toast.toast-error {

@@ -6,6 +6,8 @@ import {DataTable} from 'primeng/primeng';
 import {arrayToMap2} from '../../../util/array.helper';
 import {NgFilters} from '../../../model/ng-filters';
 import {LazyLoadEventExt} from './lazyloadeventext';
+import {Sums} from '../my-table-internal/sums';
+import {RentHistory} from '../../../../../rent-history/rent-history';
 
 @Component({
   selector: 'app-base-table',
@@ -21,7 +23,7 @@ export class BaseTableComponent implements OnInit {
   // nie dodawaj Inputa
   loading;
   @Input() emptyMessage = 'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.';
-  @Input() items: any[] = [];
+  @Input() items: RentHistory[] = [];
   @Input() serviceUrl: string;
   @Input() getAllUrl?: string;
   @Input() filterUrl?: string;
@@ -31,6 +33,7 @@ export class BaseTableComponent implements OnInit {
   @Input() slim = false;
 
   columnMap: { [_: string]: MyColumn };
+  sums: Sums = null;
 
   // ładuj grid wraz z pokazaniem komponentu
   @Input() lazy = false;
@@ -63,32 +66,15 @@ export class BaseTableComponent implements OnInit {
     }
   }
 
-  addFilterTypes(filters: NgFilters) {
+  static addFilterTypes(filters: NgFilters) {
     for (const key in filters) {
       if (filters.hasOwnProperty(key)) {
-        filters[key].filterType = this.switchType(filters[key].value);
+        filters[key].filterType = BaseTableComponent.switchType(filters[key].value);
       }
     }
   }
 
-  loadLazy(options: LazyLoadEventExt, resetPaging: boolean = false) {
-    this.lastLazyLoadEvent = options;
-    this.prepareRequestParams(options, resetPaging);
-    this.crudTableService
-      .lazy(this.getAllUrl, options)
-      .doOnSubscribe(() => this.loading = true)
-      .finally(() => this.loading = false)
-      .subscribe(items => {
-        this.items = items;
-        if (this.items.length < options.rows) {
-          this.totalRecords = (this.first + items.length) || 1;
-        } else {
-          this.totalRecords = this.first + options.rows + 1;
-        }
-      });
-  }
-
-  private switchType(value: any) {
+  private static switchType(value: any) {
     switch (typeof value) {
       case 'object':
         if (value instanceof Date) {
@@ -104,8 +90,27 @@ export class BaseTableComponent implements OnInit {
     }
   }
 
-  private prepareRequestParams(options: LazyLoadEventExt, resetPaging: boolean) {
-    this.addFilterTypes(<NgFilters>options.filters);
+  loadLazy(options: LazyLoadEventExt, resetPaging: boolean = false) {
+    this.lastLazyLoadEvent = options;
+    this.prepareRequestParams(options, resetPaging);
+    // noinspection JSIgnoredPromiseFromCall
+    this.crudTableService
+      .lazy(this.getAllUrl, options)
+      .doOnSubscribe(() => this.loading = true)
+      .finally(() => this.loading = false)
+      .subscribe((items: RentHistory[]) => {
+        this.items = items;
+        this.calcSums(items);
+        if (this.items.length < options.rows) {
+          this.totalRecords = (this.first + items.length) || 1;
+        } else {
+          this.totalRecords = this.first + options.rows + 1;
+        }
+      });
+  }
+
+  prepareRequestParams(options: LazyLoadEventExt, resetPaging: boolean) {
+    BaseTableComponent.addFilterTypes(<NgFilters>options.filters);
     if (this.filterCriteria) {
       for (const filter in this.filterCriteria) {
         if (this.filterCriteria.hasOwnProperty(filter)) {
@@ -124,4 +129,22 @@ export class BaseTableComponent implements OnInit {
       options.srcId = this.srcId;
     }
   }
+
+  private calcSums(items: RentHistory[]) {
+    this.sums = {
+      amountSum: '0',
+      driveTimeSum: 0,
+      haltTimeSum: 0,
+      kmCountSum: 0
+    };
+    let amountSumTmp = 0;
+    items.forEach(item => {
+      amountSumTmp += item.kwotaBrutto;
+      this.sums.driveTimeSum += item.czasJazdy;
+      this.sums.haltTimeSum += item.czasPostoj;
+      this.sums.kmCountSum += item.iloscKm;
+    });
+    this.sums.amountSum = amountSumTmp.toFixed(2);
+  }
+
 }
