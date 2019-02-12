@@ -1,3 +1,4 @@
+<!--suppress SyntaxError -->
 <div *ngFor="let key in config">
   <div *ngIf="control.hasError(key) && (!control.pristine || submitted)" class="alert alert-danger m-t-xs">
     {{ config[key] }}

@@ -38,32 +38,11 @@ export class BaseTableComponent implements OnInit {
   // ładuj grid wraz z pokazaniem komponentu
   @Input() lazy = false;
   @Input() filterCriteria: NgFilters = null;
-  @Input() callback = items => this.items = items._embedded[this.serviceUrl];
+  @Input() callback = items => this.items = items._embedded ? items._embedded[this.serviceUrl] : items;
   private isPostOrGet = false;
 
   constructor(protected crudTableService: CrudTableService) {
 
-  }
-
-  ngOnInit() {
-    this.columnMap = arrayToMap2(this.columns, 'field');
-    if (!this.getAllUrl) {
-      // for every angular table
-      this.getAllUrl = this.serviceUrl + '/table2';
-      this.isPostOrGet = true;
-    } else {
-      this.refreshTable();
-    }
-  }
-
-  refreshTable() {
-    if (this.lazy) {
-      this.loadLazy(this.lastLazyLoadEvent, true);
-    } else {
-      this.crudTableService
-        .all(this.getAllUrl)
-        .subscribe(this.callback);
-    }
   }
 
   static addFilterTypes(filters: NgFilters) {
@@ -87,6 +66,27 @@ export class BaseTableComponent implements OnInit {
         return 'number';
       case 'string':
         return 'text';
+    }
+  }
+
+  ngOnInit() {
+    this.columnMap = arrayToMap2(this.columns, 'field');
+    if (!this.getAllUrl) {
+      // for every angular table
+      this.getAllUrl = this.serviceUrl + '/table2';
+      this.isPostOrGet = true;
+    } else {
+      this.refreshTable();
+    }
+  }
+
+  refreshTable() {
+    if (this.lazy) {
+      this.loadLazy(this.lastLazyLoadEvent, true);
+    } else {
+      this.crudTableService
+        .all(this.getAllUrl)
+        .subscribe(this.callback);
     }
   }
 
