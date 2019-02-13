@@ -34,3 +34,7 @@ body .ui-multiselect {
   float: left;
   width: 100%;
 }
+
+.ui-datatable-reflow .ui-datatable-data > tr > td.ui-datatable-emptymessage {
+  text-align: center;
+}
