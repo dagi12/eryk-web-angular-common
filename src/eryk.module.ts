@@ -60,6 +60,7 @@ import {PasswordValidatedComponent} from './component/form/validated/password-va
 import {ValidationService} from './component/form/validated/validation.service';
 import './extensions/rx-extensions';
 import {NullDefaultValueDirective} from './directives/null-default-value.directive';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -149,7 +150,8 @@ import {NullDefaultValueDirective} from './directives/null-default-value.directi
     ToastrModule.forRoot(),
     UiSwitchModule,
     MultiSelectModule,
-    SliderModule
+    SliderModule,
+    TranslateModule
   ],
   providers: [
     ApiConfigService,
