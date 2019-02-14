@@ -7,7 +7,6 @@ import {arrayToMap2} from '../../../util/array.helper';
 import {NgFilters} from '../../../model/ng-filters';
 import {LazyLoadEventExt} from './lazyloadeventext';
 import {Sums} from '../my-table-internal/sums';
-import {RentHistory} from '../../../../../rent-history/rent-history';
 
 @Component({
   selector: 'app-base-table',
@@ -23,7 +22,7 @@ export class BaseTableComponent implements OnInit {
   // nie dodawaj Inputa
   loading;
   @Input() emptyMessage = 'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.';
-  @Input() items: RentHistory[] = [];
+  @Input() items: any[] = [];
   @Input() serviceUrl: string;
   @Input() getAllUrl?: string;
   @Input() filterUrl?: string;
@@ -31,14 +30,11 @@ export class BaseTableComponent implements OnInit {
   @Input() srcId: number;
   @Input() hideExport: boolean;
   @Input() slim = false;
-
   columnMap: { [_: string]: MyColumn };
   sums: Sums = null;
-
   // ładuj grid wraz z pokazaniem komponentu
   @Input() lazy = false;
   @Input() filterCriteria: NgFilters = null;
-  @Input() callback = items => this.items = items._embedded ? items._embedded[this.serviceUrl] : items;
   private isPostOrGet = false;
 
   constructor(protected crudTableService: CrudTableService) {
@@ -69,6 +65,8 @@ export class BaseTableComponent implements OnInit {
     }
   }
 
+  callback = items => this.items = items._embedded ? items._embedded[this.serviceUrl] : items;
+
   ngOnInit() {
     this.columnMap = arrayToMap2(this.columns, 'field');
     if (!this.getAllUrl) {
@@ -98,7 +96,7 @@ export class BaseTableComponent implements OnInit {
       .lazy(this.getAllUrl, options)
       .doOnSubscribe(() => this.loading = true)
       .finally(() => this.loading = false)
-      .subscribe((items: RentHistory[]) => {
+      .subscribe((items: any[]) => {
         this.items = items;
         this.calcSums(items);
         if (this.items.length < options.rows) {
@@ -130,7 +128,7 @@ export class BaseTableComponent implements OnInit {
     }
   }
 
-  private calcSums(items: RentHistory[]) {
+  private calcSums(items: any[]) {
     this.sums = {
       amountSum: '0',
       driveTimeSum: 0,

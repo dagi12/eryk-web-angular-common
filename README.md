@@ -5,7 +5,7 @@ Common angular componets user by me across js projects.
 - form control, updateOn 'blur'
 
 ## Webstorm update should fix
-- member ordering (arrow funcitons with member function tslint)
+- member ordering (arrow functions with member function tslint)
 - new components are recognized immediately (angular framework service)
 - <ng-content> tag is recognized
 
@@ -42,3 +42,6 @@ Add MakeProvider to the component
 ERROR Error: No value accessor for form control with
 ```
 
+## Global changes
+- fix inspector warnings
+- run performance test

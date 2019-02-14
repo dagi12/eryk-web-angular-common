@@ -6,7 +6,8 @@ import {environment} from '../../../../environments/environment';
 export const handleToastError = (myToastService: MyToastService) => (err: Response): Observable<any> => {
   const msg = handelNetworkErrorMsg(err);
   myToastService.error(msg);
-  return Observable.throw(msg);
+  // need to throw err instead of message to catch network error like (invalid_token)
+  return Observable.throw(err);
 };
 
 export const handelNetworkErrorMsg = (response: Response, msg = null) => {

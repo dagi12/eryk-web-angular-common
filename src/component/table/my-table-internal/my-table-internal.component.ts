@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgFilters} from '../../../model/ng-filters';
 import {MyColumn} from '../base-table/my-column';
 import {MyMobileDetectService} from '../../../service/my-mobile-detect.service';
-import {Column} from 'primeng/primeng';
 import {UtilService} from '../../../util/util.service';
 import {Sums} from './sums';
 
@@ -27,7 +26,6 @@ export class MyTableInternalComponent implements OnInit {
 
   @Input() lazy: boolean;
   @Input() filterCriteria: NgFilters;
-  @Input() callback: Function;
   @Input() first = 0;
   @Input() totalRecords = 0;
   @Input() rowStyleClass: Function;
@@ -35,7 +33,7 @@ export class MyTableInternalComponent implements OnInit {
   @Output() loadLazy = new EventEmitter();
   @Output() edit = new EventEmitter();
   columnOptions: any[] = [];
-  selectedColumns: Column[] = [];
+  selectedColumns: MyColumn[] = [];
   isMobile: boolean = this.myMobileDetectService.isMobile;
   numberFilter: {
     [_: string]: number
@@ -46,8 +44,8 @@ export class MyTableInternalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.columnOptions = UtilService.deepClone(this.columns);
-    this.selectedColumns = UtilService.deepClone(this.columns);
+    this.columnOptions = UtilService.shallowCloneArr(this.columns);
+    this.selectedColumns = UtilService.shallowCloneArr(this.columns);
   }
 
   clearNumberFilter(dt, col) {

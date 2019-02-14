@@ -10,7 +10,7 @@ import {applyMixins} from 'rxjs/util/applyMixins';
   styles: [],
   providers: [MakeProvider(TextInputValidatedComponent)]
 })
-export class TextInputValidatedComponent extends TextInputComponent {
+export class TextInputValidatedComponent extends TextInputComponent implements IValidated {
 
   @Input() submitted: boolean;
 

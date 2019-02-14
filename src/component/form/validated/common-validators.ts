@@ -9,6 +9,7 @@ import {
   UPPER_CHAR_REGEXP
 } from '../../../util/const';
 import {isUndefined} from 'ngx-bootstrap/chronos/utils/type-checks';
+import {dateWithoutHours} from '../../../util/date.service';
 
 export function mailValidator(control: AbstractControl) {
   const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
@@ -39,27 +40,27 @@ export const validateTextMask = (placeholderChar?: string): ValidatorFn => (cont
   return {error: true};
 };
 
-export function dateOrder(control) {
-  const dataOd = control.get('dataOd');
-  const dataDo = control.get('dataDo');
+export const dateOrder: ValidatorFn = (control: AbstractControl) => {
+  const dateFrom = control.get('dateFrom');
+  const dateTo = control.get('dateTo');
 
-  if (!dataOd || !dataDo) {
+  if (!dateFrom || !dateTo) {
     return new Error('Null control');
   }
-  if (!dataOd.value) {
+  if (!dateFrom.value) {
     return {empty: true};
   }
-  if (!dataDo.value) {
+  if (!dateTo.value) {
     return null;
   }
-  if (dataOd.value === dataDo.value) {
+  if (dateFrom.value === dateTo.value) {
     return {same: true};
   }
-  if (new Date(dataOd.value).getTime() > new Date(dataDo.value).getTime()) {
+  if (new Date(dateFrom.value).getTime() > new Date(dateTo.value).getTime()) {
     return {beginning: true};
   }
   return null;
-}
+};
 
 
 export const passwordValidator: ValidatorFn = (control: AbstractControl) => {
@@ -97,7 +98,7 @@ export const lessThanIntegerValidation = ltN(MAX_VALUE);
 
 export const lessThanFloatValidation = ltN(DEC_MAX_VALUE);
 
-export const greaterThanToday = dateGreaterThan(new Date());
+export const greaterThanToday = dateGreaterThan(dateWithoutHours());
 
 export type ErrorChecker = (control: FormControl, submitted: boolean, valid?: boolean) => boolean;
 

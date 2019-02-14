@@ -12,7 +12,6 @@
     [slim]="slim"
     [lazy]="lazy"
     [filterCriteria]="filterCriteria"
-    [callback]="callback"
     [first]="first"
     [totalRecords]="totalRecords"
     [rowStyleClass]="rowStyleClass"
@@ -21,7 +20,7 @@
 </app-spinner>
 <div class="row" *ngIf="!hideCreate">
   <app-button
-    [wrapperStyle]="'col-lg-2 col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1 col-lg-offset-5'"
+    [wrapperStyle]="wrapperStyle"
     (onClick)="onCreate()"
     icon="fa-plus"
     [label]="createLabel"></app-button>

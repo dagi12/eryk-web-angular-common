@@ -12,7 +12,7 @@ import {newId} from '../../../../util/utils';
 export class TextInputComponent extends AbstractValueAccessor {
 
   @Input() label: string;
-  @Input() placeholder: string = '';
+  @Input() placeholder = '';
   @Input() disabled: boolean;
   @Input() error: boolean;
   @Input() required: boolean;

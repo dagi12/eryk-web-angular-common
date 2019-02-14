@@ -116,6 +116,14 @@ export class UtilService {
     return clonedArr;
   }
 
+  static shallowCloneArr(arr) {
+    const clonedArr = [];
+    for (const item of arr) {
+      clonedArr.push(Object.assign({}, item));
+    }
+    return clonedArr;
+  }
+
 }
 
 export function isPreviewOrEdit(mode) {

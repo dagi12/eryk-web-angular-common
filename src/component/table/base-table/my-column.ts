@@ -1,4 +1,5 @@
 import {CellRenderer} from '../../form/input/my-select/value-label-pair';
+import {FilterType} from '../../../model/ng-filters';
 
 export interface MyColumn {
   field: string;
@@ -9,4 +10,5 @@ export interface MyColumn {
   date?: boolean;
   cellRenderer?: CellRenderer;
   styleClass?: string;
+  filterType?: FilterType;
 }
