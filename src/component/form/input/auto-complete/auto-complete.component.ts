@@ -11,7 +11,7 @@ import {ApiConfigService} from '../../../../service/api-config.service';
 @Component({
   selector: 'app-auto-complete',
   templateUrl: './auto-complete.component.html',
-  styles: [''],
+  styleUrls: ['./auto-complete.component.css'],
   providers: [MakeProvider(AutoCompleteComponent)]
 })
 export class AutoCompleteComponent extends AbstractValueAccessor implements OnInit {
@@ -26,6 +26,7 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
   dataSource: Observable<any>;
 
   private outputUrl: string;
+  loading = false;
 
   constructor(private authHttp: AuthHttp,
               private apiConfigService: ApiConfigService,
@@ -38,6 +39,8 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
         if (this.value && this.value.length >= 3) {
           return this.authHttp
             .post(this.outputUrl, {searchText: token})
+            .doOnSubscribe(() => this.loading = true)
+            .finally(() => this.loading = false)
             .map((response => response.json()));
         }
         return of([]);

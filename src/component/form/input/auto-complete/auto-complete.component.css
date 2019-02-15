@@ -1,0 +1,37 @@
+.auto-complete-button {
+  right: 50px;
+  position: absolute;
+  top: 0;
+  display: none;
+}
+
+.auto-complete-button.visible {
+  display: block;
+}
+
+.loader {
+  border: 11px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 11px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  margin: 6px;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
