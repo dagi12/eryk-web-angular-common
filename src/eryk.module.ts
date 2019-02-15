@@ -61,6 +61,7 @@ import {ValidationService} from './component/form/validated/validation.service';
 import './extensions/rx-extensions';
 import {NullDefaultValueDirective} from './directives/null-default-value.directive';
 import {TranslateModule} from '@ngx-translate/core';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,7 @@ import {TranslateModule} from '@ngx-translate/core';
     MyTableInternalComponent,
     EmailValidatedComponent,
     PasswordValidatedComponent,
-    NullDefaultValueDirective,
+    NullDefaultValueDirective
   ],
   exports: [
     TopNavbarComponent,
@@ -151,7 +152,8 @@ import {TranslateModule} from '@ngx-translate/core';
     UiSwitchModule,
     MultiSelectModule,
     SliderModule,
-    TranslateModule
+    TranslateModule,
+    NgxSpinnerModule
   ],
   providers: [
     ApiConfigService,

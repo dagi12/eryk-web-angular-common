@@ -84,6 +84,8 @@ export class BaseTableComponent implements OnInit {
     } else {
       this.crudTableService
         .all(this.getAllUrl)
+        .doOnSubscribe(() => this.loading = true)
+        .finally(() => this.loading = false)
         .subscribe(this.callback);
     }
   }

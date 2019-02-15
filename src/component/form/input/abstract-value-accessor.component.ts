@@ -30,7 +30,7 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
   }
 
   locIsError() {
-    return isError(this.formControl.control, this.submitted);
+    return this.formControl.control ? isError(this.formControl.control, this.submitted) : true;
   }
 
   // noinspection JSUnusedLocalSymbols

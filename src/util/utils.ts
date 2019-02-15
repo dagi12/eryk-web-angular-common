@@ -1,5 +1,8 @@
 import {EventEmitter} from '@angular/core';
 import {environment} from '../../../../environments/environment';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {Transformer} from '../extensions/rx-extensions';
+import {Observable} from 'rxjs/Observable';
 
 export function stubFun() {
   if (!environment.production) {
@@ -25,3 +28,10 @@ export const defaultValues = (object: {}, values: {}) => {
   }
   return object;
 };
+
+export function spinner<T>(spinnerService: NgxSpinnerService): Transformer<T> {
+  return (obs: Observable<T>): Observable<T> =>
+    obs
+      .doOnSubscribe(() => spinnerService.show())
+      .finally(() => spinnerService.hide());
+}
