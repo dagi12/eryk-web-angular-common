@@ -1,9 +1,15 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {NgFilters} from '../../../model/ng-filters';
 import {MyColumn} from '../base-table/my-column';
 import {MyMobileDetectService} from '../../../service/my-mobile-detect.service';
-import {UtilService} from '../../../util/util.service';
+import {serializeParams, UtilService} from '../../../util/util.service';
 import {Sums} from './sums';
+import {DataTable} from 'primeng/primeng';
+import {AttachmentService} from '../../../../../flota-web-angular-common/src/component/attachment/attachment.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {spinner} from '../../../util/utils';
+import {ApiConfigService} from '../../../service/api-config.service';
+import {GeneralResponse} from '../../../../../flota-web-angular-common/src/model/sample';
 
 @Component({
   selector: 'app-my-table-internal',
@@ -32,6 +38,7 @@ export class MyTableInternalComponent implements OnInit {
   @Input() sums: Sums;
   @Output() loadLazy = new EventEmitter();
   @Output() edit = new EventEmitter();
+  @ViewChild(DataTable) dataTable: DataTable;
   columnOptions: any[] = [];
   selectedColumns: MyColumn[] = [];
   isMobile: boolean = this.myMobileDetectService.isMobile;
@@ -40,7 +47,10 @@ export class MyTableInternalComponent implements OnInit {
   } = {};
   private timer: any;
 
-  constructor(private myMobileDetectService: MyMobileDetectService) {
+  constructor(private myMobileDetectService: MyMobileDetectService,
+              private attachmentService: AttachmentService,
+              private spinnerService: NgxSpinnerService,
+              private acs: ApiConfigService) {
   }
 
   ngOnInit() {
@@ -48,13 +58,13 @@ export class MyTableInternalComponent implements OnInit {
     this.selectedColumns = UtilService.shallowCloneArr(this.columns);
   }
 
-  clearNumberFilter(dt, col) {
+  clearNumberFilter(dt: DataTable, col: MyColumn) {
     this.numberFilter = {};
     dt.filter(null, col.field + 'From', 'greaterThanOrEqual');
     dt.filter(null, col.field + 'To', 'lessThanOrEqual');
   }
 
-  onNumberChange(value, dt, col, filterMatchMode) {
+  onNumberChange(value: number, dt: DataTable, col: MyColumn, filterMatchMode) {
     const newVar = col.field + (filterMatchMode === 'greaterThanOrEqual' ? 'From' : 'To');
     this.numberFilter[newVar] = value;
     if (this.timer) {
@@ -65,4 +75,53 @@ export class MyTableInternalComponent implements OnInit {
     }, 1000);
   }
 
+  exportCSV() {
+    const file = exportBlob(this.dataTable);
+    const data = new FormData();
+    data.append('file', file);
+    this
+      .attachmentService
+      .onSubmit('csv-xls', data)
+      .compose(spinner(this.spinnerService))
+      .map(response => response.json())
+      .subscribe((response: GeneralResponse<String>) => {
+        const url = this.acs.simpleUrl('xls?' + serializeParams({
+          token: response.data
+        }));
+        window.open(url);
+      });
+  }
+
 }
+
+const exportBlob = function (dataTable: DataTable): Blob {
+  const data = dataTable.filteredValue || dataTable.value;
+  let csv = '\ufeff';
+  // headers
+  for (let i = 0; i < dataTable.columns.length; i++) {
+    const column = dataTable.columns[i];
+    if (column.exportable && column.field) {
+      csv += '"' + (column.header || column.field) + '"';
+      if (i < (dataTable.columns.length - 1)) {
+        csv += dataTable.csvSeparator;
+      }
+    }
+  }
+  // body
+  data.forEach(function (record) {
+    csv += '\n';
+    for (let i_1 = 0; i_1 < dataTable.columns.length; i_1++) {
+      const column = dataTable.columns[i_1];
+      if (column.exportable && column.field) {
+        csv += '"' + dataTable.resolveFieldData(record, column.field) + '"';
+        if (i_1 < (dataTable.columns.length - 1)) {
+          csv += dataTable.csvSeparator;
+        }
+      }
+    }
+  });
+  const blob = new Blob([csv], {
+    type: 'text/csv;charset=utf-8;'
+  });
+  return new File([blob], dataTable.exportFilename + '.csv');
+};

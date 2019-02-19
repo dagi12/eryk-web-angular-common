@@ -25,7 +25,7 @@
         [optionLabel]="'header'"
         selectedItemsLabel="{0} wybranych elementów"></p-multiSelect>
     </div>
-    <app-excel-btn *ngIf="!hideExport" (onExport)="dt.exportCSV()"></app-excel-btn>
+    <app-excel-btn (onExport)="exportCSV()" *ngIf="!hideExport"></app-excel-btn>
   </p-header>
   <p-column
     [hidden]="col.hideOnMobile && isMobile"
