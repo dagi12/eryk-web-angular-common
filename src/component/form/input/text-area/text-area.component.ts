@@ -5,7 +5,7 @@ import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.co
 @Component({
   selector: 'app-text-area',
   templateUrl: './text-area.component.html',
-  styles: [],
+  styleUrls: ['./text-area.component.css'],
   providers: [MakeProvider(TextAreaComponent)]
 })
 export class TextAreaComponent extends AbstractValueAccessor {
