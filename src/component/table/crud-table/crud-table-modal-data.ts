@@ -4,7 +4,7 @@ import {MODE} from '../../../util/const';
 
 export class CrudTableModalData extends BSModalContext {
 
-  constructor(public currentItem = {},
+  constructor(public currentItem: any = {},
               public items: any[] = [],
               public mode: number = MODE.PREVIEW,
               public helpContent: string = '') {
