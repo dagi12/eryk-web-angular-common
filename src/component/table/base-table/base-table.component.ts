@@ -20,7 +20,6 @@ export class BaseTableComponent implements OnInit {
   lastLazyLoadEvent: LazyLoadEventExt;
   @ViewChild(DataTable) dataTable: DataTable;
   // nie dodawaj Inputa
-  loading;
   @Input() emptyMessage = 'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.';
   @Input() items: any[] = [];
   @Input() serviceUrl: string;
@@ -32,8 +31,10 @@ export class BaseTableComponent implements OnInit {
   @Input() slim = false;
   columnMap: { [_: string]: MyColumn };
   sums: Sums = null;
-  // ładuj grid wraz z pokazaniem komponentu
+  // ładuje grid wraz z pokazaniem komponentu jeśli,
+  // przekazujemy true musimy przekazać również [loading]=true w przeciwnym razie ExpressionAfter...
   @Input() lazy = false;
+  @Input() loading = false;
   @Input() filterCriteria: NgFilters = null;
   private isPostOrGet = false;
 

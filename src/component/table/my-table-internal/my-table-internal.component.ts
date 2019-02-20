@@ -38,6 +38,7 @@ export class MyTableInternalComponent implements OnInit {
   @Input() sums: Sums;
   @Output() loadLazy = new EventEmitter();
   @Output() edit = new EventEmitter();
+  @Input() loading = false;
   @ViewChild(DataTable) dataTable: DataTable;
   columnOptions: any[] = [];
   selectedColumns: MyColumn[] = [];

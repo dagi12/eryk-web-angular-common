@@ -1,23 +1,22 @@
-<app-spinner [loading]="loading">
-  <ng-content></ng-content>
-  <app-my-table-internal
-    [emptyMessage]="emptyMessage"
-    [items]="items"
-    [serviceUrl]="serviceUrl"
-    [getAllUrl]="getAllUrl"
-    [filterUrl]="filterUrl"
-    [columns]="columns"
-    [srcId]="srcId"
-    [hideExport]="hideExport"
-    [slim]="slim"
-    [lazy]="lazy"
-    [filterCriteria]="filterCriteria"
-    [first]="first"
-    [totalRecords]="totalRecords"
-    [rowStyleClass]="rowStyleClass"
-    (loadLazy)="loadLazy($event)"
-    (edit)="onEdit($event)"></app-my-table-internal>
-</app-spinner>
+<ng-content></ng-content>
+<app-my-table-internal
+  [emptyMessage]="emptyMessage"
+  [items]="items"
+  [serviceUrl]="serviceUrl"
+  [getAllUrl]="getAllUrl"
+  [filterUrl]="filterUrl"
+  [columns]="columns"
+  [srcId]="srcId"
+  [hideExport]="hideExport"
+  [slim]="slim"
+  [lazy]="lazy"
+  [filterCriteria]="filterCriteria"
+  [first]="first"
+  [totalRecords]="totalRecords"
+  [rowStyleClass]="rowStyleClass"
+  [loading]="loading"
+  (loadLazy)="loadLazy($event)"
+  (edit)="onEdit($event)"></app-my-table-internal>
 <div class="row" *ngIf="!hideCreate">
   <app-button
     [wrapperStyle]="wrapperStyle"

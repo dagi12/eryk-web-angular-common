@@ -1,6 +1,5 @@
 <!--suppress HtmlUnknownAttribute -->
 <ng-content select="[filter]"></ng-content>
-<app-spinner [loading]="loading">
   <app-my-table-internal
     [emptyMessage]="emptyMessage"
     [items]="items"
@@ -14,8 +13,8 @@
     [lazy]="lazy"
     [filterCriteria]="filterCriteria"
     [first]="first"
+    [loading]="loading"
     [sums]="sums"
     [totalRecords]="totalRecords"
     (loadLazy)="loadLazy($event)"></app-my-table-internal>
   <ng-content></ng-content>
-</app-spinner>

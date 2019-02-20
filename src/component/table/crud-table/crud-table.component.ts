@@ -19,7 +19,7 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
   @Input() createLabel: string;
   @Input() disableKey?: string;
   @Input() hideCreate: boolean;
-  @Input() wrapperStyle = 'col-lg-2 col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1 col-lg-offset-5';
+  @Input() wrapperStyle = 'col-lg-2 col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1 col-lg-offset-5 m-t';
   @Input() addContainerContent;
   @Input() editContainerContent;
   @Input() additionalOptions: LazyLoadEventExt = {};
