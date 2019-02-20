@@ -12,7 +12,6 @@ import {MAX_VALUE} from '../../../../util/const';
 export class NumberInputComponent extends AbstractValueAccessor<number> {
 
   @Input() label: string;
-  @Input() disabled: boolean;
   id = newId();
   max = MAX_VALUE;
 

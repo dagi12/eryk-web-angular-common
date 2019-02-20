@@ -20,7 +20,6 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
   @Input() inputUrl: string;
   @Input() error: boolean;
   @Input() required: boolean;
-  @Input() disabled: boolean;
   @Output() onSelect = new EventEmitter();
   typeaheadLoading: boolean;
   dataSource: Observable<any>;
