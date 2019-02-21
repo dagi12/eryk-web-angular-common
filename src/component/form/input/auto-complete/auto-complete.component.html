@@ -14,7 +14,7 @@
   <ng-content></ng-content>
   <div [ngClass]="{visible: this.loading}" class="auto-complete-button loader"></div>
   <button
-    *ngIf="!disabled"
+    *ngIf="!formControl.disabled"
     class="no-bg fa fa-close auto-complete-clear-button"
     [ngClass]="{visible: !!value}"
     type="button"
