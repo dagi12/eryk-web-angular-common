@@ -8,7 +8,7 @@ body .ui-fileupload .ui-button {
 }
 
 body .ui-fileupload .ui-button:hover {
-  background-color: #18a689;
+  background-color: var(--accent-dark);
 }
 
 body .ui-datatable.ui-datatable-scrollable .ui-datatable-footer.ui-widget-header {
