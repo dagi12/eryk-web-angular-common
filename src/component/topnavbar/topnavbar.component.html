@@ -1,9 +1,13 @@
-<div class="row border-bottom">
-  <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-    <div class="container">
-      <a class="my-navbar-brand">{{title}}</a>
-      <ng-content></ng-content>
-      <a class="navbar-brand pull-right visible-md visible-lg" *ngIf="clientName">{{clientName}}</a>
-    </div>
-  </nav>
-</div>
+<nav class="navbar navbar-static-top" role="navigation">
+  <div class="col-xs-2 visible-xs">
+    <a (click)="onMinimize.emit()"
+       class="navbar-minimalize burger-button btn btn-primary">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+  <div class="col-xs-8 col-sm-10">
+    <a class="navbar-brand" href="/#"><h3>{{title}}</h3></a>
+  </div>
+  <!-- todo client company-carsharing-->
+  <ng-content></ng-content>
+</nav>

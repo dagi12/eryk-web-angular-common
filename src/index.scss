@@ -35,3 +35,7 @@
 nav.navbar.navbar-static-top a.nav-link.active {
   color: var(--light-gray);
 }
+
+.switch.checked {
+  background-color: var(--accent) !important;
+}

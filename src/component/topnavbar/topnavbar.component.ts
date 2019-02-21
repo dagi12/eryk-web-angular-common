@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-topnavbar',
@@ -8,4 +8,5 @@ import {Component, Input} from '@angular/core';
 export class TopNavbarComponent {
   @Input() clientName: string;
   @Input() title: string;
+  @Output() onMinimize = new EventEmitter();
 }

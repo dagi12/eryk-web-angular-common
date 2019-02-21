@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="ibox">
-        <div class="ibox-title" [ngClass]="titleClasses">
+        <div *ngIf="!!title" [ngClass]="titleClasses" class="ibox-title">
           <h5>{{title}}</h5>
           <div class="ibox-tools">
             <a *ngIf="collapsable" (click)="toggleCollapse()">

@@ -62,6 +62,7 @@ import './extensions/rx-extensions';
 import {NullDefaultValueDirective} from './directives/null-default-value.directive';
 import {TranslateModule} from '@ngx-translate/core';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {MyTitleService} from './service/my-title.service';
 
 @NgModule({
   declarations: [
@@ -165,6 +166,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     MyMobileDetectService,
     ValidationService,
     InterceptedHttp,
+    MyTitleService
   ],
   entryComponents: [
     EmptyModalComponent
