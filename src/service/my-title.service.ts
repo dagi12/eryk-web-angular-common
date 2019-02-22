@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {LOGIN_TITLE} from '../../../main.helper';
 import {Title} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
+import {FLOTA_CONFIG} from '../../../flota-web-angular-common/src/flota-config.token';
+import {FlotaConfig} from '../../../flota-web-angular-common/src/flota-config.interface';
 
 const SEPARATOR = ' > ';
 
@@ -13,7 +14,8 @@ export class MyTitleService {
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private titleService: Title) {
+              private titleService: Title,
+              @Inject(FLOTA_CONFIG) private flotaConfig: FlotaConfig) {
     this.observable = this.router.events
       .filter((event) => event instanceof NavigationEnd)
       .map(() => {
@@ -51,7 +53,7 @@ export class MyTitleService {
   init() {
     this.observable
       .subscribe((pathString) => {
-        this.titleService.setTitle(`${LOGIN_TITLE} | ${pathString}`);
+        this.titleService.setTitle(`${this.flotaConfig.loginTitle} | ${pathString}`);
       });
   }
 

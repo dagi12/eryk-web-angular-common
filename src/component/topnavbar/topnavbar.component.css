@@ -158,7 +158,8 @@ nav.navbar > .nav.navbar-top-links h3 {
   float: left;
   padding: 10px 15px;
   text-align: center;
-  width: 100%;
+  /*wtf*/
+  /*width: 100%;*/
 }
 
 .navbar-brand {
@@ -166,12 +167,15 @@ nav.navbar > .nav.navbar-top-links h3 {
   line-height: 30px;
 }
 
-@media (min-width: 768px) {
-  nav.navbar {
-    margin-left: var(--nav-width);
-  }
-}
-
 nav.navbar {
   border-bottom: 0 !important;
+}
+
+ul.nav > li {
+  display: inline;
+}
+
+ul.nav > li > a {
+  /* bostrap is forcing display: block causing top navbar to be vertical */
+  display: initial !important;
 }
