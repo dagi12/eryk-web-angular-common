@@ -3,6 +3,7 @@ import {environment} from '../../../../environments/environment';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Transformer} from '../extensions/rx-extensions';
 import {Observable} from 'rxjs/Observable';
+import {FormGroup, ValidationErrors} from '@angular/forms';
 
 export function stubFun() {
   if (!environment.production) {
@@ -34,4 +35,17 @@ export function spinner<T>(spinnerService: NgxSpinnerService): Transformer<T> {
     obs
       .doOnSubscribe(() => spinnerService.show())
       .finally(() => spinnerService.hide());
+}
+
+export function getFormValidationErrors(form: FormGroup) {
+  Object.keys(form.controls).forEach(key => {
+    const controlErrors: ValidationErrors = form.get(key).errors;
+    if (controlErrors != null) {
+      if (!environment.production) {
+        Object.keys(controlErrors).forEach(keyError => {
+          console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+        });
+      }
+    }
+  });
 }

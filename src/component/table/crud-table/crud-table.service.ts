@@ -5,7 +5,7 @@ import {ApiConfigService} from '../../../service/api-config.service';
 import {LazyLoadEventExt} from '../base-table/lazyloadeventext';
 import {Response} from '@angular/http';
 
-
+// TODO use factory, make reusable for every type
 @Injectable()
 export class CrudTableService {
 
