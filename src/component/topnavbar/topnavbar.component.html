@@ -1,13 +1,12 @@
-<nav class="navbar navbar-static-top" role="navigation">
-  <div class="col-xs-2 visible-xs">
-    <a (click)="onMinimize.emit()"
-       class="navbar-minimalize burger-button btn btn-primary">
-      <i class="fa fa-bars"></i>
-    </a>
+<nav class="navbar navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a (click)="onMinimize.emit()" class="btn btn-primary burger-button visible-xs">
+        <i class="fa fa-bars"></i>
+      </a>
+      <a class="navbar-brand" href="#">{{title}}</a>
+      <!-- todo client company-carsharing-->
+      <ng-content></ng-content>
+    </div>
   </div>
-  <div class="col-xs-8 col-sm-10">
-    <a class="navbar-brand" href="/#"><h3>{{title}}</h3></a>
-  </div>
-  <!-- todo client company-carsharing-->
-  <ng-content></ng-content>
 </nav>

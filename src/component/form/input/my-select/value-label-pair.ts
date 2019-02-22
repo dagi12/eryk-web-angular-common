@@ -5,5 +5,12 @@ export interface ValueLabelPair<T> {
 
 export type CellRenderer = (_: string) => string;
 
-export const cellRendererLabelPairs = (pairs: ValueLabelPair<string>[]): CellRenderer => input => pairs.find(
-  value => value.value === input).label;
+export const cellRendererLabelPairs = (pairs: ValueLabelPair<string>[]): CellRenderer => input => {
+  if (!!input) {
+    return pairs.find(
+      value => {
+        return value.value === input;
+      }).label;
+  }
+  return null;
+};
