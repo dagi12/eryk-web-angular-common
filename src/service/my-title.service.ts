@@ -10,7 +10,7 @@ const SEPARATOR = ' > ';
 @Injectable()
 export class MyTitleService {
 
-  observable: Observable<string>;
+  observable: Observable<RouteInfo>;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -30,15 +30,18 @@ export class MyTitleService {
       .map((data) => {
         if (data.title) {
           // If a route has a title set (e.g. data: {title: "Foo"}) then we use it
-          return data.title;
+          return data;
         } else {
           // If not, we do a little magic on the url to create an approximation
-          return this.router.url.split('/').reduce((acc, frag) => {
+          const reduce = this.router.url.split('/').reduce((acc, frag) => {
             if (acc && frag) {
               acc += SEPARATOR;
             }
             return acc + MyTitleService.ucFirst(frag);
           });
+          return {
+            title: reduce
+          };
         }
       });
   }
@@ -57,4 +60,9 @@ export class MyTitleService {
       });
   }
 
+}
+
+export interface RouteInfo {
+  title: string;
+  helpContent: string;
 }

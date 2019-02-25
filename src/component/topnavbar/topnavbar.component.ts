@@ -8,5 +8,6 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class TopNavbarComponent {
   @Input() clientName: string;
   @Input() title: string;
+  @Input() helpContent: string;
   @Output() onMinimize = new EventEmitter();
 }

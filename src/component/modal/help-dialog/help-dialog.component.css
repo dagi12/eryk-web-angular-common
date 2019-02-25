@@ -6,3 +6,13 @@
 .modal-header :host {
   margin-top: 0;
 }
+
+.anchor {
+  color: white;
+}
+
+@media (max-width: 767px) {
+  .anchor {
+    margin-top: 3px;
+  }
+}
