@@ -54,6 +54,38 @@ export class MyTableInternalComponent implements OnInit {
               private acs: ApiConfigService) {
   }
 
+  static exportBlob(dataTable: DataTable): Blob {
+    const data = dataTable.filteredValue || dataTable.value;
+    let csv = '\ufeff';
+    // headers
+    for (let i = 0; i < dataTable.columns.length; i++) {
+      const column = dataTable.columns[i];
+      if (column.exportable && column.field) {
+        csv += '"' + (column.header || column.field) + '"';
+        if (i < (dataTable.columns.length - 1)) {
+          csv += dataTable.csvSeparator;
+        }
+      }
+    }
+    // body
+    data.forEach(function (record) {
+      csv += '\n';
+      for (let i_1 = 0; i_1 < dataTable.columns.length; i_1++) {
+        const column = dataTable.columns[i_1];
+        if (column.exportable && column.field) {
+          csv += '"' + dataTable.resolveFieldData(record, column.field) + '"';
+          if (i_1 < (dataTable.columns.length - 1)) {
+            csv += dataTable.csvSeparator;
+          }
+        }
+      }
+    });
+    const blob = new Blob([csv], {
+      type: 'text/csv;charset=utf-8;'
+    });
+    return new File([blob], dataTable.exportFilename + '.csv');
+  }
+
   ngOnInit() {
     this.columnOptions = UtilService.shallowCloneArr(this.columns);
     this.selectedColumns = UtilService.shallowCloneArr(this.columns);
@@ -77,14 +109,14 @@ export class MyTableInternalComponent implements OnInit {
   }
 
   exportCSV() {
-    const file = exportBlob(this.dataTable);
+    const file = MyTableInternalComponent.exportBlob(this.dataTable);
     const data = new FormData();
     data.append('file', file);
     this
       .attachmentService
       .onSubmit('csv-xls', data)
-      .compose(spinner(this.spinnerService))
       .map(response => response.json())
+      .let(spinner(this.spinnerService))
       .subscribe((response: GeneralResponse<String>) => {
         const url = this.acs.simpleUrl('xls?' + serializeParams({
           token: response.data
@@ -94,35 +126,3 @@ export class MyTableInternalComponent implements OnInit {
   }
 
 }
-
-const exportBlob = function (dataTable: DataTable): Blob {
-  const data = dataTable.filteredValue || dataTable.value;
-  let csv = '\ufeff';
-  // headers
-  for (let i = 0; i < dataTable.columns.length; i++) {
-    const column = dataTable.columns[i];
-    if (column.exportable && column.field) {
-      csv += '"' + (column.header || column.field) + '"';
-      if (i < (dataTable.columns.length - 1)) {
-        csv += dataTable.csvSeparator;
-      }
-    }
-  }
-  // body
-  data.forEach(function (record) {
-    csv += '\n';
-    for (let i_1 = 0; i_1 < dataTable.columns.length; i_1++) {
-      const column = dataTable.columns[i_1];
-      if (column.exportable && column.field) {
-        csv += '"' + dataTable.resolveFieldData(record, column.field) + '"';
-        if (i_1 < (dataTable.columns.length - 1)) {
-          csv += dataTable.csvSeparator;
-        }
-      }
-    }
-  });
-  const blob = new Blob([csv], {
-    type: 'text/csv;charset=utf-8;'
-  });
-  return new File([blob], dataTable.exportFilename + '.csv');
-};

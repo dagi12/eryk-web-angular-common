@@ -1,3 +1,4 @@
+/* tslint:disable:class-name */
 /**
  * Created by Eryk Mariankowski on 18.01.2017.
  */
@@ -16,7 +17,7 @@ export function setupConnections(mockedBackend: MockBackend, options: any, reque
 }
 
 export function mockComponent(options: Component): any {
-  let metadata: Component = {
+  const metadata: Component = {
     selector: options.selector,
     template: options.template || '',
     inputs: options.inputs,

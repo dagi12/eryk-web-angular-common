@@ -3,13 +3,6 @@ import {Observable} from 'rxjs/Observable';
 import {MyToastService} from '../service/my-toast.service';
 import {environment} from '../../../../environments/environment';
 
-export const handleToastError = (myToastService: MyToastService) => (err: Response): Observable<any> => {
-  const msg = handelNetworkErrorMsg(err);
-  myToastService.error(msg);
-  // need to throw err instead of message to catch network error like (invalid_token)
-  return Observable.throw(err);
-};
-
 export const handelNetworkErrorMsg = (response: Response, msg = null) => {
   let data;
   try {
@@ -37,6 +30,12 @@ export const handelNetworkErrorMsg = (response: Response, msg = null) => {
   return 'Brak połączenia z serwerem';
 };
 
+export const handleToastError = (myToastService: MyToastService) => (err: Response): Observable<any> => {
+  const msg = handelNetworkErrorMsg(err);
+  myToastService.error(msg);
+  // need to throw err instead of message to catch network error like (invalid_token)
+  return Observable.throw(err);
+};
 
 export function handleError(error: Response) {
   let errMsg: string;

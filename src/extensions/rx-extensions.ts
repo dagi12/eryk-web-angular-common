@@ -1,28 +1,19 @@
-import {Observable} from 'rxjs/Observable';
+import {Observable as Obs} from 'rxjs/Observable';
 import {defer} from 'rxjs/observable/defer';
 
-export type Transformer<T> = (_: Observable<T>) => Observable<T>;
+export type Transformer<T> = (_: Obs<T>) => Obs<T>;
 
 declare module 'rxjs/Observable' {
-  // noinspection TsLint
   interface Observable<T> {
-    compose(this: Observable<T>, func: Transformer<T>): Observable<T>;
-
-    doOnSubscribe(this: Observable<T>, onSubscribe: Function): Observable<T>;
+    doOnSubscribe(this: Obs<T>, onSubscribe: Function): Obs<T>;
   }
 }
 
-function doOnSubscribe<T>(this: Observable<T>, onSubscribe: Function): Observable<T> {
+function doOnSubscribe<T>(this: Obs<T>, onSubscribe: Function): Obs<T> {
   return defer(() => {
     onSubscribe(this);
     return this;
   });
 }
 
-function compose<T>(this: Observable<T>, func: Transformer<T>) {
-  return func(this);
-}
-
-Observable.prototype.compose = compose;
-Observable.prototype.doOnSubscribe = doOnSubscribe;
-
+Obs.prototype.doOnSubscribe = doOnSubscribe;

@@ -1,5 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
+const ANIMATION_DURATION = 500;
+
 @Component({
   selector: 'app-shaking-error',
   templateUrl: './shaking-error.component.html',
@@ -28,5 +30,3 @@ export class ShakingErrorComponent implements OnInit {
   }
 
 }
-
-const ANIMATION_DURATION = 500;

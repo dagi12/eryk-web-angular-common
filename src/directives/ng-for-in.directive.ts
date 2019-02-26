@@ -1,11 +1,13 @@
 import {Directive, Input, OnChanges, SimpleChange, SimpleChanges} from '@angular/core';
 import {NgForOf} from '@angular/common';
+
 interface NgForInChanges extends SimpleChanges {
   ngForIn?: SimpleChange;
   ngForOf?: SimpleChange;
 }
 
 //noinspection TsLint
+// tslint:disable-next-line:directive-selector
 @Directive({selector: '[ngFor][ngForIn]'})
 export class NgForInDirective<T> extends NgForOf<T> implements OnChanges {
 
