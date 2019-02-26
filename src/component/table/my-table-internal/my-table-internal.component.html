@@ -40,7 +40,7 @@
 
 
     <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
-      {{item[col.field] | date:'dd-MM-yyyy HH:mm' }}
+      {{item[col.field] | datex:'DD-MM-YYYY HH:mm' }}
     </ng-template>
 
     <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">

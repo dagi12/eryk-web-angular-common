@@ -55,8 +55,8 @@ export class MyTitleService {
 
   init() {
     this.observable
-      .subscribe((pathString) => {
-        this.titleService.setTitle(`${this.flotaConfig.loginTitle} | ${pathString}`);
+      .subscribe((routeInfo: RouteInfo) => {
+        this.titleService.setTitle(`${this.flotaConfig.loginTitle} | ${routeInfo.title}`);
       });
   }
 

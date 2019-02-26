@@ -63,6 +63,7 @@ import {NullDefaultValueDirective} from './directives/null-default-value.directi
 import {TranslateModule} from '@ngx-translate/core';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {MyTitleService} from './service/my-title.service';
+import {DatexPipe} from './pipes/datex.pipe';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import {MyTitleService} from './service/my-title.service';
     TextAreaValidatedComponent,
     PanelComponent,
     YesNoPipe,
+    DatexPipe,
     HeaderModalComponent,
     SpinnerComponent,
     CheckboxComponent,
@@ -101,7 +103,8 @@ import {MyTitleService} from './service/my-title.service';
     MyTableInternalComponent,
     EmailValidatedComponent,
     PasswordValidatedComponent,
-    NullDefaultValueDirective
+    NullDefaultValueDirective,
+    DatexPipe
   ],
   exports: [
     TopNavbarComponent,

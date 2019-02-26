@@ -12,7 +12,7 @@
 }
 
 @media (max-width: 767px) {
-  .anchor {
-    margin-top: 3px;
+  .modal-header a {
+    margin-top: 1px;
   }
 }
