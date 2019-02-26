@@ -8,6 +8,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {handleToastError} from '../util/error-handler';
 import {MyToastService} from './my-toast.service';
+import {catchError} from 'rxjs/operators';
 
 
 @Injectable()
@@ -20,7 +21,7 @@ export class InterceptedHttp extends Http {
   request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
     return super
       .request(url, options)
-      .catch(handleToastError(this.myToastService));
+      .pipe(catchError(handleToastError(this.myToastService)));
   }
 
 }
