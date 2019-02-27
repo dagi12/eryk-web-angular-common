@@ -1,5 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {TextInputComponent} from './text-input.component';
 import {FormsModule} from '@angular/forms';
 
@@ -10,7 +11,7 @@ describe('TextInputComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [TextInputComponent]
+      declarations: [TextInputComponent], schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 

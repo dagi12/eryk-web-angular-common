@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {RouterOutletComponent} from './router-outlet.component';
 
@@ -8,7 +9,8 @@ describe('RouterOutletComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RouterOutletComponent]
+      declarations: [RouterOutletComponent],
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));

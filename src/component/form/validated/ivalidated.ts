@@ -1,12 +1,12 @@
-import {FormControlDirective} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 
 export class IValidated {
-  public formControl: FormControlDirective;
+  public formControl: FormControl;
 
   // noinspection JSUnusedGlobalSymbols
   onBlur() {
     if (this.formControl) {
-      this.formControl.control.markAsDirty();
+      this.formControl.markAsDirty();
     }
   }
 

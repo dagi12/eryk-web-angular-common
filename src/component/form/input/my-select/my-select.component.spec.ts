@@ -1,5 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {MySelectComponent} from './my-select.component';
 import {FormsModule} from '@angular/forms';
 
@@ -10,7 +11,7 @@ describe('MySelectComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [MySelectComponent]
+      declarations: [MySelectComponent], schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
@@ -18,6 +19,10 @@ describe('MySelectComponent', () => {
     fixture = TestBed.createComponent(MySelectComponent);
     component = fixture.componentInstance;
     component.label = 'Foo';
+    component.map = [{
+      label: 'asd',
+      value: 'asd'
+    }];
     fixture.detectChanges();
   });
 

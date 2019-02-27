@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {ExcelBtnComponent} from './excel-btn.component';
 
@@ -8,7 +9,7 @@ describe('ExcelBtnComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ExcelBtnComponent]
+      declarations: [ExcelBtnComponent], schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));

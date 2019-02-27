@@ -1,11 +1,12 @@
-import {EventEmitter, forwardRef, Injectable, Injector, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormControlDirective, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
+import {EventEmitter, forwardRef, Injectable, Injector, OnInit, Output, Type} from '@angular/core';
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
 import {isError} from '../validated/common-validators';
+import {IValidated} from '../validated/ivalidated';
 
 @Injectable()
 export abstract class AbstractValueAccessor<T = string> implements ControlValueAccessor, OnInit {
 
-  formControl: FormControlDirective;
+  formControl: FormControl;
   submitted: boolean;
   @Output() blur = new EventEmitter();
 
@@ -30,7 +31,7 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
   }
 
   locIsError() {
-    return this.formControl.control ? isError(this.formControl.control, this.submitted) : true;
+    return (this.formControl) ? isError(this.formControl, this.submitted) : true;
   }
 
   // noinspection JSUnusedLocalSymbols
@@ -56,13 +57,13 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
   ngOnInit() {
     const ngControl = this.injector.get(NgControl, null);
     if (ngControl) {
-      this.formControl = <FormControlDirective> ngControl;
+      this.formControl = <FormControl>ngControl;
     }
   }
 
 }
 
-export function MakeProvider(type: any) {
+export function MakeProvider<T extends IValidated>(type: Type<T>) {
   return {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => type),

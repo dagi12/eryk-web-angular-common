@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {PreviewInputComponent} from './preview-input.component';
 
@@ -8,7 +9,7 @@ describe('PreviewInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PreviewInputComponent]
+      declarations: [PreviewInputComponent], schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));

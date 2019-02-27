@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {HeaderModalComponent} from './header-modal.component';
 
@@ -8,7 +9,7 @@ describe('HeaderModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HeaderModalComponent]
+      declarations: [HeaderModalComponent], schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));

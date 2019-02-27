@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {FormGroupComponent} from './form-group.component';
 
@@ -8,7 +9,7 @@ describe('FormGroupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FormGroupComponent]
+      declarations: [FormGroupComponent], schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));

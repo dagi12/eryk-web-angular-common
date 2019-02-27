@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {PanelComponent} from './panel.component';
 
@@ -8,7 +9,7 @@ describe('PanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PanelComponent]
+      declarations: [PanelComponent], schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));

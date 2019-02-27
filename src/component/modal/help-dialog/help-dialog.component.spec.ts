@@ -1,10 +1,10 @@
 /* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HelpDialogComponent} from './help-dialog.component';
-import {ModalModule} from 'ngx-modialog';
 import {BootstrapModalModule} from 'ngx-modialog/plugins/bootstrap';
 import {RouterTestingModule} from '@angular/router/testing';
-
+import {CommonModalService} from '../../../service/common-modal/common-modal.service';
+import {commonModalServiceStub} from '../../../../../../testing/common-stubs';
 
 describe('HelpDialogComponent', () => {
   let component: HelpDialogComponent;
@@ -14,13 +14,14 @@ describe('HelpDialogComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        ModalModule.forRoot(),
         BootstrapModalModule
       ],
       declarations: [
         HelpDialogComponent
       ],
-      providers: []
+      providers: [
+        {provide: CommonModalService, useValue: commonModalServiceStub}
+      ]
     })
       .compileComponents();
   }));

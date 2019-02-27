@@ -20,6 +20,7 @@ export class ModalHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
 }

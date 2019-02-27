@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {TextInputValidatedComponent} from './text-input-validated.component';
 
@@ -8,7 +9,7 @@ describe('TextInputValidatedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TextInputValidatedComponent]
+      declarations: [TextInputValidatedComponent], schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));
