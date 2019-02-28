@@ -9,12 +9,13 @@ import {requiredProps} from '../../../util/util.service';
 export class ButtonComponent implements OnInit {
 
   @Input() label = 'Zatwierdź';
-  @Input() style = 'btn-primary';
+  // renamed from style, this was causing weird parse error on PhantomJS
+  @Input() btnStyle = 'btn-primary';
   @Input() wrapperStyle: string;
   @Input() disabled: boolean;
   @Input() icon = 'fa-check';
   @Input() type = 'button';
-  @Output() onClick: EventEmitter<any> = new EventEmitter();
+  @Output() onClick = new EventEmitter();
 
   constructor() {
   }
