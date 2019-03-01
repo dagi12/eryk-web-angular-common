@@ -19,7 +19,6 @@ export class DatePickerComponent extends AbstractValueAccessor<Date> implements 
   @Input() placeholder = 'Kliknij, aby wybrać datę...';
   @Input() label: string;
   @Input() required: boolean;
-  @Input() disabled: boolean;
   @Input() submitted = false;
   id = newId();
   eventOptions: boolean | { capture?: boolean, passive?: boolean };

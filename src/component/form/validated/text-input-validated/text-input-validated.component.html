@@ -1,4 +1,4 @@
 <app-text-input [(ngModel)]="value" [label]="label" [error]="locIsError()" [required]="required"
-                (blur)="onBlur()" [disabled]="disabled">
+                (blur)="onBlur()" [disabled]="formControl.disabled">
   <app-error-box [error]="locIsError()"></app-error-box>
 </app-text-input>

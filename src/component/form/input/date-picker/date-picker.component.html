@@ -6,7 +6,7 @@
     type="date"
     autocomplete="off"
     class="form-control"
-    [disabled]="disabled"
+    [disabled]="formControl.disabled"
     [placeholder]="placeholder"
     [(ngModel)]="mobileValue">
   <input
@@ -17,12 +17,12 @@
     class="form-control"
     #dp="bsDatepicker"
     bsDatepicker
-    [disabled]="disabled"
+    [disabled]="formControl.disabled"
     [placeholder]="placeholder"
     [(ngModel)]="value">
   <app-error-boxes [submitted]="submitted" [control]="formControl" [config]="config"></app-error-boxes>
   <button
-    *ngIf="!disabled"
+    *ngIf="!formControl.disabled"
     class="no-bg fa fa-close auto-complete-clear-button"
     [ngClass]="{visible: !!value}"
     type="button"
