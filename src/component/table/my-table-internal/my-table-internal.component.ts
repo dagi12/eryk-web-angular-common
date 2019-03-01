@@ -10,6 +10,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {spinner} from '../../../util/utils';
 import {ApiConfigService} from '../../../service/api-config.service';
 import {GeneralResponse} from '../../../../../flota-web-angular-common/src/model/sample';
+import 'rxjs/add/operator/let';
 
 @Component({
   selector: 'app-my-table-internal',
