@@ -37,6 +37,7 @@ export class MyTableInternalComponent implements OnInit {
   @Input() totalRecords = 0;
   @Input() rowStyleClass: Function;
   @Input() sums: Sums;
+  @Input() customExport: Function;
   @Output() loadLazy = new EventEmitter();
   @Output() edit = new EventEmitter();
   @Input() loading = false;
@@ -110,20 +111,25 @@ export class MyTableInternalComponent implements OnInit {
   }
 
   exportCSV() {
-    const file = MyTableInternalComponent.exportBlob(this.dataTable);
-    const data = new FormData();
-    data.append('file', file);
-    this
-      .attachmentService
-      .onSubmit('csv-xls', data)
-      .map(response => response.json())
-      .let(spinner(this.spinnerService))
-      .subscribe((response: GeneralResponse<String>) => {
-        const url = this.acs.simpleUrl('xls?' + serializeParams({
-          token: response.data
-        }));
-        window.open(url);
-      });
+    if (this.customExport) {
+      this.customExport();
+    } else {
+      const file = MyTableInternalComponent.exportBlob(this.dataTable);
+      const data = new FormData();
+      data.append('file', file);
+      this
+        .attachmentService
+        .onSubmit('csv-xls', data)
+        .map(response => response.json())
+        .let(spinner(this.spinnerService))
+        .subscribe((response: GeneralResponse<String>) => {
+          const url = this.acs.simpleUrl('xls?' + serializeParams({
+            token: response.data
+          }));
+          window.open(url);
+        });
+    }
+
   }
 
 }

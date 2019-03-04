@@ -36,6 +36,7 @@ export class BaseTableComponent implements OnInit {
   @Input() lazy = false;
   @Input() loading = false;
   @Input() filterCriteria: NgFilters = null;
+  @Input() customExport: Function;
   private isPostOrGet = false;
 
   constructor(protected crudTableService: CrudTableService) {
