@@ -7,6 +7,7 @@ import {arrayToMap2} from '../../../util/array.helper';
 import {NgFilters} from '../../../model/ng-filters';
 import {LazyLoadEventExt} from './lazyloadeventext';
 import {Sums} from '../my-table-internal/sums';
+import {CrudTableApi} from '../crud-table/crud-table-api';
 
 @Component({
   selector: 'app-base-table',
@@ -23,12 +24,10 @@ export class BaseTableComponent implements OnInit {
   @Input() emptyMessage = 'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.';
   @Input() items: any[] = [];
   @Input() serviceUrl: string;
-  @Input() getAllUrl?: string;
   @Input() filterUrl?: string;
   @Input() columns: MyColumn[];
   @Input() srcId: number;
   @Input() hideExport: boolean;
-  @Input() slim = false;
   columnMap: { [_: string]: MyColumn };
   sums: Sums = null;
   // ładuje grid wraz z pokazaniem komponentu jeśli,
@@ -37,7 +36,7 @@ export class BaseTableComponent implements OnInit {
   @Input() loading = false;
   @Input() filterCriteria: NgFilters = null;
   @Input() customExport: Function;
-  private isPostOrGet = false;
+  private crudTableApi: CrudTableApi;
 
   constructor(protected crudTableService: CrudTableService) {
 
@@ -70,22 +69,16 @@ export class BaseTableComponent implements OnInit {
   callback = items => this.items = items._embedded ? items._embedded[this.serviceUrl] : items;
 
   ngOnInit() {
+    this.crudTableApi = this.crudTableService.buildApi(this.serviceUrl);
     this.columnMap = arrayToMap2(this.columns, 'field');
-    if (!this.getAllUrl) {
-      // for every angular table
-      this.getAllUrl = this.serviceUrl + '/table2';
-      this.isPostOrGet = true;
-    } else {
-      this.refreshTable();
-    }
   }
 
   refreshTable() {
     if (this.lazy) {
       this.loadLazy(this.lastLazyLoadEvent, true);
     } else {
-      this.crudTableService
-        .all(this.getAllUrl)
+      this.crudTableApi
+        .all()
         .doOnSubscribe(() => this.loading = true)
         .finally(() => this.loading = false)
         .subscribe(this.callback);
@@ -96,8 +89,8 @@ export class BaseTableComponent implements OnInit {
     this.lastLazyLoadEvent = options;
     this.prepareRequestParams(options, resetPaging);
     // noinspection JSIgnoredPromiseFromCall
-    this.crudTableService
-      .lazy(this.getAllUrl, options)
+    this.crudTableApi
+      .lazy(options)
       .doOnSubscribe(() => this.loading = true)
       .finally(() => this.loading = false)
       .subscribe((items: any[]) => {

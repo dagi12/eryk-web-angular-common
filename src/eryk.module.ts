@@ -177,7 +177,7 @@ import {DatexPipe} from './pipes/datex.pipe';
 })
 export class ErykModule {
 
-  public constructor(@Optional() @SkipSelf() parentModule: ErykModule, injector: Injector, localeService: BsLocaleService) {
+  constructor(@Optional() @SkipSelf() parentModule: ErykModule, injector: Injector, localeService: BsLocaleService) {
     if (parentModule) {
       throw new Error('ErykModule has already been imported.');
     } else {
@@ -187,7 +187,7 @@ export class ErykModule {
     localeService.use('pl');
   }
 
-  public static forRoot(config: ErykConfig) {
+  static forRoot(config: ErykConfig) {
     return {
       ngModule: ErykModule,
       providers: [

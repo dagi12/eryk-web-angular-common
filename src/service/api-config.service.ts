@@ -17,7 +17,7 @@ export class ApiConfigService {
     return this._apiUrl;
   }
 
-  public url(serviceUrl?: string, endpointUrl?: string): string {
+  url(serviceUrl?: string, endpointUrl?: string): string {
     let resultUrl: string = this._apiUrl + (serviceUrl || '') + '/' + (endpointUrl || '');
     while (resultUrl.slice(-1) === '/') {
       resultUrl = resultUrl.slice(0, -1);
@@ -25,11 +25,11 @@ export class ApiConfigService {
     return resultUrl;
   }
 
-  public simpleUrl(serviceUrl: string) {
+  simpleUrl(serviceUrl: string) {
     return this._apiUrl + serviceUrl;
   }
 
-  public oauthApiUrl(serviceUrl: string) {
+  oauthApiUrl(serviceUrl: string) {
     return this._oauthApiUrl + serviceUrl;
   }
 
