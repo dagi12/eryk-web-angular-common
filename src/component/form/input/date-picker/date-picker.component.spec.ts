@@ -4,6 +4,7 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {DatePickerComponent} from './date-picker.component';
 import {BsDatepickerModule} from 'ngx-bootstrap';
 import {MyMobileDetectService} from '../../../../service/my-mobile-detect.service';
+import {FormControl} from '@angular/forms';
 
 describe('DatePickerComponent', () => {
   let component: DatePickerComponent;
@@ -21,6 +22,7 @@ describe('DatePickerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DatePickerComponent);
     component = fixture.componentInstance;
+    component.formControl = new FormControl();
     fixture.detectChanges();
   });
 

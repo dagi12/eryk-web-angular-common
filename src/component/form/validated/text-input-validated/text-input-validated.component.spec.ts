@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {TextInputValidatedComponent} from './text-input-validated.component';
+import {FormControl} from '@angular/forms';
 
 describe('TextInputValidatedComponent', () => {
   let component: TextInputValidatedComponent;
@@ -17,6 +18,7 @@ describe('TextInputValidatedComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextInputValidatedComponent);
     component = fixture.componentInstance;
+    component.formControl = new FormControl();
     fixture.detectChanges();
   });
 
