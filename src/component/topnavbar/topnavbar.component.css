@@ -121,6 +121,12 @@
   }
 }
 
+@media (min-width: 768px) {
+  nav.navbar {
+    margin-left: var(--nav-width);
+  }
+}
+
 @media (max-width: 767px) {
   .menu-visible-md {
     display: block !important;
