@@ -51,7 +51,7 @@ export class BaseTableComponent implements OnInit {
     }
   }
 
-  private static switchType(value: any) {
+  static switchType(value: any) {
     switch (typeof value) {
       case 'object':
         if (value instanceof Date) {
@@ -112,7 +112,6 @@ export class BaseTableComponent implements OnInit {
   }
 
   prepareRequestParams(options: LazyLoadEventExt, resetPaging: boolean) {
-    BaseTableComponent.addFilterTypes(<NgFilters>options.filters);
     if (this.filterCriteria) {
       for (const filter in this.filterCriteria) {
         if (this.filterCriteria.hasOwnProperty(filter)) {
@@ -123,6 +122,7 @@ export class BaseTableComponent implements OnInit {
         }
       }
     }
+    BaseTableComponent.addFilterTypes(<NgFilters>options.filters);
     if (resetPaging) {
       options.first = 0;
       this.first = 0;
@@ -132,6 +132,7 @@ export class BaseTableComponent implements OnInit {
     }
   }
 
+  // TODO nie powinno być tego w eryk-web-angular-common do wywalenie po zaaplikowaniu turbo table
   private calcSums(items: any[]) {
     this.sums = {
       amountSum: '0',

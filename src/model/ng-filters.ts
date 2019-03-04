@@ -6,8 +6,9 @@ export interface NgFilters {
 
 export interface FilterMetadataExt extends FilterMetadata {
   enumType?: boolean;
-  // should be required (even if columnMap defines type)
-  filterType: FilterType;
+  // 1. should be required (even if columnMap defines type)
+  // 2. it isn't required - BaseTableComponent.prepareRequestParameters adds filterType dynamically
+  filterType?: FilterType;
 }
 
 export type FilterType = 'number' | 'text' | 'date' | 'set' | 'code';
