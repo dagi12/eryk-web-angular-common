@@ -87,9 +87,17 @@ export const ltN = n => value => {
   return null;
 };
 
+// don't add greater or equal sign (it's already there...)
 export const dateGreaterThan = (date: Date): ValidatorFn => control => {
   if (date && (new Date(control.value).getTime() < date.getTime())) {
     return {date: true};
+  }
+  return null;
+};
+
+export const dateLessThan = (date: Date): ValidatorFn => control => {
+  if (date && (new Date(control.value).getTime() > date.getTime())) {
+    return {dateLess: true};
   }
   return null;
 };

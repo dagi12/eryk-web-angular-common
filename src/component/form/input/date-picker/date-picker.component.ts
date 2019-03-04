@@ -24,7 +24,8 @@ export class DatePickerComponent extends AbstractValueAccessor<Date> implements 
   eventOptions: boolean | { capture?: boolean, passive?: boolean };
   config = {
     required: 'Pole nie może być puste',
-    date: 'Data musi być późniejsza od daty dzisiejszej'
+    date: 'Data musi być późniejsza od daty dzisiejszej',
+    dateLess: 'Nie można zmienić daty początku na późniejszą'
   };
   private readonly scroll: () => void;
 
