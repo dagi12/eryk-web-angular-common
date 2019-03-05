@@ -90,7 +90,17 @@ export class MyTableInternalComponent implements OnInit {
     this.columnOptions = UtilService.shallowCloneArr(this.columns);
     this.columnStorageKey = COLUMN_KEY_PREFIX + this.serviceUrl;
     try {
-      this.selectedColumns = JSON.parse(localStorage.getItem(this.columnStorageKey));
+      const item = localStorage.getItem(this.columnStorageKey);
+      if (!!item) {
+        const tempColumns = JSON.parse(item);
+        if (!!this.selectedColumns) {
+          this.selectedColumns = tempColumns;
+        } else {
+          this.selectedColumns = UtilService.shallowCloneArr(this.columns);
+        }
+      } else {
+        this.selectedColumns = UtilService.shallowCloneArr(this.columns);
+      }
     } catch (e) {
       this.selectedColumns = UtilService.shallowCloneArr(this.columns);
     }
