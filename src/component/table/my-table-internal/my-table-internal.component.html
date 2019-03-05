@@ -22,7 +22,8 @@
       <p-multiSelect
         defaultLabel="Wybierz kolumny"
         [options]="columnOptions"
-        [(ngModel)]="selectedColumns"
+        (ngModelChange)="onSelectedColumnsChange($event)"
+        [ngModel]="selectedColumns"
         [scrollHeight]="'1000px'"
         [optionLabel]="'header'"
         selectedItemsLabel="{0} wybranych elementów"></p-multiSelect>

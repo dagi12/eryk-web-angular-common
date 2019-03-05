@@ -108,6 +108,16 @@ export const lessThanFloatValidation = ltN(DEC_MAX_VALUE);
 
 export const greaterThanToday = dateGreaterThan(dateWithoutHours());
 
+function greaterThanTodayOrNull(): ValidatorFn {
+  const date = dateWithoutHours();
+  return (control: AbstractControl) => {
+    if (control.value && new Date(control.value).getTime() < date.getTime()) {
+      return {date: true};
+    }
+    return null;
+  };
+}
+
 export type ErrorChecker = (control: FormControl, submitted: boolean, valid?: boolean) => boolean;
 
 export const isError: ErrorChecker = (control: FormControl, submitted: boolean, valid?: boolean) => {

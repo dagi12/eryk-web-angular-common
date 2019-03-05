@@ -18,7 +18,7 @@
     #dp="bsDatepicker"
     bsDatepicker
     [disabled]="formControl.disabled"
-    [placeholder]="placeholder"
+    placeholder="{{!formControl.disabled && placeholder || ''}}"
     [(ngModel)]="value">
   <app-error-boxes [submitted]="submitted" [control]="formControl" [config]="config"></app-error-boxes>
   <button

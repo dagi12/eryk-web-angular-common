@@ -12,12 +12,15 @@ import {ApiConfigService} from '../../../service/api-config.service';
 import {GeneralResponse} from '../../../../../flota-web-angular-common/src/model/sample';
 import 'rxjs/add/operator/let';
 
+const COLUMN_KEY_PREFIX = 'company_carsharing_client_';
+
 @Component({
   selector: 'app-my-table-internal',
   templateUrl: './my-table-internal.component.html',
   styleUrls: ['./my-table-internal.css']
 })
 export class MyTableInternalComponent implements OnInit {
+  columnStorageKey: string;
 
   @Input() emptyMessage;
   @Input() items: any[] = [{}];
@@ -85,7 +88,20 @@ export class MyTableInternalComponent implements OnInit {
 
   ngOnInit() {
     this.columnOptions = UtilService.shallowCloneArr(this.columns);
-    this.selectedColumns = UtilService.shallowCloneArr(this.columns);
+    this.columnStorageKey = COLUMN_KEY_PREFIX + this.serviceUrl;
+    try {
+      this.selectedColumns = JSON.parse(localStorage.getItem(this.columnStorageKey));
+    } catch (e) {
+      this.selectedColumns = UtilService.shallowCloneArr(this.columns);
+    }
+  }
+
+  onSelectedColumnsChange(columns: MyColumn[]) {
+    // FIXME use angular-async-local-storage on migration to Angular 5
+    this.selectedColumns = columns;
+    setTimeout(() => {
+      localStorage.setItem(this.columnStorageKey, JSON.stringify(columns));
+    });
   }
 
   clearNumberFilter(dt: DataTable, col: MyColumn) {
