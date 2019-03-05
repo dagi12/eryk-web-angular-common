@@ -24,7 +24,6 @@ export class BaseTableComponent implements OnInit {
   @Input() emptyMessage = 'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.';
   @Input() items: any[] = [];
   @Input() serviceUrl: string;
-  @Input() filterUrl?: string;
   @Input() columns: MyColumn[];
   @Input() srcId: number;
   @Input() hideExport: boolean;
@@ -32,6 +31,7 @@ export class BaseTableComponent implements OnInit {
   sums: Sums = null;
   // ładuje grid wraz z pokazaniem komponentu jeśli,
   // przekazujemy true musimy przekazać również [loading]=true w przeciwnym razie ExpressionAfter...
+  // jeśli lazy jest fałszywe nie pokazujemy filtrów i używamy endpointa getAll zamiast table2
   @Input() lazy = false;
   @Input() loading = false;
   @Input() filterCriteria: NgFilters = null;
@@ -71,6 +71,10 @@ export class BaseTableComponent implements OnInit {
   ngOnInit() {
     this.crudTableApi = this.crudTableService.buildApi(this.serviceUrl);
     this.columnMap = arrayToMap2(this.columns, 'field');
+    // if lazy is untrue there is no inital onLazyLoad event
+    if (!this.lazy) {
+      this.refreshTable();
+    }
   }
 
   refreshTable() {

@@ -3,7 +3,7 @@
      (click)="closeCallback()">
     <i class="fa fa-close fa-2x"></i>
   </a>
-  <app-help-dialog class="fa-pull-right m-r" [helpContent]="helpContent"></app-help-dialog>
+  <app-help-dialog *ngIf="!!helpContent" [helpContent]="helpContent" class="fa-pull-right m-r"></app-help-dialog>
   <div class="fa {{icon}} m-r fa-2x pull-left"></div>
   <h4 class="modal-title">{{modalTitle}}</h4>
 </div>

@@ -7,10 +7,6 @@
   margin-top: 0;
 }
 
-.anchor {
-  color: white;
-}
-
 @media (max-width: 767px) {
   .modal-header a {
     margin-top: 1px;

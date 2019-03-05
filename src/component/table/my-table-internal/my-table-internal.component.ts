@@ -22,7 +22,6 @@ export class MyTableInternalComponent implements OnInit {
   @Input() emptyMessage;
   @Input() items: any[] = [{}];
   @Input() serviceUrl: string;
-  @Input() filterUrl?: string;
   @Input() columns: MyColumn[];
   @Input() srcId: number;
   @Input() hideExport: boolean;
