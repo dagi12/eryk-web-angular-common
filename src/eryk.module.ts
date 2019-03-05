@@ -64,6 +64,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {MyTitleService} from './service/my-title.service';
 import {DatexPipe} from './pipes/datex.pipe';
+import {CrudTableModalComponent} from './component/table/crud-table/crud-table-modal/crud-table-modal.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import {DatexPipe} from './pipes/datex.pipe';
     EmailValidatedComponent,
     PasswordValidatedComponent,
     NullDefaultValueDirective,
-    DatexPipe
+    DatexPipe,
+    CrudTableModalComponent
   ],
   exports: [
     TopNavbarComponent,
@@ -140,6 +142,7 @@ import {DatexPipe} from './pipes/datex.pipe';
     EmailValidatedComponent,
     PasswordValidatedComponent,
     NullDefaultValueDirective,
+    CrudTableModalComponent
   ],
   imports: [
     BsDatepickerModule.forRoot(),
