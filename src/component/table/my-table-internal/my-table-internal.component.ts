@@ -14,6 +14,11 @@ import 'rxjs/add/operator/let';
 
 const COLUMN_KEY_PREFIX = 'company_carsharing_client_';
 
+export interface FileInfo {
+  fileName: string;
+  blob: Blob;
+}
+
 @Component({
   selector: 'app-my-table-internal',
   templateUrl: './my-table-internal.component.html',
@@ -54,7 +59,7 @@ export class MyTableInternalComponent implements OnInit {
               private acs: ApiConfigService) {
   }
 
-  static exportBlob(dataTable: DataTable): Blob {
+  static exportBlob(dataTable: DataTable): FileInfo {
     const data = dataTable.filteredValue || dataTable.value;
     let csv = '\ufeff';
     // headers
@@ -83,7 +88,10 @@ export class MyTableInternalComponent implements OnInit {
     const blob = new Blob([csv], {
       type: 'text/csv;charset=utf-8;'
     });
-    return new File([blob], dataTable.exportFilename + '.csv');
+    return {
+      blob: blob,
+      fileName: dataTable.exportFilename + '.csv'
+    };
   }
 
   ngOnInit() {
@@ -137,7 +145,7 @@ export class MyTableInternalComponent implements OnInit {
     } else {
       const file = MyTableInternalComponent.exportBlob(this.dataTable);
       const data = new FormData();
-      data.append('file', file);
+      data.append('file', file.blob, file.fileName);
       this
         .attachmentService
         .onSubmit('csv-xls', data)
