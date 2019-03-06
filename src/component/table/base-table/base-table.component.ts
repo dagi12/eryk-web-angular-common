@@ -129,7 +129,8 @@ export class BaseTableComponent implements OnInit {
     }
   }
 
-  // TODO nie powinno być tego w eryk-web-angular-common do wywalenie po zaaplikowaniu turbo table
+  // TODO nie powinno być tego w eryk-web-angular-common
+  // do przeniesienia do company-carsharing po zaaplikowaniu turbo table
   private calcSums(items: any[]) {
     this.sums = {
       amountSum: '0',

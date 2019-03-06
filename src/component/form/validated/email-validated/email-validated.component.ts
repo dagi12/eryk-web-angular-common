@@ -9,9 +9,9 @@ import {AbstractValueAccessor, MakeProvider} from '../../input/abstract-value-ac
 })
 export class EmailValidatedComponent extends AbstractValueAccessor {
 
-  @Input() disabled: boolean;
   @Input() submitted: boolean;
   @Input() label = 'Email';
+  @Input() placeholder = 'Wpisz adres email...';
 
   errorConfig = {
     error: 'Adres email nieprawidłowy',

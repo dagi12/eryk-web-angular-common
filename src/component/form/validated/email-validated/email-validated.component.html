@@ -3,6 +3,7 @@
                 [(ngModel)]="value"
                 [disabled]="formControl.disabled"
                 [maxLength]="37"
+                [placeholder]="placeholder"
                 (blur)="onBlur()">
   <app-error-boxes [submitted]="submitted" [control]="formControl" [config]="errorConfig"></app-error-boxes>
 </app-text-input>
