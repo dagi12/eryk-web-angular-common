@@ -29,7 +29,7 @@ import {YesNoPipe} from './pipes/yes-no.pipe';
 import {HeaderModalComponent} from './component/modal/header-modal/header-modal.component';
 import {CheckboxComponent} from './component/form/input/checkbox/checkbox.component';
 import {NumberInputValidatedComponent} from './component/form/validated/number-input-validated/number-input-validated.component';
-import {BsLocaleService, CollapseModule, DatepickerModule, TypeaheadModule} from 'ngx-bootstrap';
+import {CollapseModule, DatepickerModule, TypeaheadModule} from 'ngx-bootstrap';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -180,14 +180,13 @@ import {CrudTableModalComponent} from './component/table/crud-table/crud-table-m
 })
 export class ErykModule {
 
-  constructor(@Optional() @SkipSelf() parentModule: ErykModule, injector: Injector, localeService: BsLocaleService) {
+  constructor(@Optional() @SkipSelf() parentModule: ErykModule, injector: Injector) {
     if (parentModule) {
       throw new Error('ErykModule has already been imported.');
     } else {
       Global.injector = injector;
     }
     defineLocale('pl', plLocale);
-    localeService.use('pl');
   }
 
   static forRoot(config: ErykConfig) {
