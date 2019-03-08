@@ -30,8 +30,12 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
     this.blur.emit();
   }
 
+  // changed because form controls turns red onClose despite they are disabled
   locIsError() {
-    return (this.formControl) ? isError(this.formControl, this.submitted) : true;
+    if (this.formControl && !this.formControl.disabled) {
+      return isError(this.formControl, this.submitted);
+    }
+    return false;
   }
 
   // noinspection JSUnusedLocalSymbols
