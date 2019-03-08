@@ -11,7 +11,7 @@ import {MyToastService} from './my-toast.service';
 
 
 @Injectable()
-export class InterceptedHttp implements HttpInterceptor {
+export class ErrorHttpInterceptor implements HttpInterceptor {
 
   constructor(private myToastService: MyToastService, private errorHandler: ToastErrorHandler) {
   }
