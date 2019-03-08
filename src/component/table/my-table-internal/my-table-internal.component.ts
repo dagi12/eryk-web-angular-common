@@ -149,7 +149,6 @@ export class MyTableInternalComponent implements OnInit {
       this
         .attachmentService
         .onSubmit('csv-xls', data)
-        .map(response => response.json())
         .let(spinner(this.spinnerService))
         .subscribe((response: GeneralResponse<String>) => {
           const url = this.acs.simpleUrl('xls?' + serializeParams({

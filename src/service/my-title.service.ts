@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {ActivatedRoute, Data, NavigationEnd, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
 import {FLOTA_CONFIG} from '../../../flota-web-angular-common/src/flota-config.token';
@@ -10,23 +10,17 @@ const SEPARATOR = ' > ';
 @Injectable()
 export class MyTitleService {
 
-  observable: Observable<RouteInfo>;
+  observable: Observable<Data>;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private titleService: Title,
               @Inject(FLOTA_CONFIG) private flotaConfig: FlotaConfig) {
     this.observable = this.router.events
-      .filter((event) => event instanceof NavigationEnd)
-      .map(() => {
-        let route = this.activatedRoute;
-        while (route.firstChild) {
-          route = route.firstChild;
-        }
-        return route;
-      })
-      .filter((route) => route.outlet === 'primary')
-      .mergeMap((route) => route.data)
+      .filter(event => event instanceof NavigationEnd)
+      .map(() => this.activatedRoute)
+      .map(route => route.firstChild)
+      .switchMap(route => route.data)
       .map((data) => {
         if (data.title) {
           // If a route has a title set (e.g. data: {title: "Foo"}) then we use it

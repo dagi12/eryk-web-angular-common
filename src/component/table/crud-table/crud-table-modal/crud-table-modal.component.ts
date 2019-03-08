@@ -27,24 +27,23 @@ export class CrudTableModalComponent extends CrudTableComponent implements OnIni
       overlayConfigFactory(new CrudTableModalData({
         linkId: this.srcId
       }, this.items, MODE.CREATE), CrudTableModalData)
-    ).then(dialog => dialog.result.then(result => {
+    ).result.then(result => {
       if (result) {
         this.refreshTable();
       }
-    }, stubFun), stubFun);
+    }, stubFun);
   }
 
   onEdit(currentItem) {
     this.modal.open(
       this.editContainerContent,
       overlayConfigFactory(new CrudTableModalData(currentItem.data, this.items, MODE.EDIT), CrudTableModalData)
-    ).then(dialog => dialog.result.then(result => {
+    ).result.then(result => {
       if (result) {
         this.refreshTable();
       }
-    }, stubFun), stubFun);
+    }, stubFun);
   }
-
 
   ngOnInit(): void {
     super.ngOnInit();

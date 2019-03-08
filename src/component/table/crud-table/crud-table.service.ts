@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
-import {AuthHttp} from 'angular2-jwt';
+
 import {ApiConfigService} from '../../../service/api-config.service';
 import {CrudTableApi} from './crud-table-api';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class CrudTableService {
 
-  constructor(private http: AuthHttp, private acs: ApiConfigService) {
+  constructor(private http: HttpClient, private acs: ApiConfigService) {
   }
 
   buildApi(url: string) {

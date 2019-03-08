@@ -3,9 +3,10 @@ import {Observable} from 'rxjs/Observable';
 import {TypeaheadMatch} from 'ngx-bootstrap';
 
 import {of} from 'rxjs/observable/of';
-import {AuthHttp} from 'angular2-jwt';
+
 import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.component';
 import {ApiConfigService} from '../../../../service/api-config.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-auto-complete',
@@ -25,7 +26,7 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
   loading = false;
   private outputUrl: string;
 
-  constructor(private authHttp: AuthHttp,
+  constructor(private http: HttpClient,
               private apiConfigService: ApiConfigService,
               injector: Injector) {
     super(injector);
@@ -34,9 +35,8 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
       .create((observer: any) => observer.next(this.value))
       .mergeMap((token: string) => {
         if (this.value && this.value.length >= 3) {
-          return this.authHttp
-            .post(this.outputUrl, {searchText: token})
-            .map((response => response.json()));
+          return this.http
+            .post(this.outputUrl, {searchText: token});
         }
         return of([]);
       })

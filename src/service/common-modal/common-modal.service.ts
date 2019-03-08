@@ -5,9 +5,6 @@ import {EmptyModalComponent, EmptyModalData} from '../../component/modal/empty-m
 import {CrudTableModalData} from '../../component/table/crud-table/crud-table-modal-data';
 import {SimpleModalComponent} from '../../component/modal/simple-modal/simple-modal.component';
 
-
-type ModalCallback = (result: boolean) => void;
-
 @Injectable()
 export class CommonModalService {
 
@@ -21,14 +18,14 @@ export class CommonModalService {
     }, EmptyModalData));
   }
 
-  simpleModal<T extends SimpleModalComponent<any>>(type: Type<T>, item: {} = {}): Promise<DialogRef<string>> {
+  simpleModal<T extends SimpleModalComponent<any>>(type: Type<T>, item: {} = {}): DialogRef<string> {
     return this.modal.open(type,
       overlayConfigFactory(new CrudTableModalData(item), CrudTableModalData)
     );
   }
 
-  confirm(message: string, callback: ModalCallback) {
-    this.modal.confirm()
+  confirm(message: string): DialogRef<any> {
+    return this.modal.confirm()
       .size('sm')
       .isBlocking(true)
       .body(message)
@@ -36,13 +33,7 @@ export class CommonModalService {
       .okBtnClass('btn btn-primary confirm-btn col-sm-3')
       .cancelBtn('Nie')
       .cancelBtnClass('btn btn-default confirm-btn col-sm-3')
-      .open()
-      .then(
-        (dialog) => {
-          dialog.result.then((result: boolean) => callback(result), () => {
-            }
-          );
-        });
+      .open();
   }
 
   info(message: string, title = 'Sukces') {
@@ -54,7 +45,7 @@ export class CommonModalService {
       .body(message)
       .okBtn('Ok')
       .okBtnClass('btn btn-primary col-xs-12 col-sm-3 pull-right')
-      .open().then();
+      .open();
   }
 
   error(message: string, blocking = false) {
@@ -65,7 +56,7 @@ export class CommonModalService {
       .title('Błąd')
       .body(message)
       .okBtnClass(okBtnClasses)
-      .open().then();
+      .open();
   }
 
 }
