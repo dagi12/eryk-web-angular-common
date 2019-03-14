@@ -2,14 +2,11 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angula
 import {NgFilters} from '../../../model/ng-filters';
 import {MyColumn} from '../base-table/my-column';
 import {MyMobileDetectService} from '../../../service/my-mobile-detect.service';
-import {serializeParams, UtilService} from '../../../util/util.service';
+import {UtilService} from '../../../util/util.service';
 import {Sums} from './sums';
 import {DataTable} from 'primeng/primeng';
 import {AttachmentService} from '../../../../../flota-web-angular-common/src/component/attachment/attachment.service';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {spinner} from '../../../util/utils';
-import {ApiConfigService} from '../../../service/api-config.service';
-import {GeneralResponse} from '../../../../../flota-web-angular-common/src/model/sample';
 import 'rxjs/add/operator/let';
 
 const COLUMN_KEY_PREFIX = 'company_carsharing_client_';
@@ -55,8 +52,7 @@ export class MyTableInternalComponent implements OnInit {
 
   constructor(private myMobileDetectService: MyMobileDetectService,
               private attachmentService: AttachmentService,
-              private spinnerService: NgxSpinnerService,
-              private acs: ApiConfigService) {
+              private spinnerService: NgxSpinnerService) {
   }
 
   static exportBlob(dataTable: DataTable): FileInfo {
@@ -140,24 +136,24 @@ export class MyTableInternalComponent implements OnInit {
   }
 
   exportCSV() {
-    if (this.customExport) {
-      this.customExport();
-    } else {
-      const file = MyTableInternalComponent.exportBlob(this.dataTable);
-      const data = new FormData();
-      data.append('file', file.blob, file.fileName);
-      this
-        .attachmentService
-        .onSubmit('csv-xls', data)
-        .let(spinner(this.spinnerService))
-        .subscribe((response: GeneralResponse<String>) => {
-          const url = this.acs.simpleUrl('xls?' + serializeParams({
-            token: response.data
-          }));
-          window.open(url);
-        });
-    }
-
+    this.dataTable.exportCSV();
+    // TODO eksport do excela działający na najnowszym excelu
+    // if (this.customExport) {
+    //   this.customExport();
+    // } else {
+    //   const file = MyTableInternalComponent.exportBlob(this.dataTable);
+    //   const data = new FormData();
+    //   data.append('file', file.blob, file.fileName);
+    //   this
+    //     .attachmentService
+    //     .onSubmit('csv-xls', data)
+    //     .let(spinner(this.spinnerService))
+    //     .subscribe((response: GeneralResponse<String>) => {
+    //       const url = this.acs.simpleUrl('xls?' + serializeParams({
+    //         token: response.data
+    //       }));
+    //       window.open(url);
+    //     });
   }
 
 }
