@@ -19,7 +19,7 @@ export class ErrorHttpInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).do(null, (err: any) => {
       if (err instanceof HttpErrorResponse) {
-        if (err.error.error !== 'invalid_grant') {
+        if (!err.error || err.error.error !== 'invalid_grant') {
           this.errorHandler.handleError(err);
         }
       }

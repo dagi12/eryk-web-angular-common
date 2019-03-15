@@ -28,7 +28,7 @@ export const handelNetworkErrorMsg = (response: HttpErrorResponse, msg = null) =
     return data.message;
   }
   // response is not json
-  return 'Brak połączenia z serwerem';
+  return response.message;
 };
 
 @Injectable()
