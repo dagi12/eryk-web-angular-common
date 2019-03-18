@@ -25,8 +25,8 @@
         [options]="columnOptions"
         (ngModelChange)="onSelectedColumnsChange($event)"
         [ngModel]="selectedColumns"
-        [scrollHeight]="'1000px'"
-        [optionLabel]="'header'"
+        optionLabel="header"
+        scrollHeight="1000px"
         selectedItemsLabel="{0} wybranych elementów"></p-multiSelect>
     </div>
     <app-excel-btn (onExport)="exportCSV()" *ngIf="!hideExport"></app-excel-btn>

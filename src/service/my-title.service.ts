@@ -19,7 +19,13 @@ export class MyTitleService {
     this.observable = this.router.events
       .filter(event => event instanceof NavigationEnd)
       .map(() => this.activatedRoute)
-      .map(route => route.firstChild)
+      .map(route => {
+        let res = route.firstChild;
+        while (res.firstChild) {
+          res = res.firstChild;
+        }
+        return res;
+      })
       .switchMap(route => route.data)
       .map((data) => {
         if (data.title) {

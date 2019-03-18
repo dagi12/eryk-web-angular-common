@@ -41,8 +41,11 @@ export class MyTableInternalComponent implements OnInit {
   @Output() loadLazy = new EventEmitter();
   @Output() edit = new EventEmitter();
   @Input() loading = false;
+
   @ViewChild(DataTable) dataTable: DataTable;
   columnOptions: any[] = [];
+
+  // TODO columns doesn't reappear after deselection, should be fixed by switch to TurboTable
   selectedColumns: MyColumn[] = [];
   isMobile: boolean = this.myMobileDetectService.isMobile;
   numberFilter: {
@@ -92,30 +95,33 @@ export class MyTableInternalComponent implements OnInit {
 
   ngOnInit() {
     this.columnOptions = UtilService.shallowCloneArr(this.columns);
-    this.columnStorageKey = COLUMN_KEY_PREFIX + this.serviceUrl;
-    try {
-      const item = localStorage.getItem(this.columnStorageKey);
-      if (!!item) {
-        const tempColumns = JSON.parse(item);
-        if (!!this.selectedColumns) {
-          this.selectedColumns = tempColumns;
-        } else {
-          this.selectedColumns = UtilService.shallowCloneArr(this.columns);
-        }
-      } else {
-        this.selectedColumns = UtilService.shallowCloneArr(this.columns);
-      }
-    } catch (e) {
-      this.selectedColumns = UtilService.shallowCloneArr(this.columns);
-    }
+    this.selectedColumns = UtilService.shallowCloneArr(this.columns);
+    // FIXME don't work for columns with cell renderer, disabled until fixed
+    // this.columnStorageKey = COLUMN_KEY_PREFIX + this.serviceUrl;
+    // try {
+    //   const item = localStorage.getItem(this.columnStorageKey);
+    //   if (!!item) {
+    //     const tempColumns = JSON.parse(item);
+    //     if (!!this.selectedColumns) {
+    //       this.selectedColumns = tempColumns;
+    //     } else {
+    //       this.selectedColumns = UtilService.shallowCloneArr(this.columns);
+    //     }
+    //   } else {
+    //     this.selectedColumns = UtilService.shallowCloneArr(this.columns);
+    //   }
+    // } catch (e) {
+    //   this.selectedColumns = UtilService.shallowCloneArr(this.columns);
+    // }
   }
 
   onSelectedColumnsChange(columns: MyColumn[]) {
     // FIXME use angular-async-local-storage on migration to Angular 5
     this.selectedColumns = columns;
-    setTimeout(() => {
-      localStorage.setItem(this.columnStorageKey, JSON.stringify(columns));
-    });
+    // FIXME don't work for columns with cell renderer, disabled until fixed
+    // setTimeout(() => {
+    //   localStorage.setItem(this.columnStorageKey, JSON.stringify(columns));
+    // });
   }
 
   clearNumberFilter(dt: DataTable, col: MyColumn) {
@@ -137,7 +143,7 @@ export class MyTableInternalComponent implements OnInit {
 
   exportCSV() {
     this.dataTable.exportCSV();
-    // TODO eksport do excela działający na najnowszym excelu
+    // FIXME eksport do excela działający na najnowszym excelu
     // if (this.customExport) {
     //   this.customExport();
     // } else {

@@ -64,6 +64,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {MyTitleService} from './service/my-title.service';
 import {DatexPipe} from './pipes/datex.pipe';
 import {CrudTableModalComponent} from './component/table/crud-table/crud-table-modal/crud-table-modal.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -159,7 +160,8 @@ import {CrudTableModalComponent} from './component/table/crud-table/crud-table-m
     MultiSelectModule,
     SliderModule,
     TranslateModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ApiConfigService,

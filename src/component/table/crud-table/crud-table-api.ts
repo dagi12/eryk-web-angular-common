@@ -16,9 +16,9 @@ export class CrudTableApi {
       .put(this.url + '/' + id, item);
   }
 
-  add<T>(item: T): Observable<T> {
+  add<T>(item: T, url: string = this.url): Observable<T> {
     return this.http
-      .post<T>(this.url, item);
+      .post<T>(url, item);
   }
 
   remove(id: number): Observable<any> {

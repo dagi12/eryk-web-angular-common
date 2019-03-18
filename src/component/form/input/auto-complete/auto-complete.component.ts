@@ -36,12 +36,12 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
       .mergeMap((token: string) => {
         if (this.value && this.value.length >= 3) {
           return this.http
-            .post(this.outputUrl, {searchText: token});
+            .post(this.outputUrl, {searchText: token})
+            .finally(() => this.loading = false)
+            .doOnSubscribe(() => this.loading = true);
         }
         return of([]);
-      })
-      .doOnSubscribe(() => this.loading = true)
-      .finally(() => this.loading = false);
+      });
   }
 
 
