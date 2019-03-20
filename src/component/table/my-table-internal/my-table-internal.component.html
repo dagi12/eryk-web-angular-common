@@ -27,7 +27,7 @@
         [ngModel]="selectedColumns"
         optionLabel="header"
         scrollHeight="1000px"
-        selectedItemsLabel="{0} wybranych elementów"></p-multiSelect>
+        [selectedItemsLabel]="'COMMON.SELECTED_ITEMS' | translate"></p-multiSelect>
     </div>
     <app-excel-btn (onExport)="exportCSV()" *ngIf="!hideExport"></app-excel-btn>
   </p-header>
@@ -36,7 +36,7 @@
     [sortable]="!col.notSortable"
     *ngFor="let col of selectedColumns"
     [field]="col.field"
-    [header]="col.header"
+    [header]="col.header | translate"
     [styleClass]="col.styleClass"
     [filter]="lazy && col.filter !== false">
 
@@ -54,27 +54,27 @@
 
     <ng-template *ngIf="col.filterType === 'number'" pTemplate="filter" let-col>
       <i class="fa fa-close" (click)="clearNumberFilter(dt, col)"></i>
-      <br />
+      <br/>
       <input type="number"
-        placeholder="Od"
-        [ngModel]="numberFilter[col.field + 'From']"
-        (ngModelChange)="onNumberChange($event, dt, col, 'greaterThanOrEqual')"
-        [min]="0"
-        [max]="100000"
-        class="ui-column-filter ui-inputtext ui-widget ui-corner-all number-filter"
+             (ngModelChange)="onNumberChange($event, dt, col, 'greaterThanOrEqual')"
+             [max]="100000"
+             [min]="0"
+             [ngModel]="numberFilter[col.field + 'From']"
+             class="ui-column-filter ui-inputtext ui-widget ui-corner-all number-filter"
+             placeholder="Od"
       />
       <input type="number"
-        class="ui-column-filter ui-inputtext ui-widget ui-corner-all number-filter"
-        placeholder="Do"
-        [ngModel]="numberFilter[col.field + 'To']"
-        (ngModelChange)="onNumberChange($event, dt, col, 'lessThanOrEqual')"
-        [min]="0"
-        [max]="100000"
+             (ngModelChange)="onNumberChange($event, dt, col, 'lessThanOrEqual')"
+             [max]="100000"
+             [min]="0"
+             [ngModel]="numberFilter[col.field + 'To']"
+             class="ui-column-filter ui-inputtext ui-widget ui-corner-all number-filter"
+             placeholder="Do"
       />
     </ng-template>
 
   </p-column>
-  <!-- do wywalenia kiedy będzie TurboTable -->
+  <!-- TODO do wywalenia kiedy będzie TurboTable -->
   <p-footerColumnGroup *ngIf="items.length && sums">
     <p-row>
       <p-column footer="Suma:" colspan="5"></p-column>

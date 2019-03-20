@@ -1,3 +1,5 @@
+import {TranslateService} from '@ngx-translate/core';
+
 export interface ValueLabelPair<T> {
   label: string;
   value: T;
@@ -5,12 +7,9 @@ export interface ValueLabelPair<T> {
 
 export type CellRenderer = (_: string) => string;
 
-export const cellRendererLabelPairs = (pairs: ValueLabelPair<string>[]): CellRenderer => input => {
-  if (!!input) {
-    return pairs.find(
-      value => {
-        return value.value === input;
-      }).label;
-  }
-  return null;
-};
+export const valueLabelTranslate = (translateService: TranslateService, values: string[]): ValueLabelPair<string>[] => values.map(value => {
+  return {
+    value,
+    label: translateService.instant(value)
+  };
+});

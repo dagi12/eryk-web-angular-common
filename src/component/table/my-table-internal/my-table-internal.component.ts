@@ -8,8 +8,11 @@ import {DataTable} from 'primeng/primeng';
 import {AttachmentService} from '../../../../../flota-web-angular-common/src/component/attachment/attachment.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import 'rxjs/add/operator/let';
+import {TranslateService} from '@ngx-translate/core';
+import {CellRenderer} from '../../form/input/my-select/value-label-pair';
 
-const COLUMN_KEY_PREFIX = 'company_carsharing_client_';
+export const translateRenderer = (translateService: TranslateService, prefix: string = ''): CellRenderer =>
+  key => translateService.instant(prefix + key);
 
 export interface FileInfo {
   fileName: string;
