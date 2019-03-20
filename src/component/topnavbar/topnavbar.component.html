@@ -1,6 +1,7 @@
 <nav class="navbar navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
+      <a (click)="reset()" *ngIf="!production" class="btn btn-primary burger-button"><i class="fa fa-rebel"></i></a>
       <a (click)="onMinimize.emit()" class="btn btn-primary burger-button visible-xs">
         <i class="fa fa-bars"></i>
       </a>

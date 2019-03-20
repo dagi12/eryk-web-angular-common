@@ -12,6 +12,7 @@ import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.co
 })
 export class MySelectComponent extends AbstractValueAccessor implements OnInit {
 
+  @Input() required = false;
   @Input() map: ValueLabelPair<any>[];
   @Input() label: string;
 
