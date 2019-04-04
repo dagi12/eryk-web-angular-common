@@ -7,9 +7,10 @@ export interface ValueLabelPair<T> {
 
 export type CellRenderer = (_: string) => string;
 
-export const valueLabelTranslate = (translateService: TranslateService, values: string[]): ValueLabelPair<string>[] => values.map(value => {
+export const valueLabelTranslate = (translateService: TranslateService, values: string[],
+                                    prefix: string = ''): ValueLabelPair<string>[] => values.map(value => {
   return {
     value,
-    label: translateService.instant(value)
+    label: translateService.instant(prefix + value)
   };
 });
