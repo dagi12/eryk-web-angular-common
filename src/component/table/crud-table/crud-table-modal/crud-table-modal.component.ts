@@ -16,6 +16,7 @@ export class CrudTableModalComponent extends CrudTableComponent implements OnIni
 
   @Input() addContainerContent;
   @Input() editContainerContent;
+  @Input() newItem;
 
   constructor(private modal: Modal, crudTableService: CrudTableService, router: Router) {
     super(crudTableService, router);
@@ -24,9 +25,7 @@ export class CrudTableModalComponent extends CrudTableComponent implements OnIni
   onCreate() {
     this.modal.open(
       this.addContainerContent,
-      overlayConfigFactory(new CrudTableModalData({
-        linkId: this.srcId
-      }, this.items, MODE.CREATE), CrudTableModalData)
+      overlayConfigFactory(new CrudTableModalData(this.newItem, this.items, MODE.CREATE), CrudTableModalData)
     ).result.then(result => {
       if (result) {
         this.refreshTable();

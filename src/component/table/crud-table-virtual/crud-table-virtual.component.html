@@ -1,0 +1,14 @@
+<ng-content></ng-content>
+<app-my-table-internal-virtual
+  [emptyMessage]="emptyMessage"
+  [items]="items"
+  [columns]="columns"
+  [filterCriteria]="filterCriteria"
+  (edit)="onEdit($event)"></app-my-table-internal-virtual>
+<div class="row">
+  <app-button
+    [wrapperStyle]="wrapperStyle"
+    (onClick)="onCreate()"
+    icon="fa-plus"
+    [label]="createLabel"></app-button>
+</div>

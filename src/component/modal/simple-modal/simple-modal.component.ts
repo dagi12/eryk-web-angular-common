@@ -3,7 +3,7 @@ import {BSModalContext} from 'ngx-modialog/plugins/bootstrap';
 
 export abstract class SimpleModalComponent<T extends BSModalContext> implements ModalComponent<T> {
 
-  private static readonly ESC_KEY_VALUE = 27;
+  static readonly ESC_KEY_VALUE = 27;
 
   constructor(public dialog: DialogRef<T>, large?: boolean, dialogClass?: string) {
     dialog.context.isBlocking = false;

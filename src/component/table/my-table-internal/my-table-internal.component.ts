@@ -5,8 +5,6 @@ import {MyMobileDetectService} from '../../../service/my-mobile-detect.service';
 import {UtilService} from '../../../util/util.service';
 import {Sums} from './sums';
 import {DataTable} from 'primeng/primeng';
-import {AttachmentService} from '../../../../../flota-web-angular-common/src/component/attachment/attachment.service';
-import {NgxSpinnerService} from 'ngx-spinner';
 import 'rxjs/add/operator/let';
 import {TranslateService} from '@ngx-translate/core';
 import {CellRenderer} from '../../form/input/my-select/value-label-pair';
@@ -56,9 +54,7 @@ export class MyTableInternalComponent implements OnInit {
   } = {};
   private timer: any;
 
-  constructor(private myMobileDetectService: MyMobileDetectService,
-              private attachmentService: AttachmentService,
-              private spinnerService: NgxSpinnerService) {
+  constructor(private myMobileDetectService: MyMobileDetectService) {
   }
 
   static exportBlob(dataTable: DataTable): FileInfo {

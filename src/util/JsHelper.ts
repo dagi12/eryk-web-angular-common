@@ -34,7 +34,7 @@ export const throwIfMissing = p => {
   throw new Error(`Missing parameter: ${p}`);
 };
 
-export function cloneObject(clonedObject) {
+export function shallowClone(clonedObject) {
   const newObject = Object.assign({}, clonedObject);
   for (const prop in clonedObject) {
     if (clonedObject.hasOwnProperty(prop)) {
@@ -42,6 +42,19 @@ export function cloneObject(clonedObject) {
     }
   }
   return newObject;
+}
+
+export function download(file: File) {
+  if (window.navigator.msSaveOrOpenBlob) {
+    window.navigator.msSaveBlob(file, file.name);
+  } else {
+    const elem = window.document.createElement('a');
+    elem.href = window.URL.createObjectURL(file);
+    elem.download = file.name;
+    document.body.appendChild(elem);
+    elem.click();
+    document.body.removeChild(elem);
+  }
 }
 
 

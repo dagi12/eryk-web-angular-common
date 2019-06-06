@@ -65,6 +65,8 @@ import {MyTitleService} from './service/my-title.service';
 import {DatexPipe} from './pipes/datex.pipe';
 import {CrudTableModalComponent} from './component/table/crud-table/crud-table-modal/crud-table-modal.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CrudTableVirtualComponent} from './component/table/crud-table-virtual/crud-table-virtual.component';
+import {MyTableInternalVirtualComponent} from './component/table/my-table-internal-virtual/my-table-internal-virtual.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +108,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     PasswordValidatedComponent,
     NullDefaultValueDirective,
     DatexPipe,
-    CrudTableModalComponent
+    CrudTableModalComponent,
+    CrudTableVirtualComponent,
+    MyTableInternalVirtualComponent
   ],
   exports: [
     TopNavbarComponent,
@@ -142,7 +146,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     EmailValidatedComponent,
     PasswordValidatedComponent,
     NullDefaultValueDirective,
-    CrudTableModalComponent
+    CrudTableModalComponent,
+    CrudTableVirtualComponent,
+    MyTableInternalVirtualComponent
   ],
   imports: [
     BsDatepickerModule.forRoot(),

@@ -14,6 +14,12 @@ export function deleteByProperty(arr, propertyName, propertyValue, callback) {
   }
 }
 
+export function deleteByItem<T>(arr: T[], item: T): T[] {
+  const start = arr.indexOf(item);
+  arr.splice(start, 1);
+  return [...arr];
+}
+
 function isDefined(value) {
   return typeof value !== 'undefined';
 }

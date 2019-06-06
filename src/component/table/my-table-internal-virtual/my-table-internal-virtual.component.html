@@ -1,0 +1,17 @@
+<p-dataTable
+  #dt
+  (onRowClick)="edit.emit($event)"
+  [emptyMessage]="emptyMessage"
+  [reorderableColumns]="true"
+  [resizableColumns]="true"
+  [responsive]="true"
+  [value]="items"
+>
+  <p-column
+    *ngFor="let col of columns"
+    [field]="col.field"
+    [filter]="true"
+    [header]="col.header | translate"
+    [sortable]="true">
+  </p-column>
+</p-dataTable>
