@@ -5,7 +5,7 @@ export abstract class SimpleModalComponent<T extends BSModalContext> implements 
 
   static readonly ESC_KEY_VALUE = 27;
 
-  constructor(public dialog: DialogRef<T>, large?: boolean, dialogClass?: string) {
+  protected constructor(public dialog: DialogRef<T>, large?: boolean, dialogClass?: string) {
     dialog.context.isBlocking = false;
     dialog.context.showClose = true;
     if (large) {
@@ -25,7 +25,7 @@ export abstract class SimpleModalComponent<T extends BSModalContext> implements 
   // noinspection JSUnusedGlobalSymbols
   onKeyUp(value) {
     if (value === SimpleModalComponent.ESC_KEY_VALUE) {
-      this.dialog.dismiss();
+      this.close();
     }
   }
 

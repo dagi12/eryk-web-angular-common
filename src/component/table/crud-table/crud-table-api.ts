@@ -21,7 +21,7 @@ export class CrudTableApi {
       .post<T>(url, item);
   }
 
-  remove(id: number): Observable<any> {
+  delete(id: number): Observable<any> {
     return this.http
       .delete(this.url + '/' + id);
   }
