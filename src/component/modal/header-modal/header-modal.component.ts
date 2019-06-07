@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {passEmitter} from '../../../util/utils';
 
 @Component({
   selector: 'app-header-modal',
@@ -11,10 +12,7 @@ export class HeaderModalComponent {
   @Input() modalTitle: string;
   @Input() helpContent: string;
   @Output() close = new EventEmitter();
+  locClose = passEmitter(this.close);
 
-
-  locClose() {
-    return this.close.emit();
-  }
 
 }

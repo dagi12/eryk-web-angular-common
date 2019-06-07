@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {requiredProps} from '../../../util/util.service';
+import {passEmitter} from '../../../util/utils';
 
 @Component({
   selector: 'app-button',
@@ -16,13 +17,11 @@ export class ButtonComponent implements OnInit {
   @Input() icon = 'fa-check';
   @Input() type = 'button';
   @Output() onClick = new EventEmitter();
+  clickCallbackBound = passEmitter(this.onClick);
 
   constructor() {
   }
 
-  clickCallbackBound() {
-    this.onClick.emit();
-  }
 
   ngOnInit() {
     requiredProps(this.label, this.onClick);

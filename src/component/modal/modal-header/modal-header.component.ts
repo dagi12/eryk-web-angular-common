@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {passEmitter} from '../../../util/utils';
 
 @Component({
   selector: 'app-modal-header',
@@ -7,16 +8,13 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class ModalHeaderComponent implements OnInit {
 
-  @Output() close = new EventEmitter();
   @Input() helpContent: string;
   @Input() modalTitle: string;
   @Input() icon = 'fa-info';
+  @Output() close = new EventEmitter();
+  closeCallback = passEmitter(this.close);
 
   constructor() {
-  }
-
-  closeCallback() {
-    this.close.emit();
   }
 
   ngOnInit() {
