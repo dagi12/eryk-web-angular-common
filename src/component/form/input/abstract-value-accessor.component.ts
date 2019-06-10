@@ -2,7 +2,6 @@ import {EventEmitter, forwardRef, Injectable, Injector, OnInit, Output, Type} fr
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
 import {isError} from '../validated/common-validators';
 import {IValidated} from '../validated/ivalidated';
-import {passEmitter} from '../../../util/utils';
 
 @Injectable()
 export abstract class AbstractValueAccessor<T = string> implements ControlValueAccessor, OnInit {
@@ -10,7 +9,6 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
   formControl: FormControl;
   submitted: boolean;
   @Output() blur = new EventEmitter();
-  onBlur = passEmitter(this.blur);
 
   constructor(private injector: Injector) {
   }
@@ -25,6 +23,12 @@ export abstract class AbstractValueAccessor<T = string> implements ControlValueA
     if (v !== this._value) {
       this.writeValue(v);
     }
+  }
+
+  // don't change that to pass emitter
+  // noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols
+  onBlur() {
+    this.blur.emit();
   }
 
   // changed because form controls turns red onClose despite they are disabled

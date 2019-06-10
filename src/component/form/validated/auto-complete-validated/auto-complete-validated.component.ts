@@ -17,6 +17,7 @@ import {HttpClient} from '@angular/common/http';
 export class AutoCompleteValidatedComponent extends AutoCompleteComponent implements IValidated {
 
   @Input() submitted: boolean;
+  @Input() errorMessage: string;
   @Output() onSelect = new EventEmitter();
   locOnSelect: EmitterPass;
 

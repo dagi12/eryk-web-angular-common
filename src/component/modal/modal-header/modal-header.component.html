@@ -1,6 +1,6 @@
 <div class="modal-header">
   <a class="fa-pull-right"
-     (click)="closeCallback()">
+     (click)="closeCallback($event)">
     <i class="fa fa-close fa-2x"></i>
   </a>
   <app-help-dialog *ngIf="!!helpContent" [helpContent]="helpContent" class="fa-pull-right m-r"></app-help-dialog>

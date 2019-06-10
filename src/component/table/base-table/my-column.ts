@@ -11,4 +11,5 @@ export interface MyColumn {
   cellRenderer?: CellRenderer;
   styleClass?: string;
   filterType?: FilterType;
+  translated?: string;
 }

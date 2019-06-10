@@ -60,6 +60,7 @@ export class AutoCompleteComponent extends AbstractValueAccessor implements OnIn
 
   clear() {
     this.value = null;
+    this.onSelect.emit(null);
   }
 
 

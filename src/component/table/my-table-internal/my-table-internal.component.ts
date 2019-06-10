@@ -54,7 +54,7 @@ export class MyTableInternalComponent implements OnInit {
   } = {};
   private timer: any;
 
-  constructor(private myMobileDetectService: MyMobileDetectService) {
+  constructor(private myMobileDetectService: MyMobileDetectService, private translateService: TranslateService) {
   }
 
   static exportBlob(dataTable: DataTable): FileInfo {
@@ -94,7 +94,11 @@ export class MyTableInternalComponent implements OnInit {
 
   ngOnInit() {
     this.columnOptions = UtilService.shallowCloneArr(this.columns);
-    this.selectedColumns = UtilService.shallowCloneArr(this.columns);
+    for (const o of this.columnOptions) {
+      this.translateService.get(o.header)
+        .subscribe(value => o.translated = value);
+    }
+    this.selectedColumns = UtilService.shallowCloneArr(this.columnOptions);
     // FIXME don't work for columns with cell renderer, disabled until fixed
     // this.columnStorageKey = COLUMN_KEY_PREFIX + this.serviceUrl;
     // try {

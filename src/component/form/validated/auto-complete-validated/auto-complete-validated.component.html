@@ -7,5 +7,6 @@
   [required]="true"
   (blur)="onBlur()"
   (onSelect)="locOnSelect($event)">
-  <app-error-box [error]="locIsError()"></app-error-box>
+  <app-error-box [error]="locIsError()" [message]="errorMessage"></app-error-box>
+  <ng-content></ng-content>
 </app-auto-complete>

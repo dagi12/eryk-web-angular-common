@@ -2,7 +2,7 @@
   <button [type]="type"
           class="btn {{btnStyle}} full-width m-b"
           [disabled]="disabled"
-          (click)="clickCallbackBound()">
+          (click)="clickCallbackBound($event)">
     <i class="fa {{icon}} m-r-sm"></i>
     <span>{{label}}</span>
   </button>
