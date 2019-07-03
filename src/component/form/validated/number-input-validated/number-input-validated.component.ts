@@ -12,8 +12,7 @@ export class NumberInputValidatedComponent extends NumberInputComponent {
 
   @Input() required: boolean;
   @Input() submitted: boolean;
-
-  config = {
+  @Input() config = {
     required: 'Pole nie może być puste',
     max: 'Pole musi być mniejsze od 1000000',
     min: 'Pole musi być większe od 1'
