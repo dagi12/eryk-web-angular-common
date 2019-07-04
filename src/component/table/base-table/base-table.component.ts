@@ -99,7 +99,10 @@ export class BaseTableComponent implements OnInit {
       .finally(() => this.loading = false)
       .subscribe((items: any[]) => {
         this.items = items;
-        this.calcSums(items);
+        // TODO company-carsharing przekazuj pusty obiekt
+        if (!!this.sums) {
+          this.calcSums(items);
+        }
         if (this.items.length < options.rows) {
           this.totalRecords = (this.first + items.length) || 1;
         } else {

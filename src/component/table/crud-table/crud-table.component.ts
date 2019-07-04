@@ -44,12 +44,12 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
   }
 
   onCreate() {
-    this.router.navigate([this.createRouteUrl, {mode: MODE.CREATE}]);
+    this.router.navigate([this.createRouteUrl, {mode: MODE.CREATE}]).then();
   }
 
 
   onEdit(currentItem) {
-    this.router.navigate([this.editRouteUrl, {mode: MODE.EDIT, id: currentItem.data.applicationId}]);
+    this.router.navigate([this.editRouteUrl, {mode: MODE.EDIT, id: currentItem.data.applicationId}]).then();
   }
 
 }

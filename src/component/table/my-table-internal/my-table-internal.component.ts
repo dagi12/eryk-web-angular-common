@@ -9,8 +9,12 @@ import 'rxjs/add/operator/let';
 import {TranslateService} from '@ngx-translate/core';
 import {CellRenderer} from '../../form/input/my-select/value-label-pair';
 
-export const translateRenderer = (translateService: TranslateService, prefix: string = ''): CellRenderer =>
-  key => translateService.instant(prefix + key);
+export const translateRenderer = (translateService: TranslateService, prefix: string = ''): CellRenderer => (key) => {
+  if (!!key) {
+    return translateService.instant(prefix + key);
+  }
+  return '';
+};
 
 export interface FileInfo {
   fileName: string;
