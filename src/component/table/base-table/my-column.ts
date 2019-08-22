@@ -12,4 +12,5 @@ export interface MyColumn {
   styleClass?: string;
   filterType?: FilterType;
   translated?: string;
+  notSortable?: boolean;
 }
