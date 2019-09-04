@@ -148,6 +148,7 @@ import {MyTableInternalVirtualComponent} from './component/table/my-table-intern
     NullDefaultValueDirective,
     CrudTableModalComponent,
     CrudTableVirtualComponent,
+    MyTableInternalComponent,
     MyTableInternalVirtualComponent
   ],
   imports: [

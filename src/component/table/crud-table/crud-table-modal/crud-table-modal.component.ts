@@ -18,7 +18,7 @@ export class CrudTableModalComponent extends CrudTableComponent implements OnIni
   @Input() editContainerContent;
   @Input() newItem;
 
-  constructor(private modal: Modal, crudTableService: CrudTableService, router: Router) {
+  constructor(protected modal: Modal, crudTableService: CrudTableService, router: Router) {
     super(crudTableService, router);
   }
 
