@@ -1,16 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-error-box',
-  templateUrl: './error-box.component.html',
-    styleUrls: ['./error-box.component.css']
+  selector: "app-error-box",
+  templateUrl: "./error-box.component.html",
+  styleUrls: ["./error-box.component.css"]
 })
 export class ErrorBoxComponent implements OnInit {
-
-  @Input() message = 'Pole nie może być puste';
+  @Input() message = this.translateService.instant("THE_FIELD_CANNOT_BE_EMPTY");
   @Input() error: boolean;
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
+  constructor(private translateService: TranslateService) {}
 }

@@ -1,11 +1,12 @@
-import {Component, Injector, Input, NgZone, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.component';
-import {newId} from '../../../../util/utils';
-import {BsDatepickerDirective} from 'ngx-bootstrap';
-import 'rxjs/add/observable/fromEvent';
-import {MyMobileDetectService} from '../../../../service/my-mobile-detect.service';
-import {fromDateToDateInputValue} from '../../../../util/date.service';
+import { Component, Injector, Input, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
+import { BsDatepickerDirective } from 'ngx-bootstrap';
+import 'rxjs/add/observable/fromEvent';
+import { MyMobileDetectService } from '../../../../service/my-mobile-detect.service';
+import { fromDateToDateInputValue } from '../../../../util/date.service';
+import { newId } from '../../../../util/utils';
+import { AbstractValueAccessor, MakeProvider } from '../abstract-value-accessor.component';
 
 @Component({
   selector: 'app-date-picker',
@@ -13,23 +14,28 @@ import * as moment from 'moment';
   styleUrls: ['./date-picker.component.css'],
   providers: [MakeProvider(DatePickerComponent)]
 })
-export class DatePickerComponent extends AbstractValueAccessor<Date> implements OnInit, OnDestroy {
-
+export class DatePickerComponent extends AbstractValueAccessor<Date>
+  implements OnInit, OnDestroy {
   @ViewChild(BsDatepickerDirective) datepicker: BsDatepickerDirective;
-  @Input() placeholder = 'Kliknij, aby wybrać datę...';
+  @Input() placeholder = this.translateService.instant('CLICK_TO_CHOOSE_THE_DATE');
   @Input() label: string;
   @Input() required: boolean;
   @Input() submitted = false;
   id = newId();
-  eventOptions: boolean | { capture?: boolean, passive?: boolean };
+  eventOptions: boolean | { capture?: boolean; passive?: boolean };
   config = {
-    required: 'Pole nie może być puste',
-    date: 'Data musi być późniejsza od daty dzisiejszej',
-    dateLess: 'Nie można zmienić daty początku na późniejszą'
+    required: this.translateService.instant('THE_FIELD_CANNOT_BE_EMPTY'),
+    date: this.translateService.instant('DATE_LATER'),
+    dateLess: this.translateService.instant('THE_DATE_CANNOT_BE_CHANGED')
   };
   private readonly scroll: () => void;
 
-  constructor(injector: Injector, private ngZone: NgZone, public myMobileDetectService: MyMobileDetectService) {
+  constructor(
+    injector: Injector,
+    private ngZone: NgZone,
+    public myMobileDetectService: MyMobileDetectService,
+    private translateService: TranslateService
+  ) {
     super(injector);
     this.scroll = () => {
       if (this.datepicker.isOpen) {

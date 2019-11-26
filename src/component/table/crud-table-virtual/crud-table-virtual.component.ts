@@ -1,13 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {LazyLoadEventExt} from '../base-table/lazyloadeventext';
-import {Modal, overlayConfigFactory} from 'ngx-modialog';
-import {CrudTableModalData} from '../crud-table/crud-table-modal-data';
-import {MODE} from '../../../util/const';
-import {stubFun} from '../../../util/utils';
-import {CrudTableService} from '../crud-table/crud-table.service';
-import {BaseTableComponent} from '../base-table/base-table.component';
-import {shallowClone} from '../../../util/JsHelper';
-import {deleteByItem} from '../../../util/array.helper';
+import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Modal, overlayConfigFactory } from 'ngx-modialog';
+import { deleteByItem } from '../../../util/array.helper';
+import { MODE } from '../../../util/const';
+import { shallowClone } from '../../../util/JsHelper';
+import { stubFun } from '../../../util/utils';
+import { BaseTableComponent } from '../base-table/base-table.component';
+import { LazyLoadEventExt } from '../base-table/lazyloadeventext';
+import { CrudTableModalData } from '../crud-table/crud-table-modal-data';
+import { CrudTableService } from '../crud-table/crud-table.service';
 
 @Component({
   selector: 'app-crud-table-virtual',
@@ -21,8 +22,8 @@ export class CrudTableVirtualComponent extends BaseTableComponent implements OnI
   @Input() newItem: any;
   @Input() wrapperStyle: string;
 
-  constructor(private modal: Modal, crudTableService: CrudTableService) {
-    super(crudTableService);
+  constructor(private modal: Modal, crudTableService: CrudTableService, translateService: TranslateService) {
+    super(crudTableService, translateService);
   }
 
   loadLazy(options: LazyLoadEventExt, resetPaging: boolean = false): void {

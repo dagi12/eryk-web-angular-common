@@ -1,11 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CrudTableComponent} from '../crud-table.component';
-import {CrudTableModalData} from '../crud-table-modal-data';
-import {MODE} from '../../../../util/const';
-import {Modal, overlayConfigFactory} from 'ngx-modialog';
-import {stubFun} from '../../../../util/utils';
-import {CrudTableService} from '../crud-table.service';
-import {Router} from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { Modal, overlayConfigFactory } from 'ngx-modialog';
+import { MODE } from '../../../../util/const';
+import { stubFun } from '../../../../util/utils';
+import { CrudTableModalData } from '../crud-table-modal-data';
+import { CrudTableComponent } from '../crud-table.component';
+import { CrudTableService } from '../crud-table.service';
 
 @Component({
   selector: 'app-crud-table-modal',
@@ -18,8 +19,8 @@ export class CrudTableModalComponent extends CrudTableComponent implements OnIni
   @Input() editContainerContent;
   @Input() newItem;
 
-  constructor(private modal: Modal, crudTableService: CrudTableService, router: Router) {
-    super(crudTableService, router);
+  constructor(private modal: Modal, crudTableService: CrudTableService, router: Router, translateService: TranslateService) {
+    super(crudTableService, router, translateService);
   }
 
   onCreate() {

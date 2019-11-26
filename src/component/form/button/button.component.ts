@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {requiredProps} from '../../../util/util.service';
-import {passEmitter} from '../../../util/utils';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { requiredProps } from '../../../util/util.service';
+import { passEmitter } from '../../../util/utils';
 
 @Component({
   selector: 'app-button',
@@ -9,7 +10,7 @@ import {passEmitter} from '../../../util/utils';
 })
 export class ButtonComponent implements OnInit {
 
-  @Input() label = 'Zatwierdź';
+  @Input() label = this.translateService.instant('CONFIRM');
   // renamed from style, this was causing weird parse error on PhantomJS
   @Input() btnStyle = 'btn-primary';
   @Input() wrapperStyle: string;
@@ -19,7 +20,7 @@ export class ButtonComponent implements OnInit {
   @Output() onClick = new EventEmitter();
   clickCallbackBound = passEmitter(this.onClick);
 
-  constructor() {
+  constructor(private translateService: TranslateService) {
   }
 
 

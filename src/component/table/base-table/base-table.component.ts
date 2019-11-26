@@ -1,13 +1,13 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {CrudTableService} from '../crud-table/crud-table.service';
-import {MyColumn} from './my-column';
-import {DataTable} from 'primeng/primeng';
-
-import {arrayToMap2} from '../../../util/array.helper';
-import {NgFilters} from '../../../model/ng-filters';
-import {LazyLoadEventExt} from './lazyloadeventext';
-import {Sums} from '../my-table-internal/sums';
-import {CrudTableApi} from '../crud-table/crud-table-api';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { DataTable } from 'primeng/primeng';
+import { NgFilters } from '../../../model/ng-filters';
+import { arrayToMap2 } from '../../../util/array.helper';
+import { CrudTableApi } from '../crud-table/crud-table-api';
+import { CrudTableService } from '../crud-table/crud-table.service';
+import { Sums } from '../my-table-internal/sums';
+import { LazyLoadEventExt } from './lazyloadeventext';
+import { MyColumn } from './my-column';
 
 @Component({
   selector: 'app-base-table',
@@ -15,13 +15,12 @@ import {CrudTableApi} from '../crud-table/crud-table-api';
   styles: []
 })
 export class BaseTableComponent implements OnInit {
-
   first = 0;
   totalRecords = 0;
   lastLazyLoadEvent: LazyLoadEventExt;
   @ViewChild(DataTable) dataTable: DataTable;
   // nie dodawaj Inputa
-  @Input() emptyMessage = 'Nie znaleziono rekordów. Zmień kryteria wyszukiwania.';
+  @Input() emptyMessage = this.translateService.instant('NO_RECORDS_FOUND');
   @Input() items: any[] = [];
   @Input() serviceUrl: string;
   @Input() columns: MyColumn[];
@@ -38,14 +37,14 @@ export class BaseTableComponent implements OnInit {
   @Input() customExport: Function;
   private crudTableApi: CrudTableApi;
 
-  constructor(protected crudTableService: CrudTableService) {
-
-  }
+  constructor(protected crudTableService: CrudTableService, private translateService: TranslateService) { }
 
   static addFilterTypes(filters: NgFilters) {
     for (const key in filters) {
       if (filters.hasOwnProperty(key)) {
-        filters[key].filterType = BaseTableComponent.switchType(filters[key].value);
+        filters[key].filterType = BaseTableComponent.switchType(
+          filters[key].value
+        );
       }
     }
   }
@@ -66,7 +65,8 @@ export class BaseTableComponent implements OnInit {
     }
   }
 
-  callback = items => this.items = items._embedded ? items._embedded[this.serviceUrl] : items;
+  callback = items =>
+    (this.items = items._embedded ? items._embedded[this.serviceUrl] : items)
 
   ngOnInit() {
     this.crudTableApi = this.crudTableService.buildApi(this.serviceUrl);
@@ -83,8 +83,8 @@ export class BaseTableComponent implements OnInit {
     } else {
       this.crudTableApi
         .all()
-        .doOnSubscribe(() => this.loading = true)
-        .finally(() => this.loading = false)
+        .doOnSubscribe(() => (this.loading = true))
+        .finally(() => (this.loading = false))
         .subscribe(this.callback);
     }
   }
@@ -95,8 +95,8 @@ export class BaseTableComponent implements OnInit {
     // noinspection JSIgnoredPromiseFromCall
     this.crudTableApi
       .lazy(options)
-      .doOnSubscribe(() => this.loading = true)
-      .finally(() => this.loading = false)
+      .doOnSubscribe(() => (this.loading = true))
+      .finally(() => (this.loading = false))
       .subscribe((items: any[]) => {
         this.items = items;
         // TODO company-carsharing przekazuj pusty obiekt
@@ -104,7 +104,7 @@ export class BaseTableComponent implements OnInit {
           this.calcSums(items);
         }
         if (this.items.length < options.rows) {
-          this.totalRecords = (this.first + items.length) || 1;
+          this.totalRecords = this.first + items.length || 1;
         } else {
           this.totalRecords = this.first + options.rows + 1;
         }
@@ -150,5 +150,4 @@ export class BaseTableComponent implements OnInit {
     });
     this.sums.amountSum = amountSumTmp.toFixed(2);
   }
-
 }

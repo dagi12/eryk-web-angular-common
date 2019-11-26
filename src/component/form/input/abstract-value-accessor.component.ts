@@ -1,7 +1,7 @@
-import {EventEmitter, forwardRef, Injectable, Injector, OnInit, Output, Type} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
-import {isError} from '../validated/common-validators';
-import {IValidated} from '../validated/ivalidated';
+import { EventEmitter, forwardRef, Injectable, Injector, OnInit, Output, Type } from '@angular/core';
+import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { isError } from '../validated/common-validators';
+import { IValidated } from '../validated/ivalidated';
 
 @Injectable()
 export abstract class AbstractValueAccessor<T = string> implements ControlValueAccessor, OnInit {

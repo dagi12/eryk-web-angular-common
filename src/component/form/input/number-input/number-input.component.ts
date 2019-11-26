@@ -1,7 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor.component';
-import {newId} from '../../../../util/utils';
-import {MAX_VALUE} from '../../../../util/const';
+import { Component, Input } from '@angular/core';
+import { MAX_VALUE } from '../../../../util/const';
+import { newId } from '../../../../util/utils';
+import { AbstractValueAccessor, MakeProvider } from '../abstract-value-accessor.component';
 
 @Component({
   selector: 'app-number-input',

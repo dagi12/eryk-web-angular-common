@@ -1,6 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {MakeProvider} from '../../input/abstract-value-accessor.component';
-import {NumberInputComponent} from '../../input/number-input/number-input.component';
+import { Component, Injector, Input } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { MakeProvider } from '../../input/abstract-value-accessor.component';
+import { NumberInputComponent } from '../../input/number-input/number-input.component';
 
 @Component({
   selector: 'app-number-input-validated',
@@ -9,13 +10,15 @@ import {NumberInputComponent} from '../../input/number-input/number-input.compon
   providers: [MakeProvider(NumberInputValidatedComponent)]
 })
 export class NumberInputValidatedComponent extends NumberInputComponent {
+  constructor(private translateService: TranslateService, injector: Injector) {
+    super(injector);
+  }
 
   @Input() required: boolean;
   @Input() submitted: boolean;
   @Input() config = {
-    required: 'Pole nie może być puste',
-    max: 'Pole musi być mniejsze od 1000000',
-    min: 'Pole musi być większe od 1'
+    required: this.translateService.instant('THE_FIELD_CANNOT_BE_EMPTY'),
+    max: this.translateService.instant('THE_FIELD_MUST_BE_LESS'),
+    min: this.translateService.instant('THE_FIELD_MUST_BE_LARGER')
   };
-
 }

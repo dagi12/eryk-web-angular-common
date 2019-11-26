@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CrudTableService} from './crud-table.service';
-import {BaseTableComponent} from '../base-table/base-table.component';
-import {LazyLoadEventExt} from '../base-table/lazyloadeventext';
-import {MODE} from '../../../util/const';
-import {Router} from '@angular/router';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { MODE } from '../../../util/const';
+import { BaseTableComponent } from '../base-table/base-table.component';
+import { LazyLoadEventExt } from '../base-table/lazyloadeventext';
+import { CrudTableService } from './crud-table.service';
 
 @Component({
   selector: 'app-crud-table',
@@ -23,8 +23,8 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
   @Input() createRouteUrl: string;
   @Input() editRouteUrl: string;
 
-  constructor(crudTableService: CrudTableService, private router: Router) {
-    super(crudTableService);
+  constructor(crudTableService: CrudTableService, private router: Router, translateService: TranslateService) {
+    super(crudTableService, translateService);
   }
 
   ngOnInit(): void {
@@ -44,12 +44,12 @@ export class CrudTableComponent extends BaseTableComponent implements OnInit {
   }
 
   onCreate() {
-    this.router.navigate([this.createRouteUrl, {mode: MODE.CREATE}]).then();
+    this.router.navigate([this.createRouteUrl, { mode: MODE.CREATE }]).then();
   }
 
 
   onEdit(currentItem) {
-    this.router.navigate([this.editRouteUrl, {mode: MODE.EDIT, id: currentItem.data.applicationId}]).then();
+    this.router.navigate([this.editRouteUrl, { mode: MODE.EDIT, id: currentItem.data.applicationId }]).then();
   }
 
 }
