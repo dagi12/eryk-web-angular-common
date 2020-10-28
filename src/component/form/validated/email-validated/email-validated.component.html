@@ -2,7 +2,7 @@
                 [label]="label"
                 [(ngModel)]="value"
                 [disabled]="formControl.disabled"
-                [maxLength]="37"
+                [maxLength]="100"
                 [placeholder]="placeholder"
                 (blur)="onBlur()">
   <app-error-boxes [submitted]="submitted" [control]="formControl" [config]="errorConfig"></app-error-boxes>
