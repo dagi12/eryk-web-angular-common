@@ -4,7 +4,7 @@
   [resizableColumns]="true"
   [value]="items"
   [emptyMessage]="emptyMessage"
-  [rows]="20"
+  [rows]="2000"
   [lazy]="lazy"
   [(first)]="first"
   [scrollable]="false"
@@ -17,7 +17,8 @@
   (onLazyLoad)="loadLazy.emit($event)"
   [loading]="loading"
   loadingIcon="fa-spinner"
-  [responsive]="true">
+  [responsive]="true"
+>
   <p-header class="ui-helper-clearfix">
     <div class="col-xs-12 col-sm-6 col-md-3 m-b-xs">
       <p-multiSelect
@@ -27,7 +28,8 @@
         [ngModel]="selectedColumns"
         optionLabel="translated"
         scrollHeight="1000px"
-        [selectedItemsLabel]="'COMMON.SELECTED_ITEMS' | translate"></p-multiSelect>
+        [selectedItemsLabel]="'COMMON.SELECTED_ITEMS' | translate"
+      ></p-multiSelect>
     </div>
     <app-excel-btn (onExport)="exportCSV()" *ngIf="!hideExport"></app-excel-btn>
   </p-header>
@@ -38,41 +40,52 @@
     [field]="col.field"
     [header]="col.header | translate"
     [styleClass]="col.styleClass"
-    [filter]="lazy && col.filter !== false">
-
+    [filter]="lazy && col.filter !== false"
+  >
     <ng-template *ngIf="col.date" let-item="rowData" pTemplate type="body">
-      {{item[col.field] | datex:'DD-MM-YYYY HH:mm' }}
+      {{ item[col.field] | datex: "DD-MM-YYYY HH:mm" }}
     </ng-template>
 
-    <ng-template *ngIf="col.isEnabledLabel" let-item="rowData" pTemplate type="body">
-      {{item[col.field] | yesNo }}
+    <ng-template
+      *ngIf="col.isEnabledLabel"
+      let-item="rowData"
+      pTemplate
+      type="body"
+    >
+      {{ item[col.field] | yesNo }}
     </ng-template>
 
-    <ng-template *ngIf="col.cellRenderer" let-item="rowData" pTemplate type="body">
-      {{col.cellRenderer(item[col.field])}}
+    <ng-template
+      *ngIf="col.cellRenderer"
+      let-item="rowData"
+      pTemplate
+      type="body"
+    >
+      {{ col.cellRenderer(item[col.field]) }}
     </ng-template>
 
     <ng-template *ngIf="col.filterType === 'number'" pTemplate="filter" let-col>
       <i class="fa fa-close" (click)="clearNumberFilter(dt, col)"></i>
-      <br/>
-      <input type="number"
-             (ngModelChange)="onNumberChange($event, dt, col, 'greaterThanOrEqual')"
-             [max]="100000"
-             [min]="0"
-             [ngModel]="numberFilter[col.field + 'From']"
-             class="ui-column-filter ui-inputtext ui-widget ui-corner-all number-filter"
-             placeholder="Od"
+      <br />
+      <input
+        type="number"
+        (ngModelChange)="onNumberChange($event, dt, col, 'greaterThanOrEqual')"
+        [max]="100000"
+        [min]="0"
+        [ngModel]="numberFilter[col.field + 'From']"
+        class="ui-column-filter ui-inputtext ui-widget ui-corner-all number-filter"
+        placeholder="Od"
       />
-      <input type="number"
-             (ngModelChange)="onNumberChange($event, dt, col, 'lessThanOrEqual')"
-             [max]="100000"
-             [min]="0"
-             [ngModel]="numberFilter[col.field + 'To']"
-             class="ui-column-filter ui-inputtext ui-widget ui-corner-all number-filter"
-             placeholder="Do"
+      <input
+        type="number"
+        (ngModelChange)="onNumberChange($event, dt, col, 'lessThanOrEqual')"
+        [max]="100000"
+        [min]="0"
+        [ngModel]="numberFilter[col.field + 'To']"
+        class="ui-column-filter ui-inputtext ui-widget ui-corner-all number-filter"
+        placeholder="Do"
       />
     </ng-template>
-
   </p-column>
   <!-- TODO do wywalenia kiedy będzie TurboTable -->
   <p-footerColumnGroup *ngIf="items.length && sums">
